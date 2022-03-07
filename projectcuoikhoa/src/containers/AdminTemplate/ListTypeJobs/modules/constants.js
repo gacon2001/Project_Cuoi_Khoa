@@ -1,0 +1,3 @@
+export const FETCH_LIST_TYPE_JOBS_REQUEST  = "@fetchListTypeJobsReducer/FETCH_LIST_TYPE_JOBS_REQUEST";
+export const FETCH_LIST_TYPE_JOBS_SUCCESS = "@fetchListTypeJobsReducer/FETCH_LIST_TYPE_JOBS_SUCCESS";
+export const FETCH_LIST_TYPE_JOBS_FAILED = "@fetchListTypeJobsReducer/FETCH_LIST_TYPE_JOBS_FAILED";

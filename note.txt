@@ -1,0 +1,24 @@
+như react trước mình dựa vào value đó để biết đc là có params user đại diện cho các thuộc tính đó , còn nay mình dùng pasotman thì làm sao biết những api sẽ dựa vào cái gì á Hải?
+
+cái đường dẫn mình thấy có /618c8f4595d99f001c0c045f nhìn giống :id á
+rồi ở headers thì mình vô tab headers để coi
+nếu có truyền lên một object thì vô body coi á
+ {
+    "name": "Nguyễn Phong Dinh",
+    "email": "dinh@gmail.com",
+    "password": "1111",
+    "phone": "0934657867",
+    "birthday": "1998-05-11",
+    "gender": true,
+    "role": "ADMIN",
+    "skill": [
+        "LoL",
+        "WEB",
+        "DESIGN"
+    ],
+    "certification": [
+        "DIB",
+        "PYNOW"
+    ]
+}
+oki r á H, để V làm tiếp, trễ r để Hải nghỉ ngơi nhe. Oki Vân ^^ G9 lun <3 oki g9 Vân <3
