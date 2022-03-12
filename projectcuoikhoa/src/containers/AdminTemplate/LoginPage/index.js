@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import DashboardNavbar from "../DashboardPage/components/DashboardNavbar";
 import { actLoginApi } from "./modules/actions";
 
 export default function LoginPage() {
@@ -27,6 +28,7 @@ export default function LoginPage() {
 
   return (
     <div>
+      {/* <DashboardNavbar/> */}
       <h1>LoginPage</h1>
       <div className="container">
         <form onSubmit={handleLogin}>

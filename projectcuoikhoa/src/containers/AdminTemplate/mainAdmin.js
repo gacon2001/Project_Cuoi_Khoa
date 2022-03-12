@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import DashboardNavbar from "./DashboardPage/components/DashboardNavbar";
 import NavbarAdmin from "./_components/NavbarAdmin";
 
 export default function AdminTemplate({ exact, path, component }) {
@@ -8,6 +9,7 @@ export default function AdminTemplate({ exact, path, component }) {
       <>
         {/* {path == "/admin" && <NavbarAdmin />} */}
         {/* <NavbarAdmin /> */}
+        {/* <DashboardNavbar/> */}
         <Route exact={exact} path={path} component={component} />
       </>
     );

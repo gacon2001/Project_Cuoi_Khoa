@@ -31,33 +31,4 @@ const actDetailJobsFailed = (error) => {
     }
 }
 
-export const actBookingThisJobsApi = (_id) => {
-    return (dispatch) => {
-        dispatch(actBookingThisJobsRequest());
-        api.patch(`jobs/booking/${_id}`)
-        .then((success)=>{
-            dispatch(actBookingThisJobsSuccess(success.data));
-        })
-        .catch((error)=>{
-            dispatch(actBookingThisJobsFailed(error));
-        })
-    }
-} 
-const actBookingThisJobsRequest = ()=>{
-    return {
-        type: ActionType.BOOKING_THIS_JOBS_REQUEST
-    }
-}
-const actBookingThisJobsSuccess = (data) => {
-return {
-    type: ActionType.BOOKING_THIS_JOBS_SUCCESS,
-    payload: data,
-}
-}
-const actBookingThisJobsFailed = (error) => {
-    return{
-        type: ActionType.BOOKING_THIS_JOBS_FAILED,
-        payload: error,
-    }
-}
 

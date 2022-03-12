@@ -1,16 +1,14 @@
-export const UPLOAD_AVATAR_REQUEST  = "@uploadAvatarReducer/UPLOAD_AVATAR_REQUEST";
-export const UPLOAD_AVATAR_SUCCESS = "@uploadAvatarReducer/UPLOAD_AVATAR_SUCCESS";
-export const UPLOAD_AVATAR_FAILED = "@uploadAvatarReducer/UPLOAD_AVATAR_FAILED";
 
-export const FETCH_DETAIL_ADMIN_LOGIN_REQUEST  = "@uploadAvatarReducer/FETCH_DETAIL_ADMIN_LOGIN_REQUEST";
-export const FETCH_DETAIL_ADMIN_LOGIN_SUCCESS = "@uploadAvatarReducer/FETCH_DETAIL_ADMIN_LOGIN_SUCCESS";
-export const FETCH_DETAIL_ADMIN_LOGIN_FAILED = "@uploadAvatarReducer/FETCH_DETAIL_ADMIN_LOGIN_FAILED";
 
-export const ADD_SKILLS_REQUEST  = "@uploadAvatarReducer/ADD_SKILLS_REQUEST";
-export const ADD_SKILLS_SUCCESS = "@uploadAvatarReducer/ADD_SKILLS_SUCCESS";
-export const ADD_SKILLS_FAILED = "@uploadAvatarReducer/ADD_SKILLS_FAILED";
+export const FETCH_DETAIL_ADMIN_LOGIN_REQUEST  = "@profilePageReducer/FETCH_DETAIL_ADMIN_LOGIN_REQUEST";
+export const FETCH_DETAIL_ADMIN_LOGIN_SUCCESS = "@profilePageReducer/FETCH_DETAIL_ADMIN_LOGIN_SUCCESS";
+export const FETCH_DETAIL_ADMIN_LOGIN_FAILED = "@profilePageReducer/FETCH_DETAIL_ADMIN_LOGIN_FAILED";
 
-export const ADD_CERTIFICATIONS_REQUEST  = "@uploadAvatarReducer/ADD_CERTIFICATIONS_REQUEST";
-export const ADD_CERTIFICATIONS_SUCCESS = "@uploadAvatarReducer/ADD_CERTIFICATIONS_SUCCESS";
-export const ADD_CERTIFICATIONS_FAILED = "@uploadAvatarReducer/ADD_CERTIFICATIONS_FAILED";
+export const ADD_SKILLS_REQUEST  = "@profilePageReducer/ADD_SKILLS_REQUEST";
+export const ADD_SKILLS_SUCCESS = "@profilePageReducer/ADD_SKILLS_SUCCESS";
+export const ADD_SKILLS_FAILED = "@profilePageReducer/ADD_SKILLS_FAILED";
+
+export const ADD_CERTIFICATIONS_REQUEST  = "@profilePageReducer/ADD_CERTIFICATIONS_REQUEST";
+export const ADD_CERTIFICATIONS_SUCCESS = "@profilePageReducer/ADD_CERTIFICATIONS_SUCCESS";
+export const ADD_CERTIFICATIONS_FAILED = "@profilePageReducer/ADD_CERTIFICATIONS_FAILED";
 

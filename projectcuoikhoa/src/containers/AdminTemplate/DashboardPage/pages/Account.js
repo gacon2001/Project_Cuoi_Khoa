@@ -4,8 +4,8 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
-import AccountProfile from '../components/account/AccountProfile';
-import AccountProfileDetails from '../components/account/AccountProfileDetails';
+import AccountProfile from '../components/Avatar/AvatarProfile';
+import AccountProfileDetails from '../components/Avatar/AccountProfileDetails';
 
 const Account = () => (
   <>

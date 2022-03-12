@@ -2,32 +2,35 @@ import * as ActionType from "./constants";
 
 const initialState = {
   loading: false,
-  detailJobs: null,
-  error: null,
   data: null,
+  error: null,
 };
 
-const detailJobsReducer = (state = initialState, action) => {
+const uploadAvatarReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.DETAIL_JOBS_REQUEST:
+    case ActionType.UPLOAD_AVATAR_REQUEST: {
       state.loading = true;
-      state.detailJobs = null;
+      state.data = null;
       state.error = null;
       return { ...state };
-    case ActionType.DETAIL_JOBS_SUCCESS:
+    }
+
+    case ActionType.UPLOAD_AVATAR_SUCCESS: {
       state.loading = false;
-      state.detailJobs = action.payload;
+      state.data = action.payload;
       state.error = null;
       return { ...state };
-    case ActionType.DETAIL_JOBS_FAILED:
+    }
+    case ActionType.UPLOAD_AVATAR_FAILED: {
       state.loading = false;
-      state.detailJobs = null;
+      state.data = null;
       state.error = action.payload;
       return { ...state };
+    }
 
     default:
       return { ...state };
   }
 };
 
-export default detailJobsReducer;
+export default uploadAvatarReducer;

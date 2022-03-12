@@ -9,15 +9,19 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { actUploadAvatarApi } from './modules/actions';
 
+const dispatch = useDispatch();
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
+  avatar: '',
+  name: '',
 };
+
+// useEffect(()=>{
+//   dispatch(actUploadAvatarApi(ava))
+// }, []);
 
 const AccountProfile = (props) => (
   <Card {...props}>
@@ -30,7 +34,7 @@ const AccountProfile = (props) => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          // src={user.avatar}
           sx={{
             height: 100,
             width: 100
@@ -42,18 +46,6 @@ const AccountProfile = (props) => (
           variant="h3"
         >
           {user.name}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body1"
-        >
-          {`${user.city} ${user.country}`}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body1"
-        >
-          {`${moment().format('hh:mm A')} ${user.timezone}`}
         </Typography>
       </Box>
     </CardContent>

@@ -11,8 +11,8 @@ const routesAdmin = [
   },
   {
     exact: false,
-    path: "/dashboard",
-    component: lazy(() => import("containers/AdminTemplate/Dashboard")),
+    path: "/dashboard-page",
+    component: lazy(() => import("containers/AdminTemplate/DashboardPage")),
   },
   {
     exact: false,

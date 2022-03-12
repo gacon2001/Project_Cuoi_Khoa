@@ -4,7 +4,6 @@ import {
   actAddCertificationsApi,
   actAddSkillsApi,
   actFetchDetailAdminLoginApi,
-  actUploadAvatarApi,
 } from "./modules/actions";
 import { Link } from "react-router-dom";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -15,7 +14,6 @@ export default function ProfilePage() {
   const {_id} = useParams();
   const detailAdmin = useSelector((state)=> state.uploadAvatarReducer.detailAdmin);
   const [state, setState] = useState({
-    avatar: "",
     skill: [],
     certification: [],
     name: "",
@@ -31,7 +29,6 @@ export default function ProfilePage() {
   }, [detailAdmin]);
 
   useEffect(() => {
-    dispatch(actUploadAvatarApi(state.ava));
     dispatch(actFetchDetailAdminLoginApi(_id));
   }, []);
 
@@ -70,8 +67,6 @@ export default function ProfilePage() {
         <div className="row">
           <div className="col-sm-1-12">
             <div className="card text-left">
-              {/* <img className="card-img-top" src="" alt />  */}
-              <input type="file" onChange={handleOnChange} />
               <div className="card-body">
                 <h4 className="card-title">Title</h4>
                 {/* <i className="fa fa-pen" /> */}

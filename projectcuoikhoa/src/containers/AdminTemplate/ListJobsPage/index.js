@@ -33,6 +33,8 @@ export default function ListJobsPage(path) {
           {/* <Link to="/edit-jobs" className="btn btn-success">Edit</Link> */}
           <button className="btn btn-success" onClick={()=> history.push(`/edit-jobs/${jobs._id}`)}>Edit</button>
       <button className="btn btn-danger" onClick={()=> dispatch(actDeleteJobsApi(jobs._id))}>Delete</button>
+
+      {/* book job này -> thêm vào listBookingJobs */}
       <button className="btn btn-warning" onClick={()=> dispatch(actBookingJobsApi(jobs._id))}>Booking</button>
         </div>
       );

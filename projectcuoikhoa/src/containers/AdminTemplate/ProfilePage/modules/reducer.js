@@ -2,7 +2,6 @@ import * as ActionType from "./constants";
 
 const initialState = {
   loading: false,
-  data: null,
   error: null,
   skill: "",
   certification: "",
@@ -10,28 +9,8 @@ const initialState = {
   detailAdmin: null,
 };
 
-const uploadAvatarReducer = (state = initialState, action) => {
+const profilePageReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.UPLOAD_AVATAR_REQUEST: {
-      state.loading = true;
-      state.data = null;
-      state.error = null;
-      return { ...state };
-    }
-
-    case ActionType.UPLOAD_AVATAR_SUCCESS: {
-      state.loading = false;
-      state.data = action.payload;
-      state.error = null;
-      return { ...state };
-    }
-    case ActionType.UPLOAD_AVATAR_FAILED: {
-      state.loading = false;
-      state.data = null;
-      state.error = action.payload;
-      return { ...state };
-    }
-
     case ActionType.FETCH_DETAIL_ADMIN_LOGIN_REQUEST: {
       state.loading = true;
       state.detailAdmin = null;
@@ -97,4 +76,4 @@ const uploadAvatarReducer = (state = initialState, action) => {
   }
 };
 
-export default uploadAvatarReducer;
+export default profilePageReducer;

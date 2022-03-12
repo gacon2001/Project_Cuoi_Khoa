@@ -24,9 +24,8 @@ import {
 import NavItem from './NavItem';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith'
+  avatar: '',
+  name: ''
 };
 
 const items = [
@@ -36,24 +35,19 @@ const items = [
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
+    href: '/customers',
     icon: UsersIcon,
     title: 'Customers'
   },
   {
-    href: '/app/products',
+    href: '/list-jobs',
     icon: ShoppingBagIcon,
-    title: 'Products'
+    title: 'List Jobs'
   },
   {
-    href: '/app/account',
+    href: '/profile',
     icon: UserIcon,
     title: 'Account'
-  },
-  {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
   },
   {
     href: '/login',
@@ -61,15 +55,10 @@ const items = [
     title: 'Login'
   },
   {
-    href: '/register',
+    href: '/signup',
     icon: UserPlusIcon,
-    title: 'Register'
+    title: 'SignUp'
   },
-  {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
-  }
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
@@ -97,6 +86,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2
         }}
       >
+        
+        {/* click -> upload ảnh */}
         <Avatar
           component={RouterLink}
           src={user.avatar}
@@ -105,19 +96,16 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
             width: 64,
             height: 64
           }}
-          to="/app/account"
+          // to="/app/account"
+          // type="file"
         />
+        
+        {/* lấy name của admin đã login vào */}
         <Typography
           color="textPrimary"
           variant="h5"
         >
           {user.name}
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="body2"
-        >
-          {user.jobTitle}
         </Typography>
       </Box>
       <Divider />
@@ -141,35 +129,6 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2
         }}
       >
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          Need more?
-        </Typography>
-        <Typography
-          align="center"
-          variant="body2"
-        >
-          Upgrade to PRO version and access 20 more screens
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 2
-          }}
-        >
-          <Button
-            color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
-            variant="contained"
-          >
-            See PRO version
-          </Button>
-        </Box>
       </Box>
     </Box>
   );
