@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { actEditProfileApi, actFetchDetailAdminLoginApi, actFetchDetailProfileApi } from "./modules/actions";
 
 export default function EditProfilePage() {
   const dispatch = useDispatch();
   const {_id} = useParams();
+  const detailProfile =  useSelector((state)=> state.editProfileReducer.detailProfile);
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -16,6 +17,15 @@ export default function EditProfilePage() {
     skill: [],
     certification: [],
   });
+
+  useEffect(()=> {
+    if (detailProfile !== null)
+    setState(detailProfile);
+  }, [detailProfile]);
+
+  useEffect(()=>{
+    dispatch(actFetchDetailProfileApi(_id));
+  }, [])
 
   const updateProfile = (event) => {
     event.preventDefault();
@@ -38,9 +48,7 @@ export default function EditProfilePage() {
     })
   }
 
-  useEffect(()=>{
-    dispatch(actFetchDetailProfileApi(_id));
-  }, [])
+
 
   return (
     <div>
@@ -129,6 +137,7 @@ export default function EditProfilePage() {
             </div>
           </div>
 
+{/* edit -> lấy ra đc những skill có sẵn và những skill đc thêm? */}
           <div className="form-group row">
             <label>Skills</label>
             <div className="col-sm-1-12">

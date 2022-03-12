@@ -22,6 +22,10 @@ export default function NavbarAdmin() {
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item active">
             <NavLink to="dashboard">Dashboard</NavLink>
+            <NavLink to="/signup">SignUp</NavLink>
+            <NavLink to="/list-user">ListUser</NavLink>
+            <NavLink to="/list-jobs">ListJobs</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
           </li>
         </ul>
       </div>

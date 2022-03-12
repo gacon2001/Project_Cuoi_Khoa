@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import SearchJobsPage from "../SearchJobsPage";
-import { actDeleteJobsApi, actFetchListJobsApi } from "./modules/actions";
+import NavbarJobs from "../_components/NavbarJobs";
+import { actDeleteJobsApi, actFetchListJobsApi, actBookingJobsApi } from "./modules/actions";
 
-export default function ListJobsPage() {
+export default function ListJobsPage(path) {
   const listJobs = useSelector((state) => {
     return state.fetchListJobsReducer.listJobs;
   });
@@ -19,21 +20,20 @@ export default function ListJobsPage() {
   const renderListJobs = () => {
     return listJobs?.map((jobs) => {
       return (
-        <div className="card text-left">
+        <div className="card text-left" key={jobs._id} >
           <img className="card-img-top" src={jobs.image} alt={jobs.name} />
           <div className="card-body">
             <Link to="/detail-job">{jobs.name}</Link>
-            <p></p>
-            <div>
               <div>{jobs.rating}</div>
-              <div></div>
-            </div>
             <div>{jobs.price}</div>
+            {/* <div>{jobs.usersBooking}</div> */}
+            {/* <div>{jobs.proServices}</div> */}
           </div>
 
           {/* <Link to="/edit-jobs" className="btn btn-success">Edit</Link> */}
           <button className="btn btn-success" onClick={()=> history.push(`/edit-jobs/${jobs._id}`)}>Edit</button>
       <button className="btn btn-danger" onClick={()=> dispatch(actDeleteJobsApi(jobs._id))}>Delete</button>
+      <button className="btn btn-warning" onClick={()=> dispatch(actBookingJobsApi(jobs._id))}>Booking</button>
         </div>
       );
     });
@@ -41,6 +41,8 @@ export default function ListJobsPage() {
 
   return (
     <div>
+      {/* {path == "/list-subType-jobs" && path == "/list-type-jobs" && path == "/list-jobs" && <NavbarJobs/>} */}
+      <NavbarJobs/>
       <h3>ListJobsPage</h3>
       <Link to="/add-jobs" className="btn btn-success">AddJobs</Link>
 

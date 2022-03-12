@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   actAddCertificationsApi,
   actAddSkillsApi,
@@ -7,11 +7,13 @@ import {
   actUploadAvatarApi,
 } from "./modules/actions";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const {_id} = useParams();
+  const detailAdmin = useSelector((state)=> state.uploadAvatarReducer.detailAdmin);
   const [state, setState] = useState({
     avatar: "",
     skill: [],
@@ -23,6 +25,16 @@ export default function ProfilePage() {
     gender: true,
   });
 
+  useEffect(()=>{
+    if (detailAdmin !== null)
+    setState(detailAdmin);
+  }, [detailAdmin]);
+
+  useEffect(() => {
+    dispatch(actUploadAvatarApi(state.ava));
+    dispatch(actFetchDetailAdminLoginApi(_id));
+  }, []);
+
   const addSkills = (event) => {
     event.preventDefault();
     dispatch(actAddSkillsApi(_id));
@@ -33,11 +45,12 @@ export default function ProfilePage() {
   };
 
   const renderSkillsAvailable = () => {
-    return ((skill)=>{
-      return (
-        <p>{skill.skill}</p>
-      )
-    })
+    return <div></div>
+    // return ((skill)=>{
+    //   return (
+    //     <p>{skill.skill}</p>
+    //   )
+    // })
   }
 
   const handleOnChange = (event) => {
@@ -48,10 +61,7 @@ export default function ProfilePage() {
     });
   };
 
-  useEffect(() => {
-    dispatch(actUploadAvatarApi(state.ava));
-    dispatch(actFetchDetailAdminLoginApi(_id));
-  }, []);
+  
 
   return (
     <div>
@@ -65,9 +75,10 @@ export default function ProfilePage() {
               <div className="card-body">
                 <h4 className="card-title">Title</h4>
                 {/* <i className="fa fa-pen" /> */}
-                <Link to="/edit-profile" className="btn btn-warning">
+                {/* <Link to="/edit-profile" className="btn btn-warning">
                   Edit
-                </Link>
+                </Link> */}
+                <button className="btn btn-warning" onClick={()=>history.push(`/edit-profile/${_id}`) }>Edit</button>
                 <hr />
 
                 <div>

@@ -22,3 +22,35 @@ nếu có truyền lên một object thì vô body coi á
     ]
 }
 oki r á H, để V làm tiếp, trễ r để Hải nghỉ ngơi nhe. Oki Vân ^^ G9 lun <3 oki g9 Vân <3
+
+
+bị j á H
+2 cái lỗi nó báo á hả Vân, đúng r á H, ko render đc mấy cái list nữa
+
+đc òi á Vân, chắc h trc tui sai, không có s trong https
+mà trc có s sao vẫn làm đc bth hơ H? chắc ai đó update gì api hay sao á, hay domain bị gì đó :)) tui ko rõ nữa :v
+
+mình render listJobs -> xong có 2 cái list là : subType với type => Vân thấy cách render cũng như nhau
+
+
+Vân dùng template của MUI phần dashbborad, tui tải về xong copy qua, mà ko biết kiểm lỗi thế nào mà nó ko hiện á Hải.
+Vân định sử dụng component gì á Vân? Với lỗi gì á.
+Vân down cái đó về á
+
+Cái template version này nó đang dùng nextjs òi chắc để tui downgrade nó lại về react
+
+Mấy cái ở dưới là Vân copy từ thư viện qua chắc tui xoá rồi copy lại cái template mới tải về qua nha
+
+sử dụng template thì mình phải mò đc á, nãy giờ đọc code xong tui mò để install package mà mình chưa có, với xác định chỗ code nào là navbar, dashboard,... để tuỳ chỉnh theo ý mình á.
+
+lúc đầu mà Hải chuyển file qua react thế nào á h
+Tui cũng copy như Vân á, copy hết folder trong src trừ 3 files App index với routes, xong rồi tui coi package.json coi mình thiếu package gì mà template mẫu có 
+
+mà ban đầu Vân ko biết, tải về bản là next.js á H, xong H đổi về react á 
+Cái đó là tui thấy cái 
+do tui thấy trong package.json của template Vân tải về, phần scripts nó ghi lệnh next => nó đang sử dụng nextjs
+
+Cái xong r tui lên github của nó kiếm bản nào ko phải nextjs
+
+do nó có ghi lại commit message ở commit nào nó migrate qua nextjs nên tui dễ dàng tìm thấy template phiên bản reactjs, nếu ko có message rõ ràng thì mình phải đi coi package.json của từng commit xem cái nào là của reactjs á. => migrate next.js là chuyển qua nextjs hay bỏ đi nextjs H chuyển qua nextjs á. 
+

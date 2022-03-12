@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import SearchUser from "../SearchUser";
-import NavbarDashboard from "../_components/NavbarDashboard";
 import { actDeleteUserApi, actFetchListUserApi } from "./modules/actions";
 
 export default function ListUser() {
-  console.log(123);
   const listUser = useSelector((state) => state.fetchListUserReducer.listUser);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,7 +37,6 @@ export default function ListUser() {
   };
   return (
     <div>
-      <NavbarDashboard/>
       <h3>ListUser</h3>
       {/* <button className="btn btn-sucess" onClick={()=> history.push("/add-user-admin")}>Thêm Quản Trị</button> */}
       <Link to="/add-user-admin" className="btn btn-success" >Thêm Quản Trị</Link>

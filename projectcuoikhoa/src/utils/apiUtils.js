@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   // chỗ này bị thiếu https, cách tốt nhất là lấy url rồi quăng lên browser xong copy lại, đó đc òi nè.
-  baseURL: "https://fiverr.cybersoft.edu.vn/api/",
+  baseURL: "http://fiverr.cybersoft.edu.vn/api/",
 });
 
 api.interceptors.request.use((config) => {

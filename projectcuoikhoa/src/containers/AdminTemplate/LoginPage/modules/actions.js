@@ -16,7 +16,7 @@ export const actLoginApi = (signin, history) => {
         }
         localStorage.setItem("Admin", JSON.stringify(success.data));
         //ko chuyển trang???
-        history.replace("/dashboard");
+        history.replace(`/profile/${success.data.user._id}`);
         dispatch(actLoginSuccess(success.data));
       })
       .catch((error) => {

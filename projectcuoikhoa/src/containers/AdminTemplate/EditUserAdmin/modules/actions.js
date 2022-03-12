@@ -1,13 +1,16 @@
 import * as ActionType from "./constants";
 import api from "utils/apiUtils";
 
-export const actEditUserApi = (_id) => {
+export const actEditUserApi = (_id, userUpdate) => {
     return (dispatch) => {
         dispatch(actEditUserRequest());
-        api.put(`users/${_id}`)
+        api.put(`users/${_id}`, userUpdate) // chỗ edit này phải cung cấp thông tin mới cho api chứ nhỉ, nhớ truyền tham số thứ 2 cho put là cái object user mới update nha
         .then((success)=>{
+            //mình chỉ có quyền edit admin thôi chứ H hơ
+            // là sao ha :)) admin thì edit ai cũng đc chứ ta :V tài khoản của khách hàng đăng kí là của khách hàng, mình cũng có quyền luôn hả H? tuỳ trường hợp nghiệp vụ thôi á, trong trg hợp này thì api cho phép mình edit, thì chắc edit đc.
             dispatch(actEditUserSuccess(success.data));
             alert("Edit Successfully");
+            //
         })
         .catch((error)=>{
             dispatch(actEditUserFailed(error));
@@ -38,7 +41,6 @@ export const actFetchDetailUserApi = (_id) => {
         dispatch(actFetchDetailUserRequest());
         api.get(`users/${_id}`)
         .then((success)=>{
-            console.log(success);
             dispatch(actFetchDetailUserSuccess(success.data));
         })
         .catch((error)=>{

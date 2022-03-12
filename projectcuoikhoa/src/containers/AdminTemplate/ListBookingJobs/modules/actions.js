@@ -1,10 +1,10 @@
 import api from "utils/apiUtils";
 import * as ActionType from "./constants";
 
-export const actFetchListBookingJobsApi = () => {
+export const actFetchListBookingJobsApi = (_id) => {
     return (dispatch) => {
         dispatch(actFetchListBookingJobsRequest());
-        api.get("jobs/by-user")
+        api.get(`jobs/${_id}`)
         .then((success)=>{
             dispatch(actFetchListBookingJobsSuccess(success.data));
         })

@@ -19,9 +19,10 @@ export default function DetailJobPage() {
     <div>
       <h3>DetailJobPage</h3>
 
-      {/* ??? */}
+      {/* lấy detail */}
       {/* <p>{detailJobs.name}</p> */}
 
+{/* bookJobs -> đc thêm vào listBookingJobs */}
   <button className="btn btn-success" onClick={()=> dispatch(actBookingThisJobsApi(_id))}>Book This Job</button>
     </div>
   );

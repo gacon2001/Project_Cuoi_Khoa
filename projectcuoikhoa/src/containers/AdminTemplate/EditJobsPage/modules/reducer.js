@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   data: "",
-  detailJobs: "",
+  detailJobs: null,
 };
 
 const editJobsReducer = (state = initialState, action) => {

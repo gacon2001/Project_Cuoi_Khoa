@@ -2,7 +2,7 @@ import * as ActionType from "./constants";
 
 const initialState = {
   loading: false,
-  data: null,
+  detailProfile: null,
   error: null,
   editProfile: "",
 };
@@ -29,24 +29,22 @@ const editProfileReducer = (state = initialState, action) => {
         return { ...state };
       }
 
-
-
       case ActionType.FETCH_DETAIL_PROFILE_REQUEST: {
         state.loading = true;
-        state.data = null;
+        state.detailProfile = null;
         state.error = null;
         return { ...state };
       }
   
       case ActionType.FETCH_DETAIL_USER_SUCCESS: {
         state.loading = false;
-        state.data = action.payload;
+        state.detailProfile = action.payload;
         state.error = null;
         return { ...state };
       }
       case ActionType.FETCH_DETAIL_USER_FAILED: {
         state.loading = false;
-        state.data = null;
+        state.detailProfile = null;
         state.error = action.payload;
         return { ...state };
       }

@@ -6,10 +6,13 @@ export const actEditProfileApi = (_id) => {
         dispatch(actEditProfileRequest());
         api.put(`users/${_id}`)
         .then((success)=>{
-            dispatch(actEditProfileSuccess(success.data));
+            dispatch(actEditProfileSuccess(success.data))
+            ;
+            alert("Update Profile Successfully");
         })
         .catch((error)=>{
             dispatch(actEditProfileFailed(error));
+            alert("Failed");
         })
     }
 } 

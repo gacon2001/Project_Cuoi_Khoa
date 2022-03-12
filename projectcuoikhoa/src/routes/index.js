@@ -5,27 +5,29 @@ const routesAdmin = [
   {
     exact: true,
     path: "/admin",
-    component: lazy(() => import("containers/AdminTemplate/_components/NavbarAdmin")), 
+    component: lazy(() =>
+      import("containers/AdminTemplate/_components/NavbarAdmin")
+    ),
   },
   {
     exact: false,
     path: "/dashboard",
-    component: lazy(()=> import("containers/AdminTemplate/ListUser"))
-  }, 
-  { exact: false,
+    component: lazy(() => import("containers/AdminTemplate/Dashboard")),
+  },
+  {
+    exact: false,
     path: "/list-user",
-    component: lazy(()=> import("containers/AdminTemplate/ListUser")) 
-
+    component: lazy(() => import("containers/AdminTemplate/ListUser")),
   },
   {
     exact: false,
     path: "/edit-user/:_id",
-    component: lazy(()=> import("containers/AdminTemplate/EditUserAdmin"))
+    component: lazy(() => import("containers/AdminTemplate/EditUserAdmin")),
   },
   {
     exact: false,
     path: "/add-user-admin",
-    component: lazy(()=> import("containers/AdminTemplate/AddUserAdmin"))
+    component: lazy(() => import("containers/AdminTemplate/AddUserAdmin")),
   },
   // {
   //   exact: false,
@@ -35,50 +37,52 @@ const routesAdmin = [
   {
     exact: false,
     path: "/signup",
-    component: lazy(()=> import("containers/AdminTemplate/SignUpPage"))
+    component: lazy(() => import("containers/AdminTemplate/SignUpPage")),
   },
   {
     exact: false,
-    path: "/profile",
-    component: lazy(()=> import("containers/AdminTemplate/ProfilePage"))
+    path: "/profile/:_id",
+    component: lazy(() => import("containers/AdminTemplate/ProfilePage")),
   },
   {
     exact: false,
     path: "/edit-profile",
-    component: lazy(()=> import("containers/AdminTemplate/EditProfilePage"))
+    component: lazy(() => import("containers/AdminTemplate/EditProfilePage")),
   },
   {
     exact: false,
     path: "/list-jobs",
-    component: lazy(()=> import("containers/AdminTemplate/ListJobsPage"))
+    component: lazy(() => import("containers/AdminTemplate/ListJobsPage")),
   },
   {
     exact: false,
     path: "/detail-jobs/:_id",
-    component: lazy(()=> import("containers/AdminTemplate/DetailJobPage"))
+    component: lazy(() => import("containers/AdminTemplate/DetailJobPage")),
   },
   {
     exact: false,
     path: "/edit-jobs/:_id",
-    component: lazy(()=> import("containers/AdminTemplate/EditJobsPage"))
+    component: lazy(() => import("containers/AdminTemplate/EditJobsPage")),
   },
   {
     exact: false,
     path: "/add-jobs",
-    component: lazy(()=> import("containers/AdminTemplate/AddJobsPage"))
+    component: lazy(() => import("containers/AdminTemplate/AddJobsPage")),
   },
   {
     exact: false,
     path: "/list-booking-jobs",
-    component: lazy(()=> import("containers/AdminTemplate/ListBookingJobs"))
-  },{
+    component: lazy(() => import("containers/AdminTemplate/ListBookingJobs")),
+  },
+  {
     exact: false,
     path: "/list-subType-jobs/:IDsubType",
-    component: lazy(()=> import("containers/AdminTemplate/ListSubTypeJobs"))
-  },{
+    component: lazy(() => import("containers/AdminTemplate/ListSubTypeJobs")),
+  },
+  {
     exact: false,
-    path: "/list-type-jobs",
-    component: lazy(()=> import("containers/AdminTemplate/ListTypeJobs"))
+    path: "/list-type-jobs/:IDType",
+    component: lazy(() => import("containers/AdminTemplate/ListTypeJobs")),
   },
 ];
 

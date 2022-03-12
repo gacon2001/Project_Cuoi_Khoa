@@ -92,3 +92,33 @@ const actDeleteJobsFailed = (error) => {
         payload: error,
     }
 }
+
+export const actBookingJobsApi = (_id) => {
+  return (dispatch) => {
+      dispatch(actBookingJobsRequest());
+      api.patch(`jobs/booking/${_id}`)
+      .then((success)=>{
+          dispatch(actBookingJobsSuccess(success.data));
+      })
+      .catch((error)=>{
+          dispatch(actBookingJobsFailed(error));
+      })
+  }
+} 
+const actBookingJobsRequest = ()=>{
+  return {
+      type: ActionType.BOOKING_JOBS_REQUEST
+  }
+}
+const actBookingJobsSuccess = (data) => {
+return {
+  type: ActionType.BOOKING_JOBS_SUCCESS,
+  payload: data,
+}
+}
+const actBookingJobsFailed = (error) => {
+  return{
+      type: ActionType.BOOKING_JOBS_FAILED,
+      payload: error,
+  }
+}

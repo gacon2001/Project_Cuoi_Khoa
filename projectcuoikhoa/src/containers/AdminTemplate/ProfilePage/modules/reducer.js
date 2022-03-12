@@ -7,7 +7,7 @@ const initialState = {
   skill: "",
   certification: "",
   editProfile: "",
-  detailAdmin: "",
+  detailAdmin: null,
 };
 
 const uploadAvatarReducer = (state = initialState, action) => {

@@ -25,28 +25,27 @@ const fetchListJobsReducer = (state = initialState, action) => {
       state.error = action.payload;
       return { ...state };
 
-      case ActionType.SEARCH_JOBS_REQUEST: {
-        state.loading = true;
-        state.data = null;
-        state.error = null;
-        return { ...state };
-      }
-  
-      case ActionType.SEARCH_JOBS_SUCCESS: {
-        state.loading = false;
-        state.listJobs = action.payload;
-        state.error = null;
-        return { ...state };
-      }
-      case ActionType.SEARCH_JOBS_FAILED: {
-        state.loading = false;
-        state.data = null;
-        state.error = action.payload;
-        return { ...state };
-      }
+    case ActionType.SEARCH_JOBS_REQUEST: {
+      state.loading = true;
+      state.data = null;
+      state.error = null;
+      return { ...state };
+    }
 
+    case ActionType.SEARCH_JOBS_SUCCESS: {
+      state.loading = false;
+      state.listJobs = action.payload;
+      state.error = null;
+      return { ...state };
+    }
+    case ActionType.SEARCH_JOBS_FAILED: {
+      state.loading = false;
+      state.data = null;
+      state.error = action.payload;
+      return { ...state };
+    }
 
-      case ActionType.DELETE_JOBS_REQUEST:
+    case ActionType.DELETE_JOBS_REQUEST:
       state.loading = true;
       state.error = null;
       return { ...state };
@@ -65,6 +64,26 @@ const fetchListJobsReducer = (state = initialState, action) => {
       state.loading = false;
       state.error = action.payload;
       return { ...state };
+
+      case ActionType.BOOKING_JOBS_REQUEST: {
+        state.loading = true;
+        state.data = null;
+        state.error = null;
+        return { ...state };
+      }
+  
+      case ActionType.BOOKING_JOBS_SUCCESS: {
+        state.loading = false;
+        state.data = action.payload;
+        state.error = null;
+        return { ...state };
+      }
+      case ActionType.BOOKING_JOBS_FAILED: {
+        state.loading = false;
+        state.data = null;
+        state.error = action.payload;
+        return { ...state };
+      } 
 
     default:
       return { ...state };

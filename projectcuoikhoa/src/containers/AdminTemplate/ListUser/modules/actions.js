@@ -4,11 +4,14 @@ import * as ActionType from "./constants";
 export const actFetchListUserApi = () => {
     return (dispatch) => {
         dispatch(actFetchListUserRequest());
-        api.get("users?skip=0")
+        api.get("users?skip=0&limit=3")
         .then((success)=>{
+            
+            console.log(success.data, 'hello');
             dispatch(actFetchListUserSuccess(success.data));
         })
         .catch((error)=>{
+            console.log(456, error);
             dispatch(actFetchListUserFailed(error));
         })
     }

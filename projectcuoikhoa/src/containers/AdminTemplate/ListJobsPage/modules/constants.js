@@ -9,3 +9,7 @@ export const SEARCH_JOBS_FAILED = "@fetchListJobsReducer/SEARCH_JOBS_FAILED";
 export const DELETE_JOBS_REQUEST  = "@fetchListJobsReducer/DELETE_JOBS_REQUEST";
 export const DELETE_JOBS_SUCCESS = "@fetchListJobsReducer/DELETE_JOBS_SUCCESS";
 export const DELETE_JOBS_FAILED = "@fetchListJobsReducer/DELETE_JOBS_FAILED";
+
+export const BOOKING_JOBS_REQUEST  = "@fetchListJobsReducer/BOOKING_JOBS_REQUEST";
+export const BOOKING_JOBS_SUCCESS = "@fetchListJobsReducer/BOOKING_JOBS_SUCCESS";
+export const BOOKING_JOBS_FAILED = "@fetchListJobsReducer/BOOKING_JOBS_FAILED";

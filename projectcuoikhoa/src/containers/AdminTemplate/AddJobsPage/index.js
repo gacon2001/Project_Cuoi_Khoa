@@ -14,9 +14,10 @@ export default function AddJobsPage() {
     // localSellers : false,
     // onlineSellers : true,
     // deliveryTime : true,
-    type : false, //""
-    subType : false,//!BE: chuỗi ""???
+    type : "", //ID 
+    subType : "",
   });
+  //!chọn checkbox -> nhập ID (id thuộc công việc chính, phụ của từng loại công việc khác nhau) --> add zô danh sách loại công việc có id riêng đó
  
   const addJobs = (event) => {
       event.preventDefault();
