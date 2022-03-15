@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 import DashboardNavbar from "./DashboardPage/components/DashboardNavbar";
+import DashboardSidebar from "./DashboardPage/components/DashboardSidebar";
 import NavbarAdmin from "./_components/NavbarAdmin";
 
 export default function AdminTemplate({ exact, path, component }) {
+  const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   if (localStorage.getItem("Admin"))
     return (
       <>
         {/* {path == "/admin" && <NavbarAdmin />} */}
         {/* <NavbarAdmin /> */}
         {/* <DashboardNavbar/> */}
+
         <Route exact={exact} path={path} component={component} />
+        <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+        <DashboardSidebar
+          onMobileClose={() => setMobileNavOpen(false)}
+          openMobile={isMobileNavOpen}
+        />
       </>
     );
   return <Redirect to="/login" />;

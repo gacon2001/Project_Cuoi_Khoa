@@ -41,13 +41,17 @@ const DashboardLayoutContent = styled('div')({
 
 export default function Dashboard({ exact, path, component }) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  
+  // Vân phải có cái state ở trên + với
   return (
     <div>
       {/* <h1>Dashboard</h1>
        
         <Route exact={exact} path={path} component={component} /> */}
       <DashboardLayoutRoot>
-        <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+        {/* cái này nè, Vân làm đi Vân*/}
+        <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} /> 
+
         <DashboardSidebar
           onMobileClose={() => setMobileNavOpen(false)}
           openMobile={isMobileNavOpen}

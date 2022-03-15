@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from "react";
+import { Link as RouterLink, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import {
   Avatar,
   Box,
@@ -9,8 +9,8 @@ import {
   Drawer,
   Hidden,
   List,
-  Typography
-} from '@material-ui/core';
+  Typography,
+} from "@material-ui/core";
 import {
   AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
@@ -19,50 +19,84 @@ import {
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
   UserPlus as UserPlusIcon,
-  Users as UsersIcon
-} from 'react-feather';
-import NavItem from './NavItem';
-
-const user = {
-  avatar: '',
-  name: ''
-};
+  Users as UsersIcon,
+} from "react-feather";
+import NavItem from "./NavItem";
+import { useDispatch, useSelector } from "react-redux";
+import { actUploadAvatarApi } from "./Avatar/modules/actions";
+import { actFetchDetailUserApi } from "containers/AdminTemplate/EditUserAdmin/modules/actions";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useRouteMatch } from "react-router-dom";
 
 const items = [
   {
-    href: '/app/dashboard',
+    href: "/dashboard-page",
     icon: BarChartIcon,
-    title: 'Dashboard'
+    title: "Dashboard",
   },
   {
-    href: '/customers',
+    href: "/customers",
     icon: UsersIcon,
-    title: 'Customers'
+    title: "Customers",
   },
   {
-    href: '/list-jobs',
+    href: "/list-jobs",
     icon: ShoppingBagIcon,
-    title: 'List Jobs'
+    title: "List Jobs",
   },
   {
-    href: '/profile',
+    href: "/profile",
     icon: UserIcon,
-    title: 'Account'
+    title: "Account",
   },
   {
-    href: '/login',
+    href: "/login",
     icon: LockIcon,
-    title: 'Login'
+    title: "Login",
   },
   {
-    href: '/signup',
+    href: "/signup",
     icon: UserPlusIcon,
-    title: 'SignUp'
+    title: "SignUp",
   },
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const location = useLocation();
+  const paths = location.pathname.split("/");
+  const id = paths[paths.length -1];
+  //!useRef(): tương tự getELEById
+  const imgref = useRef(null);
+  const dispatch = useDispatch();
+  const detailUser = useSelector((state) => {
+    return state.editUserReducer.detailUser;
+  });
+  
+  const [img, setImg] = useState({});
+  const [user, setUser] = useState({
+    name: "",
+    avatar: "",
+  });
+
+  const handleOnChange = (event) => {
+    // 1. nhận vào file hình ảnh.
+    // 2. dispatch action để gửi api cập nhật hình ảnh.
+    // 3. thay đổi user.avatar thành ảnh mới chọn.
+    const { files } = event.target;
+
+    dispatch(actUploadAvatarApi(files[0]));
+    // setImg({
+    //   [files]: files[0]
+    // })
+  };
+  console.log(user?.avatar)
+  useEffect(() => {
+    if (detailUser) setUser(detailUser);
+  }, [detailUser]);
+  useEffect(() => {
+    if (id) dispatch(actFetchDetailUserApi(id));
+  }, [id]);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -73,39 +107,48 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const content = (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%'
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
     >
       <Box
         sx={{
-          alignItems: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          p: 2
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          p: 2,
         }}
       >
-        
-        {/* click -> upload ảnh */}
-        <Avatar
-          component={RouterLink}
+        {/* click -> upload ảnh : có onClick đc hay ko ? */}
+        {user && user.avatar && (
+          <Avatar
+          // component="img"
           src={user.avatar}
           sx={{
-            cursor: 'pointer',
+            cursor: "pointer",
             width: 64,
-            height: 64
+            height: 64,
           }}
-          // to="/app/account"
-          // type="file"
+          //ban đầu current là null
+          onClick={() => {
+            imgref.current?.click();
+          }}
+        ></Avatar>
+        )}
+        {/* Bất kì thẻ html nào cũng có ref
+          .value chỉ lấy đc đg dẫn -> .files(s: mảng nhiều) -> lấy vị trí thứ 0 */}
+        {/* <input ref={imgref} type="file" hidden onChange={(e) => console.log(e.target.files[0])}/> */}
+        <input
+          ref={imgref}
+          type="file"
+          hidden
+          onChange={handleOnChange}
         />
-        
-        {/* lấy name của admin đã login vào */}
-        <Typography
-          color="textPrimary"
-          variant="h5"
-        >
-          {user.name}
+
+        {/* lấy name của admin đã login vào??? */}
+        <Typography color="textPrimary" variant="h5">
+          <Link to="/profile">{user.name}</Link>
         </Typography>
       </Box>
       <Divider />
@@ -124,12 +167,11 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Box sx={{ flexGrow: 1 }} />
       <Box
         sx={{
-          backgroundColor: 'background.default',
+          backgroundColor: "background.default",
           m: 2,
-          p: 2
+          p: 2,
         }}
-      >
-      </Box>
+      ></Box>
     </Box>
   );
 
@@ -143,8 +185,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           variant="temporary"
           PaperProps={{
             sx: {
-              width: 256
-            }
+              width: 256,
+            },
           }}
         >
           {content}
@@ -159,8 +201,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
             sx: {
               width: 256,
               top: 64,
-              height: 'calc(100% - 64px)'
-            }
+              height: "calc(100% - 64px)",
+            },
           }}
         >
           {content}
@@ -172,13 +214,12 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
 DashboardSidebar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
 };
 
 DashboardSidebar.defaultProps = {
-  onMobileClose: () => {
-  },
-  openMobile: false
+  onMobileClose: () => {},
+  openMobile: false,
 };
 
 export default DashboardSidebar;

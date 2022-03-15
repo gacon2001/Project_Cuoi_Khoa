@@ -12,7 +12,7 @@ export default function ProfilePage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const {_id} = useParams();
-  const detailAdmin = useSelector((state)=> state.uploadAvatarReducer.detailAdmin);
+  const detailAdmin = useSelector((state)=> state.profilePageReducer.detailAdmin);
   const [state, setState] = useState({
     skill: [],
     certification: [],
@@ -24,8 +24,8 @@ export default function ProfilePage() {
   });
 
   useEffect(()=>{
-    if (detailAdmin !== null)
-    setState(detailAdmin);
+    if (detailAdmin)
+      setState(detailAdmin);
   }, [detailAdmin]);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function ProfilePage() {
 
   return (
     <div>
+
       <h3>ProfilePage</h3>
       <div className="container">
         <div className="row">

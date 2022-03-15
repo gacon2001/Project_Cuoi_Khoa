@@ -1,11 +1,13 @@
 import api from "utils/apiUtils";
 import * as ActionType from "./constants";
 
-export const actUploadAvatarApi = (ava) => {
+export const actUploadAvatarApi = (avatar) => {
   return (dispatch) => {
     dispatch(actUploadAvatarRequest());
+    var formData = new FormData();
+    formData.append("avatar", avatar);//(name: key postman, value: tham số mà mình nhận gtri truyền vô)
     api
-      .post("Profiles/upload-avatar", ava)
+      .post("Profiles/upload-avatar", formData)
       .then((success) => {
         dispatch(actUploadAvatarSuccess(success.data));
       })

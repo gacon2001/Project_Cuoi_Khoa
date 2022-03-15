@@ -44,6 +44,7 @@ export const actFetchDetailProfileApi = (_id) => {
             dispatch(actFetchDetailProfileSuccess(success.data));
         })
         .catch((error)=>{
+            console.log(123);
             dispatch(actFetchDetailProfileFailed(error));
         })
     }

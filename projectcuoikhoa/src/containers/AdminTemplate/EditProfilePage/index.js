@@ -16,6 +16,7 @@ export default function EditProfilePage() {
     gender: false,
     skill: [],
     certification: [],
+    role: "ADMIN",
   });
 
   useEffect(()=> {
@@ -24,6 +25,7 @@ export default function EditProfilePage() {
   }, [detailProfile]);
 
   useEffect(()=>{
+    console.log(_id);
     dispatch(actFetchDetailProfileApi(_id));
   }, [])
 
