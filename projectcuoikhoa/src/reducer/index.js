@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import editUserReducer from "containers/AdminTemplate/EditUserAdmin/modules/reducer";
 import addUserReducer from "containers/AdminTemplate/AddUserAdmin/modules/reducer";
 import fetchListUserReducer from "containers/AdminTemplate/ListUser/modules/reducer";
-import loginReducer from "containers/AdminTemplate/LoginPage/modules/reducer";
+import signInReducer from "containers/AdminTemplate/SignInPage/modules/reducer";
 import signupReducer from "containers/AdminTemplate/SignUpPage/modules/reducer";
 import editProfileReducer from "containers/AdminTemplate/EditProfilePage/modules/reducer";
 import fetchListJobsReducer from "containers/AdminTemplate/ListJobsPage/modules/reducer";
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   editUserReducer,
   addUserReducer,
   fetchListUserReducer,
-  loginReducer,
+  signInReducer,
   signupReducer,
   editProfileReducer,
   fetchListJobsReducer,

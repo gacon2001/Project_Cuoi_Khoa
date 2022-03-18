@@ -10,7 +10,7 @@ import Facebook from "../DashboardPage/icons/Facebook";
 import Google from "../DashboardPage/icons/Google";
 import { Link } from "react-router-dom";
 
-export default function LoginPage() {
+export default function SignInPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 

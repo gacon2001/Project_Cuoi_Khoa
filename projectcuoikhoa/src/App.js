@@ -1,5 +1,5 @@
 
-import LoginPage from 'containers/AdminTemplate/LoginPage';
+import SignInPage from 'containers/AdminTemplate/SignInPage';
 import React,{ Suspense } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import './App.css';
@@ -13,7 +13,7 @@ function App() {
       <Switch>
         {renderRouteAdmin()}
         {/* route login đưa vào app.js vì phải login đc mới vào các trang của admin đc, ko để ở route vì login r mà lại đi vào login thì vô lí */}
-        <Route path="/login" component={LoginPage} />
+        <Route path="/signin" component={SignInPage} />
         <Route path="/page-not-found" component={PageNotFound}/>
       </Switch>
       </BrowserRouter>

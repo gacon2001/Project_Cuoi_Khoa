@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-const loginReducer = (state = initialState, action) => {
+const signInReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOGIN_REQUEST: {
       state.loading = true;
@@ -33,4 +33,4 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export default signInReducer;

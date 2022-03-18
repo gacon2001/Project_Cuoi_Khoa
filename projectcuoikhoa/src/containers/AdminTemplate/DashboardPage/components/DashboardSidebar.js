@@ -57,9 +57,9 @@ const items = [
     title: "Profile",
   },
   {
-    href: "/login",
+    href: "/signin",
     icon: LockIcon,
-    title: "Login",
+    title: "SignIn",
   },
   {
     href: "/signup",
@@ -128,7 +128,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        {/* click -> upload ảnh : có onClick đc hay ko ? */}
+        
         {user && user.avatar && (
           <Avatar
           // component="img"

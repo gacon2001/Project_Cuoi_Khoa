@@ -21,7 +21,7 @@ export default function AdminTemplate({ exact, path, component }) {
         />
       </>
     );
-  return <Redirect to="/login" />;
+  return <Redirect to="/signin" />;
 }
 
 /*
