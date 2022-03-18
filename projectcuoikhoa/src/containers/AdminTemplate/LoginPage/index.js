@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField, Typography } from "@material-ui/core";
+import { Box, Button, Grid, TextField, Typography, Container } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -52,7 +52,8 @@ export default function LoginPage() {
           mt: 10,
         }}
       >
-        <form onSubmit={handleLogin}>
+        <Container maxWidth="sm">
+          <form onSubmit={handleLogin}>
           <Box sx={{ mb: 3 }}>
             <Typography color="textPrimary" variant="h3">
               Sign In
@@ -145,6 +146,8 @@ export default function LoginPage() {
             </Typography>
           </Box>
         </form>
+        </Container>
+        
       </Box>
 
       {/* <div className="container">

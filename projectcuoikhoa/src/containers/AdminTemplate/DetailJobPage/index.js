@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { actDetailJobsApi } from "./modules/actions";
 import { actBookingJobsApi } from "../ListJobsPage/modules/actions";
+import { Box } from "@material-ui/core";
 
 export default function DetailJobPage() {
   const dispatch = useDispatch();
@@ -14,10 +15,13 @@ export default function DetailJobPage() {
     name: "",
     rating: "",
     price: "",
+    type: {
+      name: ""
+    },subType: {name: ""}
   });
-
+  console.log(state)
   useEffect(() => {
-    if (detailJobs !== null) setState(detailJobs);
+    if (detailJobs) setState(detailJobs);
   }, [detailJobs]);
 
   useEffect(() => {
@@ -33,16 +37,17 @@ export default function DetailJobPage() {
   // };
 
   return (
-    <div>
+    <Box sx={{
+      mt: 10
+    }}>
       <h3>DetailJobPage</h3>
 
       <div>
-        <Link>{state.type.name}</Link>
-        <Link>{state.subType.name}</Link>
+        {/* <Link to="/">{state.type.name}</Link> */}
+        {/* <Link to="/">{state.subType.name}</Link> */}
       </div>
       <h3>{state.name}</h3>
       <div>
-        <img src="https://fiverr-res.cloudinary.com/t_profile_thumb,q_auto,f_auto/attachments/profile/photo/9e96d2e75ba1b33abf8ad43a72b0bae0-1511318608456/5e9a9c82-dd2b-4ec7-85f5-bb9ff0f4d9fb.jpg" />
         {/* tên seller */}
         <p>
           Top Rated Seller
@@ -69,21 +74,21 @@ export default function DetailJobPage() {
 
       <div>
         <h3>About This Gig</h3>
-        <p>
+        <div>
           A logo is a customer's first impression of your brand, and it should
           be unforgettable.
-          <br>Check out our portfolio: ei8htz.tumblr.com</br>
-          <br>
+          <p>Check out our portfolio: ei8htz.tumblr.com</p>
+          <p>
             Ei8htz is a team of professional designers experienced in creating
             hand-crafted outstanding logo designs. We’ve helped thousands of
             small to big companies around the world making attractive logos that
-            stand out from the crowd.{" "}
-          </br>
-          <br>
+            stand out from the crowd.
+          </p>
+          <p>
             We’ll help you create the best logo that can take your business to
             the next level. We guarantee outstanding service for your project.
-          </br>
-          <br>
+          </p>
+          <div >
             <h4>What makes us strong!</h4>
             <ul>
               <li>Leading Fiverr logo design service</li>
@@ -93,13 +98,16 @@ export default function DetailJobPage() {
               <li>Commit to finish project until satisfaction</li>
               <li>24/7 support</li>
             </ul>
-          </br>
+          </div>
           <h4>
             For the same quality as shown in our portfolio please select PREMIUM
             package.
           </h4>
-        </p>
+        </div>
       </div>
-    </div>
+    </Box>
   );
 }
+
+// vÂN XIN 2 PHÚT NHA
+// chắc tui off lun nha, đợi bữa khác típ ik, đuối quá

@@ -1,6 +1,20 @@
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormHelperText,
+  InputLabel,
+  Link,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  FormControl,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { actSignUpApi } from "./modules/actions";
 
 export default function SignUpPage() {
@@ -26,123 +40,158 @@ export default function SignUpPage() {
     });
   };
   const handleSelect = (event) => {
-      const {name, select} = event.target;
-      setState({
-          ...state,
-          [name]: select,
-      })
-  }
+    const { gender, select } = event.target;
+    setState({
+      ...state,
+      [gender]: select,
+    });
+  };
 
   const handleSignUp = (event) => {
     event.preventDefault();
     dispatch(actSignUpApi(state));
   };
-  
 
   return (
-    <div>
-      <h1>SignUpPage</h1>
-
-      <div className="container">
-        <form onSubmit={handleSignUp}>
-          <div className="form-group row">
-            <label>Name</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Email</label>
-            <div className="col-sm-1-12">
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Password</label>
-            <div className="col-sm-1-12">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Phone Number</label>
-            <div className="col-sm-1-12">
-              <input
-                type="number"
-                className="form-control"
-                name="phone"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Skill</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="skill"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Certification</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="certification"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Birthday</label>
-            <div className="col-sm-1-12">
-              <input
-                type="date"
-                className="form-control"
-                name="birthday"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Gender</label>
-            <div className="col-sm-1-12">
-              <select
-                className="form-control"
+    <>
+      <Box
+        sx={{
+          backgroundColor: "background.default",
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          justifyContent: "center",
+          mt: 10,
+        }}
+      >
+        <Container maxWidth="sm">
+          <form onSubmit={handleSignUp}>
+            <Box sx={{ mb: 3 }}>
+              <Typography color="textPrimary" variant="h3">
+                Create new account
+              </Typography>
+              <Typography color="textSecondary" gutterBottom variant="body2" sx={{ ml: 0.5}}>
+                Use your email to create new account
+              </Typography>
+            </Box>
+            <TextField
+              fullWidth
+              label="Name"
+              margin="normal"
+              name="name"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="text"
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              margin="normal"
+              name="email"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="email"
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              margin="normal"
+              name="password"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="password"
+            />
+            <TextField
+              fullWidth
+              label="Phone Number"
+              margin="normal"
+              name="phone"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="number"
+            />
+            <TextField
+              fullWidth
+              label="Skill"
+              margin="normal"
+              name="skill"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="text"
+            />
+            <TextField
+              fullWidth
+              label="Certification"
+              margin="normal"
+              name="certification"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="text"
+            />
+            <TextField
+              fullWidth
+              // label="Birthday"
+              margin="normal"
+              name="birthday"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="date"
+            />
+            <FormControl fullWidth>
+              <InputLabel>Gender</InputLabel>
+              <Select
+                // fullWidth
+                // label="Gender"
+                margin="normal"
                 name="gender"
                 onChange={handleSelect}
+                variant="outlined"
               >
-                <option>Men</option>
-                <option>Women</option>
-                <option>Another gender</option>
-              </select>
-            </div>
-          </div>
+                <MenuItem>Men</MenuItem>
+                <MenuItem>Women</MenuItem>
+                <MenuItem>Another gender</MenuItem>
+              </Select>
+            </FormControl>
+
+            {/* muốn cố định là ADMIN luôn??? */}
+            <TextField
+              fullWidth
+              label="Type"
+              margin="normal"
+              name="type"
+              onChange={handleOnChange}
+              variant="outlined"
+              type="text"
+            />
+
+            <Box sx={{ py: 2 }}>
+              <Button
+                color="primary"
+                // disabled={isSubmitting}
+                fullWidth
+                size="large"
+                type="submit"
+                variant="contained"
+              >
+                Sign up now
+              </Button>
+            </Box>
+            <Typography color="textSecondary" variant="body1">
+              Have an account?
+              <Link
+                // component={RouterLink}
+                to="/login"
+                variant="h6"
+                underline="hover"
+              >
+                Sign in
+              </Link>
+            </Typography>
+          </form>
+        </Container>
+      </Box>
+      {/* <div className="container">
+
 
           <div className="form-group row">
             <label>Type</label>
@@ -159,7 +208,7 @@ export default function SignUpPage() {
           <button className="btn btn-success">SignUp</button>
           <Link to="/login" className="btn btn-info">SignIn</Link>
         </form>
-      </div>
-    </div>
+      </div> */}
+    </>
   );
 }

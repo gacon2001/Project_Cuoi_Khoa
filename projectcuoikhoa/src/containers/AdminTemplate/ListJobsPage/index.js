@@ -23,7 +23,7 @@ export default function ListJobsPage(path) {
         <div className="card text-left" key={jobs._id} >
           <img className="card-img-top" src={jobs.image} alt={jobs.name} />
           <div className="card-body">
-            <Link to="/detail-job">{jobs.name}</Link>
+            <Link to={`/detail-job/${jobs._id}`}>{jobs.name}</Link>
               <div>{jobs.rating}</div>
             <div>{jobs.price}</div>
             {/* <div>{jobs.usersBooking}</div> */}

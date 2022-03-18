@@ -14,6 +14,7 @@ import {
 import {
   AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
+  FilePlus,
   Lock as LockIcon,
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
@@ -46,9 +47,14 @@ const items = [
     title: "List Jobs",
   },
   {
-    href: "/profile",
+    href: "/list-user",
+    icon: UsersIcon,
+    title: "List Users",
+  },
+  {
+    href: "/profile/:_id",
     icon: UserIcon,
-    title: "Account",
+    title: "Profile",
   },
   {
     href: "/login",
@@ -63,6 +69,7 @@ const items = [
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
+  //!này Hải thêm hả?
   const location = useLocation();
   const paths = location.pathname.split("/");
   const id = paths[paths.length -1];
@@ -72,6 +79,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   const detailUser = useSelector((state) => {
     return state.editUserReducer.detailUser;
   });
+  // const {_id} = useParams();
   
   const [img, setImg] = useState({});
   const [user, setUser] = useState({
@@ -148,6 +156,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
         {/* lấy name của admin đã login vào??? */}
         <Typography color="textPrimary" variant="h5">
+          {/* <Link to={`/profile/${user._id}`}>{user.name}</Link> */}
           <Link to="/profile">{user.name}</Link>
         </Typography>
       </Box>

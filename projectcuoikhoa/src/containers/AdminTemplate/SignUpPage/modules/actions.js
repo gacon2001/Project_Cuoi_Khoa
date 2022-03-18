@@ -14,6 +14,7 @@ export const actSignUpApi = (signup, history) => {
       })
       .catch((error) => {
         dispatch(actSignUpFailed(error));
+        alert("Failed");
       });
   };
 };

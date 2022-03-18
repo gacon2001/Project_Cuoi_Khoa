@@ -56,7 +56,7 @@ const routesAdmin = [
   },
   {
     exact: false,
-    path: "/detail-jobs/:_id",
+    path: "/detail-job/:_id",
     component: lazy(() => import("containers/AdminTemplate/DetailJobPage")),
   },
   {

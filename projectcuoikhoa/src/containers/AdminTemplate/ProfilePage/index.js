@@ -23,6 +23,7 @@ export default function ProfilePage() {
     gender: true,
   });
 
+  // UI ko đổi??
   useEffect(()=>{
     if (detailAdmin)
       setState(detailAdmin);
@@ -41,14 +42,14 @@ export default function ProfilePage() {
     dispatch(actAddCertificationsApi(_id));
   };
 
-  const renderSkillsAvailable = () => {
-    return <div></div>
-    // return ((skill)=>{
-    //   return (
-    //     <p>{skill.skill}</p>
-    //   )
-    // })
-  }
+  // const renderSkillsAvailable = () => {
+  //   return <div></div>
+  //   // return ((skill)=>{
+  //   //   return (
+  //   //     <p>{skill.skill}</p>
+  //   //   )
+  //   // })
+  // }
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -69,7 +70,7 @@ export default function ProfilePage() {
           <div className="col-sm-1-12">
             <div className="card text-left">
               <div className="card-body">
-                <h4 className="card-title">Title</h4>
+                {/* <h4 className="card-title">Title</h4> */}
                 {/* <i className="fa fa-pen" /> */}
                 {/* <Link to="/edit-profile" className="btn btn-warning">
                   Edit
@@ -85,7 +86,7 @@ export default function ProfilePage() {
                     <li>Email: {state.email}</li>
                     <li>Phone: {state.phone}</li>
                     <li>Birthday: {state.birthday}</li>
-                    <li>Gender: {state.gender}</li>
+                    <li>Gender: {state.gender ? "Men" : "Women"}</li>
                   </ul>
                 </div>
               </div>
@@ -98,7 +99,7 @@ export default function ProfilePage() {
                     <label>Skills</label>
                     <div className="col-sm-1-12">
                       {/* render skills có sẵn */}
-                      {renderSkillsAvailable()}
+                      {/* {renderSkillsAvailable()} */}
                       <input
                         type="text"
                         className="form-control"
@@ -109,9 +110,6 @@ export default function ProfilePage() {
                       />
                     </div>
                   </div>
-
-                  <button className="btn btn-success">Add</button>
-                  <button className="btn btn-secondary">Cancel</button>
                 </form>
                 <hr />
                 <form onSubmit={addCertifications}>
@@ -126,8 +124,6 @@ export default function ProfilePage() {
                       value={state.certification}
                     />
                   </div>
-                  <button className="btn btn-success">Add</button>
-                  <button className="btn btn-secondary">Cancel</button>
                 </form>
               </div>
             </div>
