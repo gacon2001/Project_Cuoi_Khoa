@@ -69,17 +69,15 @@ const items = [
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
-  //!này Hải thêm hả?
   const location = useLocation();
-  const paths = location.pathname.split("/");
-  const id = paths[paths.length - 1];
   //!useRef(): tương tự getELEById
   const imgref = useRef(null);
   const dispatch = useDispatch();
-  const detailUser = useSelector((state) => {
-    return state.editUserReducer.detailUser;
-  });
-  // const {_id} = useParams();
+  // const detailUser = useSelector((state) => {
+  //   return state.editUserReducer.detailUser;
+  // });
+  
+  
 
   const [img, setImg] = useState({});
   const [user, setUser] = useState({
@@ -98,13 +96,20 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     //   [files]: files[0]
     // })
   };
-  console.log(user?.avatar);
-  useEffect(() => {
-    if (detailUser) setUser(detailUser);
-  }, [detailUser]);
-  useEffect(() => {
-    if (id) dispatch(actFetchDetailUserApi(id));
-  }, [id]);
+  
+  //! khi mà load component lên thì mình sẽ lâys localStorage.getItem("Admin") JSON.parse
+  //!ban đầu chưa set lại thôgn tin của user -> lấy thông tin của user dưới localStorage và set lại state user trên component => load lại trang ko bị mất nữa
+  useEffect(()=>{
+     setUser(JSON.parse(localStorage.getItem("Admin")).user);
+  }, [])
+
+  //!ko lấy từ reducer nữa => lấy từ localStorage
+  // useEffect(() => {
+  //   if (detailUser) setUser(detailUser);
+  // }, [detailUser]);
+  // useEffect(() => {
+  //   if (id) dispatch(actFetchDetailUserApi(id));
+  // }, [id]);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -150,8 +155,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
         {/* lấy name của admin đã login vào??? */}
         <Typography color="textPrimary" variant="h5">
-          {/* <Link to={`/profile/${user._id}`}>{user.name}</Link> */}
-          <Link to="/profile">{user.name}</Link>
+          <Link to={`/profile/${user._id}`}>{user.name}</Link>
         </Typography>
       </Box>
       <Divider />

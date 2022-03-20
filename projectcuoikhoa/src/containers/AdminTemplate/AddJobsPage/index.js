@@ -21,7 +21,7 @@ export default function AddJobsPage() {
     name: "",
     rating: "",
     price: "",
-    proServices: "",
+    proServices: "",//!
     localSellers: "",
     onlineSellers: "",
     deliveryTime: "",

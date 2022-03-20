@@ -19,10 +19,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
 import SearchJobsPage from "../SearchJobsPage";
 import NavbarJobs from "../_components/NavbarJobs";
 import {
@@ -31,6 +28,16 @@ import {
   actBookingJobsApi,
 } from "./modules/actions";
 import Video from "../_video";
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 export default function ListJobsPage(path) {
   const listJobs = useSelector((state) => {
@@ -38,121 +45,117 @@ export default function ListJobsPage(path) {
   });
   const dispatch = useDispatch();
   const history = useHistory();
+  // state: soCardRender
+  const [soCardRender, setSoCardRender] = useState(
+    //gtri ban đầu: 5
+    5
+  );
 
+  //!scroll: ban đầu render ra 5items => scroll tiếp xuống render thêm tiếp
   useEffect(() => {
+    window.addEventListener("scroll", (e) => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        setSoCardRender((soCardRender) => soCardRender + 5);
+      }
+    });
     dispatch(actFetchListJobsApi());
   }, []);
 
-  const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const renderListJobs = () => {
-    return listJobs?.map((jobs) => {
+    //array.slice(start, end)
+    return listJobs?.slice(0, soCardRender).map((jobs) => {
       return (
-        <Grid key={jobs._id}>
-          {/* xs={} */}
-          <Grid item>
-            {/* đè lại pl: 16px */}
-            <ListItem sx={{ pl: -16 }}>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardHeader
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      R
-                    </Avatar>
-                  }
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
-                  }
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={jobs.image}
-                  alt={jobs.name}
-                />
-                <CardContent>
-                  <Link to={`/detail-job/${jobs._id}`}>{jobs.name}</Link>
-                  <Grid>Rating: {jobs.rating}</Grid>
-                  <Grid>Price: {jobs.price}</Grid>
-                </CardContent>
+        <Grid item key={jobs._id}>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  R
+                </Avatar>
+              }
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title="Shrimp and Chorizo Paella"
+              subheader="September 14, 2016"
+            />
+            <CardMedia
+              component="img"
+              height="194"
+              image={jobs.image}
+              alt={jobs.name}
+            />
+            <CardContent>
+              <Link to={`/detail-job/${jobs._id}`}>{jobs.name}</Link>
+              <Typography variant="body2">Rating: {jobs.rating}</Typography>
+              <Typography variant="body2">Price: {jobs.price}</Typography>
+            </CardContent>
 
-                <Button
-                  onClick={() => history.push(`/edit-jobs/${jobs._id}`)}
-                  color="success"
-                  variant="contained"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => dispatch(actDeleteJobsApi(jobs._id))}
-                  color="error"
-                  variant="contained"
-                >
-                  Delete
-                </Button>
-                <Button
-                  onClick={() => dispatch(actBookingJobsApi(jobs._id))}
-                  color="warning"
-                  variant="contained"
-                >
-                  Booking
-                </Button>
+            <Button
+              onClick={() => history.push(`/edit-jobs/${jobs._id}`)}
+              color="success"
+              variant="contained"
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => dispatch(actDeleteJobsApi(jobs._id))}
+              color="error"
+              variant="contained"
+            >
+              Delete
+            </Button>
+            <Button
+              onClick={() => dispatch(actBookingJobsApi(jobs._id))}
+              color="warning"
+              variant="contained"
+            >
+              Booking
+            </Button>
 
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
-                  <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </ExpandMore>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                      Heat 1/2 cup of the broth in a pot until simmering, add
-                      saffron and set aside for 10 minutes.
-                    </Typography>
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </ListItem>
-          </Grid>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton aria-label="share">
+                <ShareIcon />
+              </IconButton>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>Method:</Typography>
+                <Typography paragraph>
+                  Heat 1/2 cup of the broth in a pot until simmering, add
+                  saffron and set aside for 10 minutes.
+                </Typography>
+              </CardContent>
+            </Collapse>
+          </Card>
         </Grid>
       );
     });
   };
 
   return (
-    <Box sx={{ mt: 10 }}>
+    <Box sx={{ mt: 8 }}>
       {/* {path == "/list-subType-jobs" && path == "/list-type-jobs" && path == "/list-jobs" && <NavbarJobs/>} */}
       <NavbarJobs />
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Box>
           <Typography color="textPrimary" variant="h3">
             Lists Jobs Page
@@ -162,10 +165,13 @@ export default function ListJobsPage(path) {
           AddJobs
         </Link>
 
-        <Video/>
-    
+        <Video />
+
         <SearchJobsPage />
-        <Box>{renderListJobs()}</Box>
+        <Box>
+          <Grid></Grid>
+          {renderListJobs()}
+        </Box>
       </Container>
     </Box>
   );

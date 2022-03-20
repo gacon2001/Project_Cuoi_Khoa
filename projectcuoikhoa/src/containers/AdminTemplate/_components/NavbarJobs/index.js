@@ -39,7 +39,7 @@ export default function NavbarJobs({ onMobileNavOpen , path}) {
       </div>
       <Box sx={{ flexGrow: 1 }} />
       
-      {/* ?????????????????/ */}
+      {/* chỉ có list-subType với list-type mới có  side bar */}
       {path === "/list-subType-jobs" || path === "/list-type-jobs" && (
         <Hidden lgUp>
           <IconButton color="inherit" onClick={onMobileNavOpen} size="large">

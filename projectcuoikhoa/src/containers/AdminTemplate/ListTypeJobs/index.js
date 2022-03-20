@@ -54,94 +54,91 @@ export default function ListTypeJobs() {
     setExpanded(!expanded);
   };
 
-  <IOSSwitch/>
-  
+  <IOSSwitch />;
+
   const renderListTypeJobs = () => {
     return listTypeJobs?.map((type) => {
       return (
-        <Grid key={type._id}>
+        <>
           {/* xs={} */}
-          <Grid item>
-            {/* đè lại pl: 16px */}
-            <ListItem sx={{ pl: -16 }}>
-              <Card sx={{ maxWidth: 345 }}>
-                <CardHeader
-                  avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                      R
-                    </Avatar>
-                  }
-                  action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
-                  }
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
-                />
-                <CardMedia
-                  component="img"
-                  height="194"
-                  image={type.image}
-                  alt={type.name}
-                />
+          <Grid item key={type._id}>
+            <Card sx={{ maxWidth: 345 }}>
+              <CardHeader
+                avatar={
+                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    R
+                  </Avatar>
+                }
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title="Shrimp and Chorizo Paella"
+                subheader="September 14, 2016"
+              />
+              <CardMedia
+                component="img"
+                height="194"
+                image={type.image}
+                alt={type.name}
+              />
+              <CardContent>
+                <Link to={`/detail-job/${type._id}`}>{type.name}</Link>
+                <Grid>Rating: {type.rating}</Grid>
+                <Grid>Price: {type.price}</Grid>
+              </CardContent>
+
+              <Button
+                onClick={() => history.push(`/edit-jobs/${type._id}`)}
+                color="success"
+                variant="contained"
+              >
+                Edit
+              </Button>
+              <Button
+                onClick={() => dispatch(actDeleteJobsApi(type._id))}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+              <Button
+                onClick={() => dispatch(actBookingJobsApi(type._id))}
+                color="warning"
+                variant="contained"
+              >
+                Booking
+              </Button>
+
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                  <ShareIcon />
+                </IconButton>
+                <ExpandMore
+                  expand={expanded}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </ExpandMore>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <Link to={`/detail-job/${type._id}`}>{type.name}</Link>
-                  <Grid>Rating: {type.rating}</Grid>
-                  <Grid>Price: {type.price}</Grid>
+                  <Typography paragraph>Method:</Typography>
+                  <Typography paragraph>
+                    Heat 1/2 cup of the broth in a pot until simmering, add
+                    saffron and set aside for 10 minutes.
+                  </Typography>
                 </CardContent>
-
-                <Button
-                  onClick={() => history.push(`/edit-jobs/${type._id}`)}
-                  color="success"
-                  variant="contained"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => dispatch(actDeleteJobsApi(type._id))}
-                  color="error"
-                  variant="contained"
-                >
-                  Delete
-                </Button>
-                <Button
-                  onClick={() => dispatch(actBookingJobsApi(type._id))}
-                  color="warning"
-                  variant="contained"
-                >
-                  Booking
-                </Button>
-
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
-                  <ExpandMore
-                    expand={expanded}
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon />
-                  </ExpandMore>
-                </CardActions>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                      Heat 1/2 cup of the broth in a pot until simmering, add
-                      saffron and set aside for 10 minutes.
-                    </Typography>
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </ListItem>
+              </Collapse>
+            </Card>
           </Grid>
-        </Grid>
+        </>
       );
     });
   };
@@ -151,10 +148,10 @@ export default function ListTypeJobs() {
   }, []);
 
   return (
-    <Box sx={{ mt: 10 }}>
+    <Box sx={{ mt: 8 }}>
       <NavbarJobs />
       {/* <Container maxWidth="sm"> */}
-      <Container>
+      <Container maxWidth="md">
         <Box>
           <Typography color="textPrimary" variant="h3">
             List TypeJobs Page
@@ -164,13 +161,12 @@ export default function ListTypeJobs() {
           AddJobs
         </Link>
 
-        {/* Nhúng video vào */}
-        <Video/>
+        <Video />
 
         <SearchJobsPage />
         <Box>
-          <Switch/>
-          {renderListTypeJobs()}
+          <Switch />
+          <Grid>{renderListTypeJobs()}</Grid>
         </Box>
       </Container>
     </Box>

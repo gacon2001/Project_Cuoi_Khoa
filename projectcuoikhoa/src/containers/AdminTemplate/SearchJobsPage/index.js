@@ -18,9 +18,9 @@ export default function SearchJobsPage() {
     });
   };
 
-  useEffect(() => {
-    dispatch(actSearchJobsApi(state.search));
-  }, [state.search]);
+  // useEffect(() => {
+    // dispatch(actSearchJobsApi(state.search));
+  // }, [state.search]);
 
   return (
       <Stack  sx={{ width: "100%", mt: 2} } >

@@ -23,7 +23,7 @@ export default function EditUserAdmin() {
     password: "",
     phone: "",
     birthday: "",
-    gender: false,
+    gender: true,
     __v: "",
     // avatar: "",
   });
@@ -49,11 +49,13 @@ export default function EditUserAdmin() {
   }, [detailUser]);
   const handleOnChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
     setState({
       ...state,
       [name]: value,
     });
   };
+  console.log(state.gender)
   const handleSelect = (event) => {
     const { name, select } = event.target;
     setState({
@@ -130,20 +132,18 @@ export default function EditUserAdmin() {
             value={state.birthday}
           />
 
-          {/* ko lấy đc value??? */}
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+            <InputLabel id="gender_select_label">Gender</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="gender_select_label"
+              id="gender_select"
+              value={state.gender}
               label="Gender"
               name="gender"
-              onChange={handleSelect}
-              value={state.gender ? "Men" : "Women"}
+              onChange={handleOnChange}
             >
-              <MenuItem>Men</MenuItem>
-              <MenuItem>Women</MenuItem>
-              <MenuItem>Another gender</MenuItem>
+              <MenuItem value={true}>Men</MenuItem>
+              <MenuItem value={false}>Women</MenuItem>
             </Select>
           </FormControl>
           <TextField

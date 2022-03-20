@@ -6,14 +6,16 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Box, Button , TextField} from "@material-ui/core";
+import { Box, Button, TextField } from "@material-ui/core";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 import IOSSwitch from "../_switch/IOSSwitch";
 
 export default function Switch() {
   return (
     <Box>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl maxWidth={50}>
+      <Box sx={{mt: 2}}>
+        <FormControl sx={{ minWidth: 140 }}>
           <InputLabel id="demo-simple-select-label">Logo Options</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -33,17 +35,18 @@ export default function Switch() {
             </Button>
           </Select>
         </FormControl>
-        <FormControl>
-          <InputLabel id="demo-simple-select-label">Sellers Details</InputLabel>
+        <FormControl sx={{ minWidth: 140 }}>
+          <InputLabel id="demo-simple-select-label">Seller Details</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             // value={age}
-            label="Logo Options"
+            label="Seller Details"
             // onChange={handleChange}
           >
             <MenuItem>Seller Level</MenuItem>
             <MenuItem>Seller Speaks</MenuItem>
+            <MenuItem>Seller Lives In</MenuItem>
             <Button color="warning" variant="outlined">
               Clear All
             </Button>
@@ -52,38 +55,46 @@ export default function Switch() {
             </Button>
           </Select>
         </FormControl>
-        <FormControl>
+        <FormControl sx={{ minWidth: 140 }}>
           <InputLabel id="demo-simple-select-label">Budget</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             // value={age}
-            label="Logo Options"
+            label="Budget"
             // onChange={handleChange}
           >
-            <MenuItem>
-              Min
-              <TextField
-                label="Any"
-                margin="normal"
-                // name="name"
-                // onChange={handleOnChange}
-                variant="outlined"
-                type="number"
-              />
-            </MenuItem>
-            <MenuItem>
-              Max
-              <TextField
-                fullWidth
-                label="Any"
-                margin="normal"
-                // name="name"
-                // onChange={handleOnChange}
-                variant="outlined"
-                type="number"
-              />
-            </MenuItem>
+            <Box>
+              <TextField label="Min" type="number" />
+              <TextField label="Max" type="number" />
+            </Box>
+            <Button color="warning" variant="outlined">
+              Clear All
+            </Button>
+            <Button color="success" variant="outlined">
+              Apply
+            </Button>
+          </Select>
+        </FormControl>
+        <FormControl sx={{ minWidth: 140 }}>
+          <InputLabel id="demo-simple-select-label">Delivery Time</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            // value={age}
+            label="Seller Details"
+            // onChange={handleChange}
+          >
+             <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="Express 24H"
+        name="radio-buttons-group"
+      >
+        <FormControlLabel control={<Radio />} label="Express 24H" />
+        <FormControlLabel control={<Radio />} label="Up to 3 days" />
+        <FormControlLabel control={<Radio />} label="Up to 7 days" />
+        <FormControlLabel control={<Radio />} label="Anytime" />
+      </RadioGroup>
             <Button color="warning" variant="outlined">
               Clear All
             </Button>
@@ -94,7 +105,7 @@ export default function Switch() {
         </FormControl>
       </Box>
       <Box>
-        <FormGroup>
+        <FormGroup row>
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
             label="Pro services"

@@ -54,7 +54,7 @@ export default function ListSubTypeJobs() {
     setExpanded(!expanded);
   };
 
-  <IOSSwitch/>
+  // <IOSSwitch/>
 
   const renderListSubTypeJobs = () => {
     return listSubTypeJobs?.map((subType) => {
@@ -151,9 +151,9 @@ export default function ListSubTypeJobs() {
   }, []);
 
   return (
-    <Box sx={{ mt: 10 }}>
+    <Box sx={{ mt: 8 }}>
       <NavbarJobs />
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Box>
           <Typography color="textPrimary" variant="h3">
             List SubTypeJobs Page

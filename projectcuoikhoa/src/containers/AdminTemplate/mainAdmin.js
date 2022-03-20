@@ -5,7 +5,7 @@ import DashboardSidebar from "./DashboardPage/components/DashboardSidebar";
 
 export default function AdminTemplate({ exact, path, component }) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-  if (localStorage.getItem("Admin"))
+  if (localStorage.getItem("Admin")) {
     return (
       <>
         {/* {path == "/admin" && <NavbarAdmin />} */}
@@ -20,6 +20,7 @@ export default function AdminTemplate({ exact, path, component }) {
         />
       </>
     );
+  }
   return <Redirect to="/signin" />;
 }
 
