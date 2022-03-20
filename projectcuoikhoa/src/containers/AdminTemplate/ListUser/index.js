@@ -25,10 +25,10 @@ const Root = styled("div")(
       padding: 6px;
     }
   
-    th {
+    tr {
       background-color: ${
-        theme.palette.mode === "dark" ? grey[900] : grey[50]
-      };
+        theme.palette.mode === "tr" ? grey[900] : grey[50]
+      // };
     }
     `
 );
@@ -99,7 +99,7 @@ export default function ListUser() {
       <Root sx={{ width: 500, maxWidth: "100%" }}>
         <table aria-label="custom pagination table">
           <thead>
-            <tr>
+            <tr tr>
               <th>Id</th>
               <th>Name</th>
               <th>Email</th>

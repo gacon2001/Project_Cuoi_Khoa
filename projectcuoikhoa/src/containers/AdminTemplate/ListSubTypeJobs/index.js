@@ -28,6 +28,7 @@ import SearchJobsPage from "../SearchJobsPage";
 
 import Switch from "../_switch/index";
 import IOSSwitch from "../_switch/IOSSwitch";
+import Video from "../_video";
 
 
 export default function ListSubTypeJobs() {
@@ -161,8 +162,9 @@ export default function ListSubTypeJobs() {
         <Link to="/add-jobs" className="btn btn-info">
           AddJobs
         </Link>
-        
 
+      <Video/>  
+      
         <SearchJobsPage />
         <Box>
           <Switch/>

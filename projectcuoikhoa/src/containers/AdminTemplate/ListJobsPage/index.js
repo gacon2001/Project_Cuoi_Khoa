@@ -30,6 +30,7 @@ import {
   actFetchListJobsApi,
   actBookingJobsApi,
 } from "./modules/actions";
+import Video from "../_video";
 
 export default function ListJobsPage(path) {
   const listJobs = useSelector((state) => {
@@ -161,6 +162,8 @@ export default function ListJobsPage(path) {
           AddJobs
         </Link>
 
+        <Video/>
+    
         <SearchJobsPage />
         <Box>{renderListJobs()}</Box>
       </Container>

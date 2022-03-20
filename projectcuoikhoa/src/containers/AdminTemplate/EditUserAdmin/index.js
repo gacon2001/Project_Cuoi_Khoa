@@ -138,7 +138,7 @@ export default function EditUserAdmin() {
               id="demo-simple-select"
               label="Gender"
               name="gender"
-              onChange={handleOnChange}
+              onChange={handleSelect}
               value={state.gender ? "Men" : "Women"}
             >
               <MenuItem>Men</MenuItem>
