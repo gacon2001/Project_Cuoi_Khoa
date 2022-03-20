@@ -6,7 +6,7 @@ const routesAdmin = [
     exact: true,
     path: "/admin",
     component: lazy(() =>
-      import("containers/AdminTemplate/_components/NavbarAdmin")
+      import("containers/AdminTemplate/SignInPage")
     ),
   },
   {

@@ -4,7 +4,7 @@ import * as ActionType from "./constants";
 export const actFetchListJobsApi = () => {
     return (dispatch) => {
         dispatch(actFetchListJobsRequest());
-        api.get("jobs?skip =0&limit =10")
+        api.get("jobs?skip =0&limit =5")
         .then((success)=>{
             dispatch(actFetchListJobsSuccess(success.data));
         })
@@ -37,6 +37,7 @@ export const actSearchJobsApi = (tuKhoa) => {
       api
         .get(`jobs/by-name?name=${tuKhoa}`)
         .then((success) => {
+          // console.log(123);
           dispatch(actSearchJobsSuccess(success.data));
         })
         .catch((error) => {
@@ -99,9 +100,11 @@ export const actBookingJobsApi = (_id) => {
       api.patch(`jobs/booking/${_id}`)
       .then((success)=>{
           dispatch(actBookingJobsSuccess(success.data));
+          alert("Book This Job Successfully");
       })
       .catch((error)=>{
           dispatch(actBookingJobsFailed(error));
+          alert("Failed")
       })
   }
 } 

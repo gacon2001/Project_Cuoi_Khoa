@@ -7,6 +7,7 @@ import {
 } from "./modules/actions";
 import { Link } from "react-router-dom";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Container, Typography } from "@material-ui/core";
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
@@ -42,15 +43,6 @@ export default function ProfilePage() {
     dispatch(actAddCertificationsApi(_id));
   };
 
-  // const renderSkillsAvailable = () => {
-  //   return <div></div>
-  //   // return ((skill)=>{
-  //   //   return (
-  //   //     <p>{skill.skill}</p>
-  //   //   )
-  //   // })
-  // }
-
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setState({
@@ -62,15 +54,11 @@ export default function ProfilePage() {
   
  
   return (
-    <div>
-
-      <h3>ProfilePage</h3>
-      <div className="container">
-        <div className="row">
+    <Container maxWidth="sm" sx={{mt: 10}}>
+      <Typography variant="h4">Profile Page</Typography>
           <div className="col-sm-1-12">
             <div className="card text-left">
               <div className="card-body">
-                {/* <h4 className="card-title">Title</h4> */}
                 {/* <i className="fa fa-pen" /> */}
                 {/* <Link to="/edit-profile" className="btn btn-warning">
                   Edit
@@ -128,8 +116,6 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 }

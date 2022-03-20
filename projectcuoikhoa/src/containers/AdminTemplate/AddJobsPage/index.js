@@ -1,28 +1,39 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { actAddJobsApi } from "./modules/actions";
-import { Link } from "react-router-dom";
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+} from "@material-ui/core";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { useHistory } from "react-router-dom";
 
 export default function AddJobsPage() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [state, setState] = useState({
     //ko có image ?
     name: "",
     rating: "",
     price: "",
-    // proServices : true,
-    // localSellers : false,
-    // onlineSellers : true,
-    // deliveryTime : true,
-    type : "", //ID 
-    subType : "",
+    proServices: "",
+    localSellers: "",
+    onlineSellers: "",
+    deliveryTime: "",
+    type: "", //ID
+    subType: "",
   });
-  //!chọn checkbox -> nhập ID (id thuộc công việc chính, phụ của từng loại công việc khác nhau) --> add zô danh sách loại công việc có id riêng đó
- 
+  //!chọn checkbox -> nhập ID (id thuộc công việc chính, phụ của từng loại công việc khác nhau) --> add zô danh sách loại công việc có id riêng đó ??
+
   const addJobs = (event) => {
-      event.preventDefault();
-      dispatch(actAddJobsApi(state));
-  }
+    event.preventDefault();
+    dispatch(actAddJobsApi(state));
+  };
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -32,87 +43,99 @@ export default function AddJobsPage() {
     });
   };
   const handleCheckBox = (event) => {
-    const {name, checked} = event.target;
+    const { name, checked } = event.target;
     setState({
       ...state,
       [name]: checked,
-    })
-  }
+    });
+  };
 
   return (
-    <div className="container">
-      <h3>AddJobsPage</h3>
-
+    <Container maxWidth="sm" sx={{ mt: 10 }}>
       <form onSubmit={addJobs}>
-        <div className="form-group row">
-          <label>Name</label>
-          <div className="col-sm-1-12">
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              onChange={handleOnChange}
-            />
-          </div>
-        </div>
+        <Box>
+          <Typography color="textPrimary" variant="h4">
+            Add New Job Page
+          </Typography>
+        </Box>
+        <TextField
+          fullWidth
+          label="Name"
+          margin="normal"
+          name="name"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="text"
+        />
+        <TextField
+          fullWidth
+          label="Rating"
+          margin="normal"
+          name="rating"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="number"
+        />
+        <TextField
+          fullWidth
+          label="Price"
+          margin="normal"
+          name="price"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="number"
+        />
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox />}
+            label="Pro Services"
+            onChange={handleCheckBox}
+            checked={state.proServices}
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="Local Sellers"
+            onChange={handleCheckBox}
+            checked={state.localSellers}
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="Online Sellers"
+            onChange={handleCheckBox}
+            checked={state.onlineSellers}
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="Delivery Time"
+            onChange={handleCheckBox}
+            checked={state.deliveryTime}
+          />
 
-        <div className="form-group row">
-          <label>Rating</label>
-          <div className="col-sm-1-12">
-            <input
-              type="number"
-              className="form-control"
-              name="rating"
-              onChange={handleOnChange}
-            />
-          </div>
-        </div>
-
-        <div className="form-group row">
-          <label>Price</label>
-          <div className="col-sm-1-12">
-            <input
-              type="number"
-              className="form-control"
-              name="price"
-              onChange={handleOnChange}
-            />
-          </div>
-        </div>
-
-{/* type thì subType sẽ disabled?? => check actions */}
-        <div className="form-group row">
-          <label>Type</label>
-          <div className="col-sm-1-12">
-            <input
-              type="checkbox"
-              className="form-control"
-              name="type"
-              checked={state.type}
-              onChange={handleCheckBox}
-              id="btnType"
-            />
-          </div>
-        </div>
-
-        <div className="form-group row">
-          <label>SubType</label>
-          <div className="col-sm-1-12">
-            <input
-              type="checkbox"
-              className="form-control"
-              name="subType"
-              checked={state.subType}
-              onChange={handleCheckBox}
-            />
-          </div>
-        </div>
-
-        <button className="btn btn-success">Add Job</button>
-        <Link to="/list-jobs" className="btn btn-danger">
+          {/* if type -> subType: disabled */}
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Type"
+            onChange={handleCheckBox}
+            checked={state.type}
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="SubType"
+            onChange={handleCheckBox}
+            checked={state.subType}
+          />
+        </FormGroup>
+        <Button color="success" variant="contained">
+          Add Job
+        </Button>
+        <Button
+          color="error"
+          variant="contained"
+          onClick={() => history.push("/list-jobs")}
+        >
           Cancel
-        </Link>
+        </Button>
       </form>
-    </div>
+    </Container>
   );
 }

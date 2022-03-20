@@ -3,6 +3,12 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { actAddUserApi } from "./modules/actions";
 
+import { Container, Typography, Box, TextField } from "@material-ui/core";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 export default function AddUserAdmin() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -11,138 +17,125 @@ export default function AddUserAdmin() {
     password: "",
     phone: "",
     birthday: "",
-    gender: "",
+    gender: true,
     role: "ADMIN",
-    __v: "",
-    avatar: "",
-  })
+    skill: [],
+    certification: [],
+  });
 
-    const handleOnChange = (event) => {
-        const {name, value, files} = event.target;
-        setState({
-          ...state,
-          [name]: name === "avatar" ? files[0] : value,
-        })
-    }
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setState({
+      ...state,
+      // [name]: name === "avatar" ? files[0] : value,
+      [name]: value,
+    });
+  };
 
-    const addUser = (event) => {
-      event.preventDefault();
-      dispatch(actAddUserApi(state));
-    }
+  const addUser = (event) => {
+    event.preventDefault();
+    dispatch(actAddUserApi(state));
+  };
   return (
-     <div className="container">
-      <h3>AddUserAdmin</h3>
+    <Container maxWidth="sm" sx={{ mt: 10 }}>
       <form onSubmit={addUser}>
-          <div className="form-group row">
-            <label>Name</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
+        <Box>
+          <Typography variant="h4">AddUserAdmin</Typography>
+        </Box>
+        <TextField
+          fullWidth
+          label="Name"
+          margin="normal"
+          name="name"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="text"
+        />
+        <TextField
+          fullWidth
+          label="Email"
+          margin="normal"
+          name="email"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="email"
+        />
+        <TextField
+          fullWidth
+          label="Password"
+          margin="normal"
+          name="password"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="password"
+        />
+        <TextField
+          fullWidth
+          label="Phone Number"
+          margin="normal"
+          name="phone"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="number"
+        />
+        <TextField
+          fullWidth
+          // label="Birthday"
+          margin="normal"
+          name="birthday"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="date"
+        />
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Gender"
+            name="gender"
+            onChange={handleOnChange}
+          >
+            <MenuItem>Men</MenuItem>
+            <MenuItem>Women</MenuItem>
+            <MenuItem>Another gender</MenuItem>
+          </Select>
+        </FormControl>
 
-          <div className="form-group row">
-            <label>Email</label>
-            <div className="col-sm-1-12">
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
+        {/* cố định ADMIN */}
+        <TextField
+          fullWidth
+          label="Role"
+          margin="normal"
+          name="role"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="text"
+        />
+        <TextField
+          fullWidth
+          label="Skill"
+          margin="normal"
+          name="skill"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="text"
+        />
+        <TextField
+          fullWidth
+          label="Certification"
+          margin="normal"
+          name="certification"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="text"
+        />
 
-          <div className="form-group row">
-            <label>Password</label>
-            <div className="col-sm-1-12">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Phone Number</label>
-            <div className="col-sm-1-12">
-              <input
-                type="number"
-                className="form-control"
-                name="phone"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div> 
-
-          <div className="form-group row">
-            <label>Birthday</label>
-            <div className="col-sm-1-12">
-              <input
-                type="date"
-                className="form-control"
-                name="birthday"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <div className="col-sm-1-12">
-            <label>Gender</label>
-                <select className="form-control" name="gender" onChange={handleOnChange}  >
-                  <option>Men</option>
-                  <option>Women</option>
-                  <option>Another gender</option>
-                </select>
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Role</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="role"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>__V</label>
-            <div className="col-sm-1-12">
-              <input
-                type="number"
-                className="form-control"
-                name="__v"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Avatar</label>
-            <div className="col-sm-1-12">
-              <input
-                type="file"
-                className="form-control"
-                name="avatar"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-          
         <button className="btn btn-success">Add User</button>
-        <Link to="/list-user" className="btn btn-danger">Cancel</Link>
-        </form>
-    </div>
+        <Link to="/list-user" className="btn btn-danger">
+          Cancel
+        </Link>
+      </form>
+    </Container>
   );
 }

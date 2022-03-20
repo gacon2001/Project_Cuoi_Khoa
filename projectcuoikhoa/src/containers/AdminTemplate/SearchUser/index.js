@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actSearchUserApi } from "../ListUser/modules/actions";
 
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+
 export default function SearchUser() {
   const dispatch = useDispatch();
   const [state, setState] = useState({ search: "" });
@@ -19,13 +22,21 @@ export default function SearchUser() {
   }, [state.search]);
 
   return (
-    <div className="container">
-      <input
-        type="text"
-        className="form-control"
-        name="search"
-        onChange={handleOnChange}
-      />
-    </div>
+    <Stack  sx={{ width: "100%", mt: 2} } >
+        <TextField
+          label="Search User"
+          type="search"
+          name="search"
+          onChange={handleOnChange}
+        />
+      </Stack>
+    // <div className="container">
+    //   <input
+    //     type="text"
+    //     className="form-control"
+    //     name="search"
+    //     onChange={handleOnChange}
+    //   />
+    // </div>
   );
 }

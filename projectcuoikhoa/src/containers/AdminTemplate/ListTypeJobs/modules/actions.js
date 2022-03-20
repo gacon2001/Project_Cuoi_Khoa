@@ -5,8 +5,9 @@ export const actFetchListTypeJobsApi = (IDType) => {
   return (dispatch) => {
     dispatch(actListTypeJobsRequest());
     api
-      .get(`jobs/by-type?type=${IDType}&skip=0&llimit=10`)
+      .get(`jobs/by-type?type =${IDType}&skip =0`)
       .then((success) => {
+        // console.log(123);
         dispatch(actListTypeJobsSuccess(success.data));
       })
       .catch((error) => {

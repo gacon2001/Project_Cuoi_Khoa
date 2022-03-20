@@ -72,7 +72,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   //!này Hải thêm hả?
   const location = useLocation();
   const paths = location.pathname.split("/");
-  const id = paths[paths.length -1];
+  const id = paths[paths.length - 1];
   //!useRef(): tương tự getELEById
   const imgref = useRef(null);
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     return state.editUserReducer.detailUser;
   });
   // const {_id} = useParams();
-  
+
   const [img, setImg] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -98,7 +98,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     //   [files]: files[0]
     // })
   };
-  console.log(user?.avatar)
+  console.log(user?.avatar);
   useEffect(() => {
     if (detailUser) setUser(detailUser);
   }, [detailUser]);
@@ -128,31 +128,25 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        
         {user && user.avatar && (
           <Avatar
-          // component="img"
-          src={user.avatar}
-          sx={{
-            cursor: "pointer",
-            width: 64,
-            height: 64,
-          }}
-          //ban đầu current là null
-          onClick={() => {
-            imgref.current?.click();
-          }}
-        ></Avatar>
+            // component="img"
+            src={user.avatar}
+            sx={{
+              cursor: "pointer",
+              width: 64,
+              height: 64,
+            }}
+            //ban đầu current là null
+            onClick={() => {
+              imgref.current?.click();
+            }}
+          ></Avatar>
         )}
         {/* Bất kì thẻ html nào cũng có ref
           .value chỉ lấy đc đg dẫn -> .files(s: mảng nhiều) -> lấy vị trí thứ 0 */}
         {/* <input ref={imgref} type="file" hidden onChange={(e) => console.log(e.target.files[0])}/> */}
-        <input
-          ref={imgref}
-          type="file"
-          hidden
-          onChange={handleOnChange}
-        />
+        <input ref={imgref} type="file" hidden onChange={handleOnChange} />
 
         {/* lấy name của admin đã login vào??? */}
         <Typography color="textPrimary" variant="h5">

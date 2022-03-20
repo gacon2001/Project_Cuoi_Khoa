@@ -5,7 +5,7 @@ export const actFetchListSubTypeJobsApi = (IDsubType) => {
   return (dispatch) => {
     dispatch(actListSubTypeJobsRequest());
     api
-      .get(`jobs/by-sub-type?subType=${IDsubType}&skip=0&llimit=10`)
+      .get(`jobs/by-sub-type?subType=${IDsubType}&skip=0&limit=10`)
       .then((success) => {
         dispatch(actListSubTypeJobsSuccess(success.data));
       })

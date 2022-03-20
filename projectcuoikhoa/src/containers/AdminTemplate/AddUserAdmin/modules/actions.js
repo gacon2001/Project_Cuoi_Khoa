@@ -3,7 +3,6 @@ import api from "utils/apiUtils";
 
 export const actAddUserApi = (user) => {
   return (dispatch) => {
-    console.log(213);
     dispatch(actAddUserRequest());
     api
       .post("users", user)//z body có object nên ở đây Vân thêm parám user đại diện đúng ko H? đúng òi á Vân
@@ -13,7 +12,7 @@ export const actAddUserApi = (user) => {
       })
       .catch((error) => {
         console.log("err", error);
-        dispatch(actAddUserFailed(error));  
+        dispatch(actAddUserFailed(error));
       });
   };
 };

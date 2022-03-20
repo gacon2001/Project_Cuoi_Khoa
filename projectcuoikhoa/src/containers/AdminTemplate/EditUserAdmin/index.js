@@ -1,8 +1,14 @@
+import { Box, Container, Typography, TextField , Button} from "@material-ui/core";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { actEditUserApi, actFetchDetailUserApi } from "./modules/actions";
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export default function EditUserAdmin() {
   const dispatch = useDispatch();
@@ -15,11 +21,10 @@ export default function EditUserAdmin() {
     name: "",
     email: "",
     password: "",
-    phone: "123",
+    phone: "",
     birthday: "",
     gender: false,
-    // role: "",
-    // __v: "",
+    __v: "",
     // avatar: "",
   });
 
@@ -34,11 +39,11 @@ export default function EditUserAdmin() {
     if (detailUser !== null && detailUser !== "") {
       // format đúng: yyyy-MM-dd
       // khi lấy data từ server phải format lại đúng
-      const birthdayNew = moment(detailUser.birthday).format('yyyy-MM-DD');
+      const birthdayNew = moment(detailUser.birthday).format("yyyy-MM-DD");
       console.log(birthdayNew);
       setState({
         ...detailUser,
-        birthday: birthdayNew
+        birthday: birthdayNew,
       }); // lấy lại các giá trị cũ và thay thế birthday
     }
   }, [detailUser]);
@@ -59,7 +64,6 @@ export default function EditUserAdmin() {
 
   const updateUser = (event) => {
     event.preventDefault();
-
     // chỗ này truyền vào cái object cần gửi lên api
     dispatch(actEditUserApi(_id, state));
   };
@@ -68,120 +72,92 @@ export default function EditUserAdmin() {
     dispatch(actFetchDetailUserApi(_id));
   }, []);
   return (
-    <>
-      <h3>EditUserAdmin</h3>
-      <div className="container">
-        <form onSubmit={updateUser}>
-          <div className="form-group row">
-            <label>Name</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="name"
-                onChange={handleOnChange}
-                value={state.name}
-              />
-            </div>
-          </div>
+    <Container maxWidth="sm" sx={{ mt: 10 }}>
+      <form onSubmit={updateUser}>
+        <Box>
+          <Typography variant="h4">EditUserAdmin</Typography>
+          <TextField
+            fullWidth
+            label="Name"
+            margin="normal"
+            name="name"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="text"
+            value={state.name}
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            margin="normal"
+            name="email"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="email"
+            value={state.email}
+          />
+          <TextField
+            fullWidth
+            label="Password"
+            margin="normal"
+            name="password"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="password"
+            value={state.password}
+          />
+          <TextField
+            fullWidth
+            label="Phone Number"
+            margin="normal"
+            name="phone"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="number"
+            value={state.phone}
+          />
+          <TextField
+            fullWidth
+            // label="Birthday"
+            margin="normal"
+            name="birthday"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="date"
+            // test format của thẻ này
+            // format đúng: yyyy-MM-dd
+            // xong òi đó, tải thử viện moment.js về rồi format thôi
+            value={state.birthday}
+          />
 
-          <div className="form-group row">
-            <label>Email</label>
-            <div className="col-sm-1-12">
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                onChange={handleOnChange}
-                value={state.email}
-              />
-            </div>
-          </div>
+          {/* ko lấy đc value??? */}
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Gender"
+              name="gender"
+              onChange={handleOnChange}
+              value={state.gender ? "Men" : "Women"}
+            >
+              <MenuItem>Men</MenuItem>
+              <MenuItem>Women</MenuItem>
+              <MenuItem>Another gender</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            label="__V"
+            margin="normal"
+            name="__v"
+            onChange={handleOnChange}
+            variant="outlined"
+            type="number"
+            value={state.__v}
+          />
 
-          <div className="form-group row">
-            <label>Password</label>
-            <div className="col-sm-1-12">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={handleOnChange}
-                value={state.password}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Phone Number</label>
-            <div className="col-sm-1-12">
-              <input
-                type="number"
-                className="form-control"
-                name="phone"
-                onChange={handleOnChange}
-                value={state.phone}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <label>Birthday</label>
-            <div className="col-sm-1-12">
-              <input
-                type="date"
-                className="form-control"
-                name="birthday"
-                onChange={handleOnChange}
-                // test format của thẻ này
-                // format đúng: yyyy-MM-dd
-                // xong òi đó, tải thử viện moment.js về rồi format thôi
-                value={state.birthday}
-              />
-            </div>
-          </div>
-
-          <div className="form-group row">
-            <div className="col-sm-1-12">
-              <label>Gender</label>
-              <select
-                className="form-control"
-                name="gender"
-                onChange={handleSelect}
-                value={state.gender}
-              >
-                <option>Men</option>
-                <option>Women</option>
-                <option>Another gender</option>
-              </select>
-            </div>
-          </div>
-
-          {/* <div className="form-group row">
-            <label>Role</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="role"
-                onChange={handleOnChange}
-                value={state.role}
-              />
-            </div>
-          </div> */}
-          {/* 
-          <div className="form-group row">
-            <label>__V</label>
-            <div className="col-sm-1-12">
-              <input
-                type="number"
-                className="form-control"
-                name="__v"
-                onChange={handleOnChange}
-                value={state.__v}
-              />
-            </div>
-          </div>
-
+          {/*
           <div className="form-group row">
             <label>Avatar</label>
             <div className="col-sm-1-12">
@@ -195,9 +171,11 @@ export default function EditUserAdmin() {
             </div>
           </div> */}
 
-          <button className="btn btn-success">Update User</button>
-        </form>
-      </div>
-    </>
+          <Button color="success" variant="contained" sx={{mt: 2}}>
+            Update User
+          </Button>
+        </Box>
+      </form>
+    </Container>
   );
 }

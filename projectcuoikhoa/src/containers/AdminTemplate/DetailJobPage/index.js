@@ -108,6 +108,3 @@ export default function DetailJobPage() {
     </Box>
   );
 }
-
-// vÂN XIN 2 PHÚT NHA
-// chắc tui off lun nha, đợi bữa khác típ ik, đuối quá
