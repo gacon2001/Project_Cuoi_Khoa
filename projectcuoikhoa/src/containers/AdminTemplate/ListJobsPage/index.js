@@ -153,9 +153,10 @@ export default function ListJobsPage(path) {
 
   return (
     <Box sx={{ mt: 8 }}>
-      {/* {path == "/list-subType-jobs" && path == "/list-type-jobs" && path == "/list-jobs" && <NavbarJobs/>} */}
-      <NavbarJobs />
       <Container maxWidth="md">
+        {/* cả subType và type đều có NavbarJobs -> render chung vị trí đc ko và ở đâu? */}
+        {/* {path == "/list-subType-jobs" && path == "/list-type-jobs" && path == "/list-jobs" && <NavbarJobs/>} */}
+        <NavbarJobs />
         <Box>
           <Typography color="textPrimary" variant="h3">
             Lists Jobs Page
@@ -169,8 +170,10 @@ export default function ListJobsPage(path) {
 
         <SearchJobsPage />
         <Box>
-          <Grid></Grid>
-          {renderListJobs()}
+          {/* ko chia cột đc?? */}
+          <Grid xs={6} direction="column">
+            {renderListJobs()}
+          </Grid>
         </Box>
       </Container>
     </Box>

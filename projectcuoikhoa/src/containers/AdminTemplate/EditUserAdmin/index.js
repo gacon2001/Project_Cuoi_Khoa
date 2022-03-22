@@ -33,34 +33,27 @@ export default function EditUserAdmin() {
     // setState(detailUser)
     // tại hồi nãy tui chưa để đk !== null
     // nên cái lúc đầu detailUser bị null nên react báo lỗi á. giờ đc òi -> báo ở đâu thế H
-    // cái chỗ controlled input to be uncontrolled á có nghĩa là cái input mới đầu có value là 1 chuỗi rỗng state.name = "" mà mình ko kiểm tra đk, khi detailUser = null thì cái state.name = undefined á, do detailUser = null mà null.thuoctinh => lỗi
+    // cái chỗ controlled input to be uncontrolled á có nghĩa là cái input mới đầu có value là 1 chuỗi rỗng state.name = "" mà mình ko kiểm tra đk, khi detailUser = null thì cái state.name = undefined, do detailUser = null mà null.thuoctinh => lỗi
     // nên nó dừng react lại lun á oki H
-    //!sao birthday hông fecth đc H. cái birthday fetch về ko đúng format òi, v mình phải xử lý để nó đúng format, giờ có 2 cách 1: tự viết hàm, hình như lúc trc tui có chỉ r. thôi giờ tui chỉ cách 2: xài thư viện đi
-    if (detailUser !== null && detailUser !== "") {
+    //!birthday, mình phải xử lý để nó đúng format, giờ có 2 cách 1: tự viết hàm, hình như lúc trc tui có chỉ r. thôi giờ tui chỉ cách 2: xài thư viện đi
+    if (detailUser !== null) {
       // format đúng: yyyy-MM-dd
       // khi lấy data từ server phải format lại đúng
       const birthdayNew = moment(detailUser.birthday).format("yyyy-MM-DD");
-      console.log(birthdayNew);
       setState({
         ...detailUser,
         birthday: birthdayNew,
       }); // lấy lại các giá trị cũ và thay thế birthday
     }
   }, [detailUser]);
+
+  //select cũng lấy value thôi nên cùng hàm handleOnChange luôn 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     console.log(value)
     setState({
       ...state,
       [name]: value,
-    });
-  };
-  console.log(state.gender)
-  const handleSelect = (event) => {
-    const { name, select } = event.target;
-    setState({
-      ...state,
-      [name]: select,
     });
   };
 
@@ -120,7 +113,7 @@ export default function EditUserAdmin() {
           />
           <TextField
             fullWidth
-            // label="Birthday"
+            label="Birthday"
             margin="normal"
             name="birthday"
             onChange={handleOnChange}
@@ -171,7 +164,7 @@ export default function EditUserAdmin() {
             </div>
           </div> */}
 
-          <Button color="success" variant="contained" sx={{mt: 2}}>
+          <Button fullWidth color="primary" variant="contained" sx={{mt: 2}}>
             Update User
           </Button>
         </Box>

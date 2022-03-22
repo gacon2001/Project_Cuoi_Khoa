@@ -28,8 +28,8 @@ export default function SignUpPage() {
     skill: [],
     certification: [],
     birthday: "",
-    gender: false,
-    type: "ADMIN",
+    gender: true,
+    role: "ADMIN",
   });
 
   const handleOnChange = (event) => {
@@ -37,13 +37,6 @@ export default function SignUpPage() {
     setState({
       ...state,
       [name]: value,
-    });
-  };
-  const handleSelect = (event) => {
-    const { gender, select } = event.target;
-    setState({
-      ...state,
-      [gender]: select,
     });
   };
 
@@ -144,21 +137,20 @@ export default function SignUpPage() {
                 // label="Gender"
                 margin="normal"
                 name="gender"
-                onChange={handleSelect}
+                onChange={handleOnChange}
                 variant="outlined"
               >
-                <MenuItem>Men</MenuItem>
-                <MenuItem>Women</MenuItem>
-                <MenuItem>Another gender</MenuItem>
+                <MenuItem value={true}>Men</MenuItem>
+                <MenuItem value={false}>Women</MenuItem>
               </Select>
             </FormControl>
 
             {/* muốn cố định là ADMIN luôn??? */}
             <TextField
               fullWidth
-              label="Type"
+              label="Role"
               margin="normal"
-              name="type"
+              name="role"
               onChange={handleOnChange}
               variant="outlined"
               type="text"

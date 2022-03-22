@@ -1,41 +1,7 @@
-như react trước mình dựa vào value đó để biết đc là có params user đại diện cho các thuộc tính đó , còn nay mình dùng pasotman thì làm sao biết những api sẽ dựa vào cái gì á Hải?
-
-cái đường dẫn mình thấy có /618c8f4595d99f001c0c045f nhìn giống :id á
-rồi ở headers thì mình vô tab headers để coi
-nếu có truyền lên một object thì vô body coi á
- {
-    "name": "Nguyễn Phong Dinh",
-    "email": "dinh@gmail.com",
-    "password": "1111",
-    "phone": "0934657867",
-    "birthday": "1998-05-11",
-    "gender": true,
-    "role": "ADMIN",
-    "skill": [
-        "LoL",
-        "WEB",
-        "DESIGN"
-    ],
-    "certification": [
-        "DIB",
-        "PYNOW"
-    ]
-}
-oki r á H, để V làm tiếp, trễ r để Hải nghỉ ngơi nhe. Oki Vân ^^ G9 lun <3 oki g9 Vân <3
 
 
-bị j á H
-2 cái lỗi nó báo á hả Vân, đúng r á H, ko render đc mấy cái list nữa
-
-đc òi á Vân, chắc h trc tui sai, không có s trong https
-mà trc có s sao vẫn làm đc bth hơ H? chắc ai đó update gì api hay sao á, hay domain bị gì đó :)) tui ko rõ nữa :v
-
-mình render listJobs -> xong có 2 cái list là : subType với type => Vân thấy cách render cũng như nhau
 
 
-Vân dùng template của MUI phần dashbborad, tui tải về xong copy qua, mà ko biết kiểm lỗi thế nào mà nó ko hiện á Hải.
-Vân định sử dụng component gì á Vân? Với lỗi gì á.
-Vân down cái đó về á
 
 Cái template version này nó đang dùng nextjs òi chắc để tui downgrade nó lại về react
 
@@ -52,5 +18,5 @@ do tui thấy trong package.json của template Vân tải về, phần scripts 
 
 Cái xong r tui lên github của nó kiếm bản nào ko phải nextjs
 
-do nó có ghi lại commit message ở commit nào nó migrate qua nextjs nên tui dễ dàng tìm thấy template phiên bản reactjs, nếu ko có message rõ ràng thì mình phải đi coi package.json của từng commit xem cái nào là của reactjs á. => migrate next.js là chuyển qua nextjs hay bỏ đi nextjs H chuyển qua nextjs á. 
+do nó có ghi lại commit message ở commit nào nó migrate qua nextjs nên tui dễ dàng tìm thấy template phiên bản reactjs, nếu ko có message rõ ràng thì mình phải đi coi package.json của từng commit xem cái nào là của reactjs á. => migrate next.js là chuyển qua nextjs hay bỏ đi nextjs H -> chuyển qua nextjs á. 
 

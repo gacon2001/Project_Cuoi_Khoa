@@ -6,13 +6,12 @@ export const actEditUserApi = (_id, userUpdate) => {
         dispatch(actEditUserRequest());
         api.put(`users/${_id}`, userUpdate) // chỗ edit này phải cung cấp thông tin mới cho api chứ nhỉ, nhớ truyền tham số thứ 2 cho put là cái object user mới update nha
         .then((success)=>{
-            //mình chỉ có quyền edit admin thôi chứ H hơ
-            // là sao ha :)) admin thì edit ai cũng đc chứ ta :V tài khoản của khách hàng đăng kí là của khách hàng, mình cũng có quyền luôn hả H? tuỳ trường hợp nghiệp vụ thôi á, trong trg hợp này thì api cho phép mình edit, thì chắc edit đc.
+            console.log(123);
             dispatch(actEditUserSuccess(success.data));
             alert("Edit Successfully");
-            //
         })
         .catch((error)=>{
+            console.log(234);
             dispatch(actEditUserFailed(error));
             alert("'Failed");
         })

@@ -2,10 +2,9 @@ import * as ActionType from "./constants";
 
 const initialState = {
   loading: false,
-  // data: null,
   error: null,
   editUser: "",
-  detailUser: "", // chỗ này mới đầu set null là hông báo lỗi òi
+  detailUser: null,
 };
 
 //dùng chung 1 data có đc hay ko??
@@ -20,7 +19,7 @@ const editUserReducer = (state = initialState, action) => {
 
     case ActionType.EDIT_USER_SUCCESS: {
       state.loading = false;
-      state.editUser = action.payload;//update lên list thì đây mình phải là listUser hả H, khoan cái editUser success đâu cần phải update listUser đâu ta, tại 2 trang khác nhau mà, khi update xong => nếu ng dùng chuyển trang thì cái trang lits-ủsẻ có fetch lại danh sách rồi nên khỏi update lại list-ủe trong edit này // mà sao tui thấy cái edit nó ko ăn nhỉ
+      state.editUser = action.payload;//update lên list thì đây mình phải là listUser hả H, khoan cái editUser success đâu cần phải update listUser đâu ta, tại 2 trang khác nhau mà, khi update xong => nếu ng dùng chuyển trang thì cái trang lits-ủsẻ có fetch lại danh sách rồi nên khỏi update lại list-ủe trong edit này
       state.error = null;
       return { ...state };
     }

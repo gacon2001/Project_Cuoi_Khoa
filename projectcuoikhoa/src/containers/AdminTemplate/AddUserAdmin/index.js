@@ -96,9 +96,8 @@ export default function AddUserAdmin() {
             name="gender"
             onChange={handleOnChange}
           >
-            <MenuItem>Men</MenuItem>
-            <MenuItem>Women</MenuItem>
-            <MenuItem>Another gender</MenuItem>
+            <MenuItem value={true}>Men</MenuItem>
+            <MenuItem value={false}>Women</MenuItem>
           </Select>
         </FormControl>
 
@@ -131,8 +130,8 @@ export default function AddUserAdmin() {
           type="text"
         />
 
-        <button className="btn btn-success">Add User</button>
-        <Link to="/list-user" className="btn btn-danger">
+        <button className="btn btn-primary">Add User</button>
+        <Link to="/list-user" className="btn btn-danger" style={{marginLeft: 382}}>
           Cancel
         </Link>
       </form>

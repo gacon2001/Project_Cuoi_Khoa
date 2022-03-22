@@ -10,6 +10,7 @@ export const actSignUpApi = (signup, history) => {
         localStorage.setItem("Admin", JSON.stringify(success.data));
         dispatch(actSignUpSuccess(success.data));
         alert("Signup Successfully");
+        //!đăng kí đều auto role là Client???
         history.replace("/list-user");//!ko chuyển trang?
       })
       .catch((error) => {

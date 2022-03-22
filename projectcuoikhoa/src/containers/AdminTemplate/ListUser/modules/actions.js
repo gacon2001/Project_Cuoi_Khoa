@@ -40,9 +40,9 @@ export const actDeleteUserApi = (_id) => {
         api.delete(`users/${_id}`)
         .then((success)=>{
             dispatch(actDeleteUserSuccess(success.data));
+            alert("Delete Successfully");
         })
         .catch((error)=>{
-            console.log(error);
             dispatch(actDeleteUserFailed(error));
         })
     }

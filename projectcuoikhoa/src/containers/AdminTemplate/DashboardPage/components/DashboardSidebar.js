@@ -77,8 +77,6 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   //   return state.editUserReducer.detailUser;
   // });
   
-  
-
   const [img, setImg] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -90,16 +88,16 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     // 2. dispatch action để gửi api cập nhật hình ảnh.
     // 3. thay đổi user.avatar thành ảnh mới chọn.
     const { files } = event.target;
-
     dispatch(actUploadAvatarApi(files[0]));
     // setImg({
     //   [files]: files[0]
     // })
   };
   
-  //! khi mà load component lên thì mình sẽ lâys localStorage.getItem("Admin") JSON.parse
-  //!ban đầu chưa set lại thôgn tin của user -> lấy thông tin của user dưới localStorage và set lại state user trên component => load lại trang ko bị mất nữa
+  //! khi mà load component lên thì mình sẽ lấy localStorage.getItem("Admin") JSON.parse
+  //!ban đầu chưa set lại thông tin của user -> lấy thông tin của user dưới localStorage và set lại state user trên component => load lại trang ko bị mất thông tin user đăng nhập vào nữa
   useEffect(()=>{
+    //đang là dạng string text -> chuyển về object JSON.parse -> rồi . tới thuộc tính cần lấy
      setUser(JSON.parse(localStorage.getItem("Admin")).user);
   }, [])
 
