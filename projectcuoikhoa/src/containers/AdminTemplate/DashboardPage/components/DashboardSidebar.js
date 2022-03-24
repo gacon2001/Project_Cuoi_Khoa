@@ -153,7 +153,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
         {/* lấy name của admin đã login vào??? */}
         <Typography color="textPrimary" variant="h5">
-          <Link to={`/profile/${user._id}`}>{user.name}</Link>
+          {user && <Link to={`/profile/${user._id}`}>{user.name}</Link>}
         </Typography>
       </Box>
       <Divider />

@@ -39,6 +39,8 @@ export default function EditProfilePage() {
     role: "ADMIN",
   });
 
+  
+
   useEffect(() => {
     if (detailProfile !== null) {
       const birthdayNew = moment(detailProfile.birthday).format("yyyy-MM-DD");
@@ -50,13 +52,21 @@ export default function EditProfilePage() {
   }, [detailProfile]);
 
   useEffect(() => {
-    console.log(_id);
+    // console.log(_id);
     dispatch(actFetchDetailProfileApi(_id));
   }, []);
 
   const updateProfile = (event) => {
     event.preventDefault();
-    dispatch(actEditProfileApi(_id));
+    // nếu mà state.skill đang là chữ => convert qua array
+    if (state.skill == "string"){
+      state.skill = JSON.parse("["+ state.skill +"]");
+    }
+    // nếu mà state.cert.... đang là chữ => convert qua array
+    if (state.certification == "string"){
+      state.certification = JSON.parse("["+ state.certification +"]");
+    }
+    dispatch(actEditProfileApi(_id, state));
   };
 
   const handleOnChange = (event) => {
@@ -85,7 +95,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Name"
-              margin="normal"
+              // margin="normal"
               name="name"
               onChange={handleOnChange}
               variant="outlined"
@@ -95,7 +105,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Email"
-              margin="normal"
+              // margin="normal"
               name="email"
               onChange={handleOnChange}
               variant="outlined"
@@ -105,7 +115,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Password"
-              margin="normal"
+              // margin="normal"
               name="password"
               onChange={handleOnChange}
               variant="outlined"
@@ -115,7 +125,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Phone Number"
-              margin="normal"
+              // margin="normal"
               name="phone"
               onChange={handleOnChange}
               variant="outlined"
@@ -125,7 +135,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Birthday"
-              margin="normal"
+              // margin="normal"
               name="birthday"
               onChange={handleOnChange}
               variant="outlined"
@@ -137,7 +147,7 @@ export default function EditProfilePage() {
               <Select
                 // fullWidth
                 // label="Gender"
-                margin="normal"
+                // margin="normal"
                 name="gender"
                 onChange={handleOnChange}
                 variant="outlined"
@@ -150,7 +160,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Skills"
-              margin="normal"
+              // margin="normal"
               name="skill"
               onChange={handleOnChange}
               variant="outlined"
@@ -160,7 +170,7 @@ export default function EditProfilePage() {
             <TextField
               fullWidth
               label="Certification"
-              margin="normal"
+              // margin="normal"
               name="certification"
               onChange={handleOnChange}
               variant="outlined"

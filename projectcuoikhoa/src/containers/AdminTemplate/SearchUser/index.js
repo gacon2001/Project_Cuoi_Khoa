@@ -30,13 +30,5 @@ export default function SearchUser() {
           onChange={handleOnChange}
         />
       </Stack>
-    // <div className="container">
-    //   <input
-    //     type="text"
-    //     className="form-control"
-    //     name="search"
-    //     onChange={handleOnChange}
-    //   />
-    // </div>
   );
 }

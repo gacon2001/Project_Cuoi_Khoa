@@ -10,29 +10,26 @@ import { Box, Button, TextField } from "@material-ui/core";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import IOSSwitch from "../_switch/IOSSwitch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actFetchListJobsApi } from "../ListJobsPage/modules/actions";
 
-export default function Switch() {
+export default function Switch({state, setState}) {
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    proServices: true,
-    localSellers: true,
-    onlineSellers: true,
-    deliveryTime: true,
-  });
+  const listSubTypeJobs = useSelector((state)=> state.fetchListSubTypeJobsReducer.listSubTypeJobs);
+  
   const handleOnClick = (event) => {
-    const {name, value} = event.target;
+    const {name, checked} = event.target;
     setState({
       ...state,
-      [name]: value,
+      [name]: checked,
     })
   };
 
   //fetchListJobs hay subType hay type???
-  useEffect(()=>{
-    dispatch(actFetchListJobsApi())
-  }, []);
+  // useEffect(()=>{
+  //   dispatch(actFetchListJobsApi())
+  // }, []);
+
 
   return (
     <Box>
@@ -133,7 +130,7 @@ export default function Switch() {
             label="Pro services"
             name="proServices"
             onClick={handleOnClick}
-            value={state.proServices}
+            // value={state.proServices}
             // true false đều fetch lại list jobs, nên check thế nào???
           />
           <FormControlLabel
@@ -141,23 +138,24 @@ export default function Switch() {
             label="Local sellers"
             name="localSellers"
             onClick={handleOnClick}
-            value={state.localSellers}
+            // value={state.localSellers}
           />
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
             label="Online sellers"
             name="onlineSellers"
             onClick={handleOnClick}
-            value={state.onlineSellers}
+            // value={state.onlineSellers}
           />
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
             label="Delivery time"
             name="deliveryTime"
             onClick={handleOnClick}
-            value={state.deliveryTime}
+            // value={state.deliveryTime}
           />
         </FormGroup>
+
       </Box>
       <Box>{/* Count */}</Box>
     </Box>

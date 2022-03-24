@@ -70,7 +70,7 @@ export default function ListJobsPage(path) {
     //array.slice(start, end)
     return listJobs?.slice(0, soCardRender).map((jobs) => {
       return (
-        <Grid item key={jobs._id}>
+        <Grid item xs={6} key={jobs._id}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
@@ -171,7 +171,7 @@ export default function ListJobsPage(path) {
         <SearchJobsPage />
         <Box>
           {/* ko chia cột đc?? */}
-          <Grid xs={6} direction="column">
+          <Grid container>
             {renderListJobs()}
           </Grid>
         </Box>

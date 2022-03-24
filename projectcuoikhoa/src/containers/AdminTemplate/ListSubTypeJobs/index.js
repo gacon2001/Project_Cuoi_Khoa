@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Box, Button, Container, ListItem } from "@material-ui/core";
 import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -37,6 +37,13 @@ export default function ListSubTypeJobs() {
   const { IDsubType } = useParams();
   const history = useHistory();
 
+  const [state, setState] = useState({
+    proServices: true,
+    localSellers: true,
+    onlineSellers: true,
+    deliveryTime: true,
+  });
+
   const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
@@ -51,92 +58,97 @@ export default function ListSubTypeJobs() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
   const renderListSubTypeJobs = () => {
-    return listSubTypeJobs?.map((subType) => {
-      return (
-        <>
-          {/* xs={} */}
-          <Grid item key={subType._id}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image={subType.image}
-                alt={subType.name}
-              />
-              <CardContent>
-                <Link to={`/detail-job/${subType._id}`}>{subType.name}</Link>
-                <Grid>Rating: {subType.rating}</Grid>
-                <Grid>Price: {subType.price}</Grid>
-              </CardContent>
-
-              <Button
-                onClick={() => history.push(`/edit-jobs/${subType._id}`)}
-                color="success"
-                variant="contained"
-              >
-                Edit
-              </Button>
-              <Button
-                onClick={() => dispatch(actDeleteJobsApi(subType._id))}
-                color="error"
-                variant="contained"
-              >
-                Delete
-              </Button>
-              <Button
-                onClick={() => dispatch(actBookingJobsApi(subType._id))}
-                color="warning"
-                variant="contained"
-              >
-                Booking
-              </Button>
-
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+    return listSubTypeJobs?.filter(subType => (
+      subType.proServices === state.proServices &&
+      subType.localSellers === state.localSellers &&
+      subType.onlineSellers === state.onlineSellers &&
+      subType.deliveryTime === state.deliveryTime
+    )).map((subType) => { 
+      console.log(subType)
+        return (
+          <Fragment key={subType._id}>
+            {/* xs={} */}
+            <Grid xs={6} item key={subType._id}>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardHeader
+                  avatar={
+                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                      R
+                    </Avatar>
+                  }
+                  action={
+                    <IconButton aria-label="settings">
+                      <MoreVertIcon />
+                    </IconButton>
+                  }
+                  title="Shrimp and Chorizo Paella"
+                  subheader="September 14, 2016"
+                />
+                <CardMedia
+                  component="img"
+                  height="194"
+                  image={subType.image}
+                  alt={subType.name}
+                />
                 <CardContent>
-                  <Typography paragraph>Method:</Typography>
-                  <Typography paragraph>
-                    Heat 1/2 cup of the broth in a pot until simmering, add
-                    saffron and set aside for 10 minutes.
-                  </Typography>
+                  <Link to={`/detail-job/${subType._id}`}>{subType.name}</Link>
+                  <Grid>Rating: {subType.rating}</Grid>
+                  <Grid>Price: {subType.price}</Grid>
                 </CardContent>
-              </Collapse>
-            </Card>
-          </Grid>
-        </>
-      );
-    });
+
+                <Button
+                  onClick={() => history.push(`/edit-jobs/${subType._id}`)}
+                  color="success"
+                  variant="contained"
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => dispatch(actDeleteJobsApi(subType._id))}
+                  color="error"
+                  variant="contained"
+                >
+                  Delete
+                </Button>
+                <Button
+                  onClick={() => dispatch(actBookingJobsApi(subType._id))}
+                  color="warning"
+                  variant="contained"
+                >
+                  Booking
+                </Button>
+
+                <CardActions disableSpacing>
+                  <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="share">
+                    <ShareIcon />
+                  </IconButton>
+                  <ExpandMore
+                    expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Typography paragraph>Method:</Typography>
+                    <Typography paragraph>
+                      Heat 1/2 cup of the broth in a pot until simmering, add
+                      saffron and set aside for 10 minutes.
+                    </Typography>
+                  </CardContent>
+                </Collapse>
+              </Card>
+            </Grid>
+          </Fragment>
+        );
+      });
   };
 
   useEffect(() => {
@@ -160,8 +172,10 @@ export default function ListSubTypeJobs() {
 
         <SearchJobsPage />
         <Box>
-          <Switch />
-          {renderListSubTypeJobs()}
+          <Switch state={state} setState={setState} />
+          <Grid container>
+            {renderListSubTypeJobs()}
+          </Grid>
         </Box>
       </Container>
     </Box>

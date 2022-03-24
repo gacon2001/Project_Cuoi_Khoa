@@ -61,7 +61,7 @@ export default function ListTypeJobs() {
       return (
         <>
           {/* xs={} */}
-          <Grid item key={type._id}>
+          <Grid xs={6} item key={type._id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 avatar={
@@ -166,7 +166,7 @@ export default function ListTypeJobs() {
         <SearchJobsPage />
         <Box>
           <Switch />
-          <Grid>{renderListTypeJobs()}</Grid>
+          <Grid container>{renderListTypeJobs()}</Grid>
         </Box>
       </Container>
     </Box>

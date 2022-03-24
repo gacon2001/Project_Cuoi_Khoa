@@ -16,9 +16,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Link } from "react-router-dom";
 import { actSignUpApi } from "./modules/actions";
+import {useHistory} from "react-router-dom";
 
 export default function SignUpPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [state, setState] = useState({
     name: "",
@@ -29,7 +31,6 @@ export default function SignUpPage() {
     certification: [],
     birthday: "",
     gender: true,
-    role: "ADMIN",
   });
 
   const handleOnChange = (event) => {
@@ -42,7 +43,7 @@ export default function SignUpPage() {
 
   const handleSignUp = (event) => {
     event.preventDefault();
-    dispatch(actSignUpApi(state));
+    dispatch(actSignUpApi(state, history));
   };
 
   return (
@@ -144,17 +145,6 @@ export default function SignUpPage() {
                 <MenuItem value={false}>Women</MenuItem>
               </Select>
             </FormControl>
-
-            {/* muốn cố định là ADMIN luôn??? */}
-            <TextField
-              fullWidth
-              label="Role"
-              margin="normal"
-              name="role"
-              onChange={handleOnChange}
-              variant="outlined"
-              type="text"
-            />
 
             <Box sx={{ py: 2 }}>
               <Button

@@ -6,7 +6,6 @@ export const actEditUserApi = (_id, userUpdate) => {
         dispatch(actEditUserRequest());
         api.put(`users/${_id}`, userUpdate) // chỗ edit này phải cung cấp thông tin mới cho api chứ nhỉ, nhớ truyền tham số thứ 2 cho put là cái object user mới update nha
         .then((success)=>{
-            console.log(123);
             dispatch(actEditUserSuccess(success.data));
             alert("Edit Successfully");
         })

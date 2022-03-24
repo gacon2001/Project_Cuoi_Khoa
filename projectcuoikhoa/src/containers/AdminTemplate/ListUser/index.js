@@ -5,10 +5,24 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import SearchUser from "../SearchUser";
 import { actDeleteUserApi, actFetchListUserApi } from "./modules/actions";
+import { styled } from "@mui/system";
 
 //!UI????
 
-import { styled } from "@mui/system";
+const grey = {
+  // 50: "#F3F6F9",
+  50: "#ffffff",
+  100: "#E7EBF0",
+  200: "#E0E3E7",
+  300: "#CDD2D7",
+  400: "#B2BAC2",
+  500: "#A0AAB4",
+  600: "#6F7E8C",
+  700: "#3E5060",
+  800: "#2D3843",
+  900: "#1A2027",
+};
+
 const Root = styled("div")(
   ({ theme }) => `
     table {
@@ -27,26 +41,10 @@ const Root = styled("div")(
       padding: 6px;
     }
   
-    tr {
-      background-color: ${
-        theme.palette.mode === "tr" ? grey[900] : grey[50]
-      // };
-    }
+    thead {
+      background-color: pink;
     `
 );
-const grey = {
-  // 50: "#F3F6F9",
-  50: "#ffffff",
-  100: "#E7EBF0",
-  200: "#E0E3E7",
-  300: "#CDD2D7",
-  400: "#B2BAC2",
-  500: "#A0AAB4",
-  600: "#6F7E8C",
-  700: "#3E5060",
-  800: "#2D3843",
-  900: "#1A2027",
-};
 
 export default function ListUser() {
   const listUser = useSelector((state) => state.fetchListUserReducer.listUser);
@@ -63,14 +61,13 @@ export default function ListUser() {
           <th>{user._id}</th>
           <th>{user.name}</th>
           <th>{user.email}</th>
-          <th>{user.password}</th>
-          <th>{user.phone}</th>
-          <th>{user.birthday}</th>
-          <th>{user.gender ? "Men" : "Women"}</th>
-          <th>{user.role}</th>
-          <th>{user.__v}</th>
-          <th>{user.avatar}</th>
-          <th>
+          <th className="d-none d-md-table-cell">{user.phone}</th>
+          <th className="d-none d-md-table-cell">{user.birthday}</th>
+          <th className="d-none d-md-table-cell">{user.gender ? "Men" : "Women"}</th>
+          <th className="d-none d-md-table-cell">{user.role}</th>
+          <th className="d-none d-md-table-cell">{user.__v}</th>
+          <th className="d-none d-md-table-cell">{user.avatar}</th>
+          <th className="d-none d-md-table-cell">
             <button
               className="btn btn-success"
               onClick={() => history.push(`edit-user/${user._id}`)}
@@ -101,18 +98,17 @@ export default function ListUser() {
       <Root sx={{ width: 500, maxWidth: "100%" }}>
         <table aria-label="custom pagination table">
           <thead>
-            <tr tr>
+            <tr>
               <th>Id</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
-              <th>Phone</th>
-              <th>Birthday</th>
-              <th>Gender</th>
-              <th>Role</th>
-              <th>__V</th>
-              <th>Avatar</th>
-              <th>Action</th>
+              <th className="d-none d-md-table-cell">Phone</th>
+              <th className="d-none d-md-table-cell">Birthday</th>
+              <th className="d-none d-md-table-cell">Gender</th>
+              <th className="d-none d-md-table-cell">Role</th>
+              <th className="d-none d-md-table-cell">__V</th>
+              <th className="d-none d-md-table-cell">Avatar</th>
+              <th className="d-none d-md-table-cell">Action</th>
             </tr>
           </thead>
           <tbody>
