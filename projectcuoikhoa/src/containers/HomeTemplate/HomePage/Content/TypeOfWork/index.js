@@ -4,38 +4,39 @@ function TypeOfWork() {
     <>
       <div className=" navbar-light bg-light ">
         <div className="container ">
-          <nav class="navbar navbar-expand-xl d-flex justify-content-around">
-            <ul class=" navbar-nav ">
-              <li class="nav-item">
-                <a class="nav-link" href="">
+          <nav className="navbar navbar-expand-xl d-flex justify-content-around">
+            <ul className=" navbar-nav ">
+              <li className="nav-item">
+                <p className="nav-link text-secondary">
                   Trusted by:
+                </p>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="https://twitter.com/fiverr">
+                Twitter
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.facebook.com/Fiverr/">
                   Facebook
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                  Google
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.linkedin.com/company/fiverr-com">
+                  Linked In
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                  Netflix
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.pinterest.com/fiverr/">
+                  Pinterest
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                  P&G
+              <li className="nav-item">
+                <a className="nav-link" href="https://www.instagram.com/fiverr/">
+                  Instagram
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                  Paypal
-                </a>
-              </li>
+             
             </ul>
           </nav>
         </div>
