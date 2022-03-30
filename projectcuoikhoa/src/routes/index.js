@@ -31,8 +31,8 @@ const routesAdmin = [
   },
   // {
   //   exact: false,
-  //   path: "/login",
-  //   component: lazy(()=> import("containers/AdminTemplate/ProfilePage"))
+  //   path: "/signin",
+  //   component: lazy(()=> import("containers/AdminTemplate/SignInPage"))
   // },
   {
     exact: false,
