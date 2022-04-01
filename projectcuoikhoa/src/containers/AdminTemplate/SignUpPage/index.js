@@ -42,45 +42,37 @@ const checkName = (value) => {
 };
 const checkEmail = (value) => {
   let error;
-  var pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$";
-  if (value.match(pattern)) {
+  var pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
     error = "";
   } else {
-    error = "Email phải đúng định dạng";
+    error = "Email phải đúng định dạng a@gmail.com";
   }
   return error;
 };
 const checkPhoneNumber = (value) => {
   let error;
-  var pattern = "[789][0-9]{9}";
-  if (value.match(pattern)) {
+  var pattern = "^\d{10}$";
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
     error = "";
   } else {
-    error = "Chỉ được có số";
+    error = "Phone tối đa 10 số";
   }
   return error;
-};
+}
 const checkPassword = (value) => {
   let error;
-  var pattern = "/^[a-zA-Z0-9!@#$%^&*_=+-]{8,12}$/g";
-  if (value.match(pattern)) {
+  var pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
+  var reg = new RegExp(pattern);
+  if (reg.test(value)) {
     error = "";
   } else {
-    error = "Password phải đúng định dạng";
+    error = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
   }
   return error;
 };
-// const checkBirthday = ($date, $format = 'd/m/Y') => {
-//   let error;
-//   var pattern = "/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g";
-//   if($date.match(pattern)){
-//     $d = DateTime::createFromFormat($format, $date);
-//     return $d && $d->format($format) == $date && $d->format('Y') <= 2010;
-//   }else{
-//    error = "Phải chọn Birthday";
-//   }
-//   return error;
-// }
 const checkSelect = (select) => {
   let error;
   if (document.getElementsByName(select).selectedIndex != 0) {
@@ -89,7 +81,7 @@ const checkSelect = (select) => {
     error = "Gender phải được chọn";
   }
   return error;
-};
+}
 
 export default function SignUpPage() {
   const dispatch = useDispatch();
@@ -106,14 +98,7 @@ export default function SignUpPage() {
     gender: true,
     policy: "",
   });
-
-  // const handleOnChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setState({
-  //     ...state,
-  //     [name]: value,
-  //   });
-  // };
+//handleOnChange lấy gtri ko cần -> handleChange mặc định của formik.
   const handleCheckBox = (event) => {
     const { name, checked } = event.target;
     setState({
@@ -158,16 +143,20 @@ export default function SignUpPage() {
               const nameErrors =
                 checkEmpty(values.name) || checkName(values.name); //check nếu tên trống thì trả về lỗi tên trống, còn tên không trống thì check tiếp tên có valid hay ko, nếu không valid thì trả về lỗi tên ko valid
               errors.name = nameErrors; // gán lỗi cho name
+              errors.email = checkEmpty(values.email) || checkEmail(values.email);
+              errors.passowrd = checkEmpty(values.password) || checkPassword(values.passowrd);
+              errors.phone = checkEmpty(values.phone) || checkPhoneNumber(values.phone);
+              errors.skill = checkEmpty(values.skill);
+              errors.certification = checkEmpty(values.certification);
+              // errors.birthday 
+              errors.gender = checkEmpty(values.gender) || checkSelect(values.gender);
               if (values.policy == false) {
-                errors.policy = "Phải đồng ý với policy mới đăng ký được";
+                errors.policy = "This field must be checked";
               }
-              console.log("end validation", errors);
               return errors; // trả về lỗi sau khi validate
-              
             }}
             //kích hoạt sự kiện onSubmit -> return hết những cái bên dưới -> 
             onSubmit={(values) => {
-              console.log(values);
               handleSignUp(values)
             }}
           >
@@ -195,7 +184,7 @@ export default function SignUpPage() {
                       Use your email to create new account
                     </Typography>
                   </Box>
-                  {/* chỗ này để kích hoạt sự kiện touch của formik là mình phải dùng component Field của formik. Hoặc là tự động kích hoạt sự kiện = code. Do Vân đang dùng TextField nên chắc mình sẽ kích hoạt = code */}
+                  {/* chỗ này để kích hoạt sự kiện touch của formik là mình phải dùng component Field của formik. Hoặc là tự động kích hoạt sự kiện = code. Do Vân đang dùng TextField nên chắc mình sẽ kích hoạt = code => dùng onBlur */}
                   <TextField
                     fullWidth
                     label="Name"
@@ -216,6 +205,7 @@ export default function SignUpPage() {
                     margin="normal"
                     name="email"
                     value={values.email}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="email"
@@ -228,6 +218,7 @@ export default function SignUpPage() {
                     label="Password"
                     name="password"
                     value={values.password}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="password"
@@ -240,6 +231,7 @@ export default function SignUpPage() {
                     label="Phone Number"
                     name="phone"
                     value={values.phone}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="number"
@@ -252,6 +244,7 @@ export default function SignUpPage() {
                     label="Skill"
                     name="skill"
                     value={values.skill}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="text"
@@ -264,6 +257,7 @@ export default function SignUpPage() {
                     label="Certification"
                     name="certification"
                     value={values.certification}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="text"
@@ -277,6 +271,7 @@ export default function SignUpPage() {
                     margin="normal"
                     name="birthday"
                     value={values.birthday}
+                    onBlur={handleBlur}
                     onChange={handleChange}
                     variant="outlined"
                     type="date"
@@ -287,12 +282,11 @@ export default function SignUpPage() {
                     <InputLabel>Gender</InputLabel>
                     <Select
                       fullWidth
-                      // label="Gender"
                       name="gender"
                       value={values.gender}
+                      onBlur={handleBlur}
                       onChange={handleChange}
                       variant="outlined"
-                      value={values.gender}
                       error={Boolean(touched.gender && errors.gender)}
                       helperText={touched.gender && errors.gender}
                     >
@@ -311,13 +305,14 @@ export default function SignUpPage() {
                     <Checkbox
                       checked={values.policy}
                       name="policy"
+                      value={values.policy}
+                      onBlur={handleBlur}
                       onChange={handleCheckBox}
                     />
                     <Typography color="textSecondary" variant="body1">
                       I have read the
                       <Link
                         color="primary"
-                        // component={RouterLink}
                         to="#"
                         underline="always"
                         variant="h6"
@@ -333,7 +328,6 @@ export default function SignUpPage() {
                   <Box sx={{ py: 2 }}>
                     <Button
                       color="primary"
-                      // disabled={isSubmitting}
                       fullWidth
                       size="large"
                       type="submit"
@@ -345,7 +339,6 @@ export default function SignUpPage() {
                   <Typography color="textSecondary" variant="body1">
                     Have an account?
                     <Link
-                      // component={RouterLink}
                       to="/signin"
                       variant="h6"
                       underline="hover"
