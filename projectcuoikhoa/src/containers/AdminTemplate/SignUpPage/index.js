@@ -18,7 +18,6 @@ import { useDispatch } from "react-redux";
 import { actSignUpApi } from "./modules/actions";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
-import * as Yup from "yup";
 
 const checkEmpty = (value) => {
   let error;

@@ -40,3 +40,64 @@ const actAddJobsFailed = (error) => {
     payload: error,
   };
 };
+
+export const actFetchListTypeJobsApi = () => {
+  return (dispatch) => {
+    dispatch(actFetchListTypeJobsRequest());
+    api
+      .post("type-jobs")
+      .then((success) => {
+        dispatch(actFetchListTypeJobsSuccess(success.data));
+      })
+      .catch((error) => {
+        dispatch(actFetchListTypeJobsFailed(error));
+      });
+  };
+};
+const actFetchListTypeJobsRequest = () => {
+  return {
+    type: ActionType.FETCH_LIST_TYPE_JOBS_REQUEST,
+  };
+};
+const actFetchListTypeJobsSuccess = (data) => {
+  return {
+    type: ActionType.FETCH_LIST_TYPE_JOBS_SUCCESS,
+    payload: data,
+  };
+};
+const actFetchListTypeJobsFailed = (error) => {
+  return {
+    type: ActionType.FETCH_LIST_TYPE_JOBS_FAILED,
+    payload: error,
+  };
+};
+
+export const actFetchListSubTypeJobsApi = () => {
+  return (dispatch) => {
+      dispatch(actFetchListSubTypeJobsRequest());
+      api.get("sub-type-jobs")
+      .then((success)=>{
+          dispatch(actFetchListSubTypeJobsSuccess(success.data));
+      })
+      .catch((error)=>{
+          dispatch(actFetchListSubTypeJobsFailed(error));
+      })
+  }
+} 
+const actFetchListSubTypeJobsRequest = ()=>{
+  return {
+      type: ActionType.FETCH_LIST_SUBTYPE_JOBS_REQUEST
+  }
+}
+const actFetchListSubTypeJobsSuccess = (data) => {
+return {
+  type: ActionType.FETCH_LIST_SUBTYPE_JOBS_SUCCESS,
+  payload: data,
+}
+}
+const actFetchListSubTypeJobsFailed = (error) => {
+  return{
+      type: ActionType.FETCH_LIST_SUBTYPE_JOBS_FAILED,
+      payload: error,
+  }
+}

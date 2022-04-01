@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 //!Nhúng video
 export default function Video() {
-  const [showVideo, setShowVideo] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);//false: ban đầu chưa hiện
   const ref = useRef(null);//dùng DOM tới video
   return (
     <div>

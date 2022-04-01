@@ -13,7 +13,6 @@ export const actSignUpApi = (signup, history) => {
         history.replace("/list-user");//!ko chuyển trang?
       })
       .catch((error) => {
-        console.log(error)
         dispatch(actSignUpFailed(error));
         alert("Failed");
       });

@@ -6,12 +6,9 @@ export const actFetchListUserApi = () => {
         dispatch(actFetchListUserRequest());
         api.get("users?skip=0&limit=3")
         .then((success)=>{
-            
-            console.log(success.data, 'hello');
             dispatch(actFetchListUserSuccess(success.data));
         })
         .catch((error)=>{
-            console.log(456, error);
             dispatch(actFetchListUserFailed(error));
         })
     }

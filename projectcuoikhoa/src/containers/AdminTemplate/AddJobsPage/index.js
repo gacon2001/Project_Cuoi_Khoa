@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { actAddJobsApi } from "./modules/actions";
+import { actAddJobsApi , actFetchListTypeJobsApi, actFetchListSubTypeJobsApi} from "./modules/actions";
 import {
   Box,
   Container,
   Typography,
   TextField,
   Button,
+  InputLabel,
+  Select,
+  FormControl
 } from "@material-ui/core";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -24,10 +27,9 @@ export default function AddJobsPage() {
     localSellers: true,
     onlineSellers: true,
     deliveryTime: true,
-    type: "", //ID
+    type: "", 
     subType: "",
   });
-  //!chọn checkbox -> nhập ID (id thuộc công việc chính, phụ của từng loại công việc khác nhau) --> add zô danh sách loại công việc có id riêng đó ??
 
   const addJobs = (event) => {
     event.preventDefault();
@@ -48,6 +50,11 @@ export default function AddJobsPage() {
       [name]: checked,
     });
   };
+
+  useEffect(()=>{
+    dispatch(actFetchListTypeJobsApi());
+    dispatch(actFetchListSubTypeJobsApi());
+  }, [])
 
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
@@ -109,20 +116,28 @@ export default function AddJobsPage() {
             onChange={handleCheckBox}
             checked={state.deliveryTime}
           />
-
-          {/* if type -> subType: disabled */}
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            label="Type"
-            onChange={handleCheckBox}
-            checked={state.type}
-          />
-          <FormControlLabel
-            control={<Checkbox />}
-            label="SubType"
-            onChange={handleCheckBox}
-            checked={state.subType}
-          />
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Type</InputLabel>
+            <Select
+              fullWidth
+              onChange={handleOnChange}
+              variant="outlined"
+            >
+              {/* render list cv chính */}
+              {/* <MenuItem value={true}>Men</MenuItem> */}
+            </Select>
+          </FormControl>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>SubType</InputLabel>
+            <Select
+              fullWidth
+              onChange={handleOnChange}
+              variant="outlined"
+            >
+              {/* render list cv phụ */}
+              {/* <MenuItem value={true}>Men</MenuItem> */}
+            </Select>
+          </FormControl>
         </FormGroup>
         <Button color="success" variant="contained">
           Add Job
