@@ -8,10 +8,6 @@ export default function AdminTemplate({ exact, path, component }) {
   if (localStorage.getItem("Admin")) {
     return (
       <>
-        {/* {path == "/admin" && <NavbarAdmin />} */}
-        {/* <NavbarAdmin /> */}
-        {/* <DashboardNavbar/> */}
-
         <Route exact={exact} path={path} component={component} />
         <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
         <DashboardSidebar

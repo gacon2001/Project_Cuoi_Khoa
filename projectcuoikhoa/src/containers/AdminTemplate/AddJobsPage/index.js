@@ -17,14 +17,13 @@ export default function AddJobsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [state, setState] = useState({
-    //ko có image ?
     name: "",
     rating: "",
     price: "",
-    proServices: "",//!
-    localSellers: "",
-    onlineSellers: "",
-    deliveryTime: "",
+    proServices: true,
+    localSellers: true,
+    onlineSellers: true,
+    deliveryTime: true,
     type: "", //ID
     subType: "",
   });

@@ -101,7 +101,7 @@ export default function AddUserAdmin() {
           </Select>
         </FormControl>
 
-        {/* cố định ADMIN */}
+        {/* cố định ADMIN?? */}
         <TextField
           fullWidth
           label="Role"
@@ -110,6 +110,7 @@ export default function AddUserAdmin() {
           onChange={handleOnChange}
           variant="outlined"
           type="text"
+          defaultValue="ADMIN"
         />
         <TextField
           fullWidth

@@ -7,10 +7,8 @@ import SearchUser from "../SearchUser";
 import { actDeleteUserApi, actFetchListUserApi } from "./modules/actions";
 import { styled } from "@mui/system";
 
-//!UI????
 
 const grey = {
-  // 50: "#F3F6F9",
   50: "#ffffff",
   100: "#E7EBF0",
   200: "#E0E3E7",
