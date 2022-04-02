@@ -80,9 +80,7 @@ export default function AddJobsPage() {
     });
   };
 
-  //Vân render list ra mà hình như nhiê
   const renderListTypeJobs = () => {
-    // hình như đc r mà nó ra lạ ghê, à do data bị ngáo ko kcos tên :'(
     console.log(listTypeJobs);
     return listTypeJobs?.map((typeJob) => {
       return (
