@@ -1,10 +1,10 @@
-import { Container, Typography } from "@material-ui/core";
+import { Button, Container, Typography } from "@material-ui/core";
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
-// const Typography = styled.div`
-//   text-align: center;
-// `;
+// const Button = styled.div`
+// text-align: center;
+// `
 
 //!Nhúng video
 export default function Video() {
@@ -12,7 +12,7 @@ export default function Video() {
   const ref = useRef(null);//dùng DOM tới video
   return (
     <div>
-      <button onClick={() => setShowVideo(true)}>How Fiverr Works</button>
+      <Button sx={{textAlign: "center"}} color="success" variant="contained" onClick={() => setShowVideo(true)}>How Fiverr Works</Button>
       {showVideo && (
         <div style={{position: "fixed", top: 0, left: 0, width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10}} onClick={(e) => {
           //target là cái mà mình nhấn vào => so sánh target có phải là cái video 

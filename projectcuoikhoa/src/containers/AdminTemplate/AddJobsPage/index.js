@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { actAddJobsApi , actFetchListTypeJobsApi, actFetchListSubTypeJobsApi} from "./modules/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  actAddJobsApi,
+  actFetchListTypeJobsApi,
+  actFetchListSubTypeJobsApi,
+} from "./modules/actions";
 import {
   Box,
   Container,
@@ -9,7 +13,8 @@ import {
   Button,
   InputLabel,
   Select,
-  FormControl
+  FormControl,
+  MenuItem,
 } from "@material-ui/core";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -19,6 +24,12 @@ import { useHistory } from "react-router-dom";
 export default function AddJobsPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const listTypeJobs = useSelector(
+    (state) => state.addJobsReducer.listTypeJobs
+  );
+  const listSubTypeJobs = useSelector(
+    (state) => state.addJobsReducer.listSubTypeJobs
+  );
   const [state, setState] = useState({
     name: "",
     rating: "",
@@ -27,14 +38,19 @@ export default function AddJobsPage() {
     localSellers: true,
     onlineSellers: true,
     deliveryTime: true,
-    type: "", 
-    subType: "",
+    image: "",
+    type: [],
+    subType: [],
   });
 
   const addJobs = (event) => {
     event.preventDefault();
     dispatch(actAddJobsApi(state));
   };
+
+  //khi 1 hđ làm ảnh hưởng tới UI -> useState
+  //tư 1 component muốn truyền dư liệu đi component khác 
+  const [type, setType] = useState("");
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -43,6 +59,19 @@ export default function AddJobsPage() {
       [name]: value,
     });
   };
+
+  const handleOnChangeRating = (event) => {
+    const {name, value} = event.target;
+    if (isNaN(value))
+    {
+        alert('this input must be a number.');
+        console.log(123);
+        return ;
+    }
+    console.log(456);
+    setState({...state, [name]: value})
+  }
+
   const handleCheckBox = (event) => {
     const { name, checked } = event.target;
     setState({
@@ -51,10 +80,32 @@ export default function AddJobsPage() {
     });
   };
 
-  useEffect(()=>{
+  //Vân render list ra mà hình như nhiê
+  const renderListTypeJobs = () => {
+    // hình như đc r mà nó ra lạ ghê, à do data bị ngáo ko kcos tên :'(
+    console.log(listTypeJobs);
+    return listTypeJobs?.map((typeJob) => {
+      return (
+        <MenuItem key={typeJob._id} value={typeJob._id}>
+          {typeJob.name}
+        </MenuItem>
+      );
+    });
+  };
+  const renderListSubTypeJobs = () => {
+    return listSubTypeJobs?.map((idSubTypeJobs) => {
+      return (
+        <MenuItem key={idSubTypeJobs._id} value={idSubTypeJobs._id}>
+          {idSubTypeJobs.name}
+        </MenuItem>
+      );
+    });
+  };
+
+  useEffect(() => {
     dispatch(actFetchListTypeJobsApi());
     dispatch(actFetchListSubTypeJobsApi());
-  }, [])
+  }, []);
 
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
@@ -64,6 +115,15 @@ export default function AddJobsPage() {
             Add New Job Page
           </Typography>
         </Box>
+        <TextField
+          fullWidth
+          // label="Image"
+          margin="normal"
+          name="image"
+          onChange={handleOnChange}
+          variant="outlined"
+          type="file"
+        />
         <TextField
           fullWidth
           label="Name"
@@ -78,9 +138,10 @@ export default function AddJobsPage() {
           label="Rating"
           margin="normal"
           name="rating"
-          onChange={handleOnChange}
+          value={state.rating}
+          onChange={handleOnChangeRating}
           variant="outlined"
-          type="number"
+          type="text"
         />
         <TextField
           fullWidth
@@ -97,45 +158,62 @@ export default function AddJobsPage() {
             label="Pro Services"
             onChange={handleCheckBox}
             checked={state.proServices}
+            value={state.proServices}
           />
           <FormControlLabel
             control={<Checkbox />}
             label="Local Sellers"
             onChange={handleCheckBox}
             checked={state.localSellers}
+            value={state.localSellers}
           />
           <FormControlLabel
             control={<Checkbox />}
             label="Online Sellers"
             onChange={handleCheckBox}
             checked={state.onlineSellers}
+            value={state.onlineSellers}
           />
           <FormControlLabel
             control={<Checkbox />}
             label="Delivery Time"
             onChange={handleCheckBox}
             checked={state.deliveryTime}
+            value={state.deliveryTime}
           />
           <FormControl fullWidth margin="normal">
             <InputLabel>Type</InputLabel>
             <Select
+              disabled={type === "subtype"}
               fullWidth
-              onChange={handleOnChange}
+              onChange={(e) => {
+                if (e.target.value === "reset") {
+                  setType("");
+                }
+                else setType("type");
+                handleOnChange(e);
+              }}
               variant="outlined"
             >
-              {/* render list cv chính */}
-              {/* <MenuItem value={true}>Men</MenuItem> */}
+              <MenuItem value="reset">Default</MenuItem>
+              {renderListTypeJobs()}
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
             <InputLabel>SubType</InputLabel>
             <Select
+              disabled={type === "type"}
               fullWidth
-              onChange={handleOnChange}
+              onChange={(e) => {
+                if(e.target.value === "reset"){
+                  setType("")
+                }else setType("subtype");
+                handleOnChange(e);
+              }}
               variant="outlined"
             >
-              {/* render list cv phụ */}
-              {/* <MenuItem value={true}>Men</MenuItem> */}
+              <MenuItem value="reset">Default</MenuItem>
+              {renderListSubTypeJobs()}
             </Select>
           </FormControl>
         </FormGroup>

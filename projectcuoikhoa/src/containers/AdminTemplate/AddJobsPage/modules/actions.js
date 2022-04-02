@@ -45,12 +45,14 @@ export const actFetchListTypeJobsApi = () => {
   return (dispatch) => {
     dispatch(actFetchListTypeJobsRequest());
     api
-      .post("type-jobs")
+      .get("type-jobs")
       .then((success) => {
         dispatch(actFetchListTypeJobsSuccess(success.data));
+        // alert("Add Jobs Successfully")
       })
       .catch((error) => {
         dispatch(actFetchListTypeJobsFailed(error));
+        alert("Failed");
       });
   };
 };

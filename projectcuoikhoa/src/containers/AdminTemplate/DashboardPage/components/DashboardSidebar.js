@@ -176,7 +176,10 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           m: 2,
           p: 2,
         }}
-      ></Box>
+      >
+        {/* <Button color="success" variant="contained" sx={{textalign: "center"}}>Log Out</Button> */}
+        <Button color="success" variant="contained" sx={{ml: 6}}>Log Out</Button>
+      </Box>
     </Box>
   );
 

@@ -4,8 +4,8 @@ const initialState = {
   loading: false,
   error: null,
   data: null,
-  typeJobs: [],
-  subTypeJobs: [],
+  listTypeJobs: [],
+  listSubTypeJobs: [],
 };
 
 const addJobsReducer = (state = initialState, action) => {
@@ -32,38 +32,38 @@ const addJobsReducer = (state = initialState, action) => {
 
       case ActionType.FETCH_LIST_TYPE_JOBS_REQUEST: {
         state.loading = true;
-        state.typeJobs = null;
+        state.listTypeJobs = null;
         state.error = null;
         return { ...state };
       }
       case ActionType.FETCH_LIST_TYPE_JOBS_SUCCESS: {
         state.loading = false;
-        state.typeJobs = action.payload;
+        state.listTypeJobs = action.payload;
         state.error = null;
         return { ...state };
       }
       case ActionType.FETCH_LIST_TYPE_JOBS_FAILED: {
         state.loading = false;
-        state.typeJobs = null;
+        state.listTypeJobs = null;
         state.error = action.payload;
         return { ...state };
       }
 
       case ActionType.FETCH_LIST_SUBTYPE_JOBS_REQUEST: {
         state.loading = true;
-        state.subTypeJobs = null;
+        state.listSubTypeJobs = null;
         state.error = null;
         return { ...state };
       }
       case ActionType.FETCH_LIST_SUBTYPE_JOBS_SUCCESS: {
         state.loading = false;
-        state.subTypeJobs = action.payload;
+        state.listSubTypeJobs = action.payload;
         state.error = null;
         return { ...state };
       }
       case ActionType.FETCH_LIST_SUBTYPE_JOBS_FAILED: {
         state.loading = false;
-        state.subTypeJobs = null;
+        state.listSubTypeJobs = null;
         state.error = action.payload;
         return { ...state };
       }

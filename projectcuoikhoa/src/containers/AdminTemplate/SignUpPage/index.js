@@ -5,7 +5,7 @@ import {
   Container,
   FormHelperText,
   InputLabel,
-  Link,
+  Link as MLink,
   MenuItem,
   Select,
   TextField,
@@ -16,23 +16,27 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { Link } from "react-router-dom";
 import { actSignUpApi } from "./modules/actions";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik } from "formik";
 
 const checkEmpty = (value) => {
   let error;
-  if (!value) {
+  //skill: []
+  console.log(value.length);
+  if (!value || value.length === 0) {
+    console.log("pssword in here");
     error = "Không được để trống";
-  } else if (value.trim() != "") {
+  } else if (typeof value === "string" && value.trim() != "") {
     error = "";
   }
   return error;
 };
 const checkName = (value) => {
   let error;
-  var pattern = "[A-Za-z]{1,32}";
+  var pattern = /(?=([a-z][A-Z]{1,32}$|[A-Z][a-z]{1,32}$))/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
+    console.log(value.match(pattern));
     error = "";
   } else {
     error = "Tên phải là kiểu chữ bao gồm hoa và thường, từ 1 đến 32 kí tự";
@@ -41,9 +45,10 @@ const checkName = (value) => {
 };
 const checkEmail = (value) => {
   let error;
-  var pattern = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+  var pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
+    console.log(value.match(reg));
     error = "";
   } else {
     error = "Email phải đúng định dạng a@gmail.com";
@@ -52,7 +57,7 @@ const checkEmail = (value) => {
 };
 const checkPhoneNumber = (value) => {
   let error;
-  var pattern = "^\d{10}$";
+  var pattern = /^\d{10}$/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
     error = "";
@@ -60,56 +65,45 @@ const checkPhoneNumber = (value) => {
     error = "Phone tối đa 10 số";
   }
   return error;
-}
+};
 const checkPassword = (value) => {
   let error;
-  var pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
+  var pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
     error = "";
   } else {
-    error = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
+    error =
+      "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters";
   }
   return error;
 };
-const checkSelect = (select) => {
-  let error;
-  if (document.getElementsByName(select).selectedIndex != 0) {
-    error = "";
-  } else {
-    error = "Gender phải được chọn";
-  }
-  return error;
-}
+// const checkSelect = (select) => {
+//   let error;
+//   if (document.getElementsByName(select).selectedIndex != 0) {
+//     error = "";
+//   } else {
+//     error = "Gender phải được chọn";
+//   }
+//   return error;
+// }
 
 export default function SignUpPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    skill: [],
-    certification: [],
-    birthday: "",
-    gender: true,
-    policy: "",
-  });
-//handleOnChange lấy gtri ko cần -> handleChange mặc định của formik.
-  const handleCheckBox = (event) => {
-    const { name, checked } = event.target;
-    setState({
-      ...state,
-      [name]: checked,
-    });
-  };
-
-  const handleSignUp = (event) => {
-    event.preventDefault();
-    dispatch(actSignUpApi(state, history));
-  };
+  // const [state, setState] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   phone: "",
+  //   skill: [],
+  //   certification: [],
+  //   birthday: "",
+  //   gender: null,
+  //   policy: "",
+  // });
+  //handleOnChange lấy gtri ko cần -> handleChange mặc định của formik.
 
   return (
     <>
@@ -133,7 +127,7 @@ export default function SignUpPage() {
               skill: [],
               certification: [],
               birthday: "",
-              gender: true,
+              gender: "",
               policy: false,
             }}
             validate={async (values) => {
@@ -142,21 +136,26 @@ export default function SignUpPage() {
               const nameErrors =
                 checkEmpty(values.name) || checkName(values.name); //check nếu tên trống thì trả về lỗi tên trống, còn tên không trống thì check tiếp tên có valid hay ko, nếu không valid thì trả về lỗi tên ko valid
               errors.name = nameErrors; // gán lỗi cho name
-              errors.email = checkEmpty(values.email) || checkEmail(values.email);
-              errors.passowrd = checkEmpty(values.password) || checkPassword(values.passowrd);
-              errors.phone = checkEmpty(values.phone) || checkPhoneNumber(values.phone);
+              errors.email =
+                checkEmpty(values.email) || checkEmail(values.email);
+              console.log("bengin password");
+              errors.password =
+                checkEmpty(values.password) || checkPassword(values.password);
+              console.log("end password");
+              errors.phone =
+                checkEmpty(values.phone) || checkPhoneNumber(values.phone);
               errors.skill = checkEmpty(values.skill);
               errors.certification = checkEmpty(values.certification);
-              // errors.birthday 
-              errors.gender = checkEmpty(values.gender) || checkSelect(values.gender);
+              errors.birthday = checkEmpty(values.birthday);
+              errors.gender = checkEmpty(values.gender);
               if (values.policy == false) {
                 errors.policy = "This field must be checked";
               }
               return errors; // trả về lỗi sau khi validate
             }}
-            //kích hoạt sự kiện onSubmit -> return hết những cái bên dưới -> 
+            //kích hoạt sự kiện onSubmit -> return hết những cái bên dưới ->
             onSubmit={(values) => {
-              handleSignUp(values)
+              dispatch(actSignUpApi(values, history));
             }}
           >
             {({
@@ -167,7 +166,6 @@ export default function SignUpPage() {
               handleChange,
               handleBlur,
             }) => {
-              console.log(errors);
               return (
                 <form onSubmit={handleSubmit}>
                   <Box sx={{ mb: 3 }}>
@@ -287,12 +285,12 @@ export default function SignUpPage() {
                       onChange={handleChange}
                       variant="outlined"
                       error={Boolean(touched.gender && errors.gender)}
-                      helperText={touched.gender && errors.gender}
                     >
                       <MenuItem value={true}>Men</MenuItem>
                       <MenuItem value={false}>Women</MenuItem>
                     </Select>
                   </FormControl>
+                  <span>{touched.gender && errors.gender}</span>
 
                   <Box
                     sx={{
@@ -306,18 +304,13 @@ export default function SignUpPage() {
                       name="policy"
                       value={values.policy}
                       onBlur={handleBlur}
-                      onChange={handleCheckBox}
+                      onChange={handleChange}
                     />
                     <Typography color="textSecondary" variant="body1">
                       I have read the
-                      <Link
-                        color="primary"
-                        to="#"
-                        underline="always"
-                        variant="h6"
-                      >
-                        Terms and Conditions
-                      </Link>
+                      <MLink color="primary" underline="always" variant="h6">
+                        <Link to="#">Terms and Conditions</Link>
+                      </MLink>
                     </Typography>
                   </Box>
                   {Boolean(touched.policy && errors.policy) && (
@@ -337,13 +330,9 @@ export default function SignUpPage() {
                   </Box>
                   <Typography color="textSecondary" variant="body1">
                     Have an account?
-                    <Link
-                      to="/signin"
-                      variant="h6"
-                      underline="hover"
-                    >
+                    <MLink component={Link} to="/signin" variant="h6" underline="hover">
                       Sign in
-                    </Link>
+                    </MLink>
                   </Typography>
                 </form>
               );
