@@ -14,11 +14,11 @@ import Grid from "@mui/material/Grid";
 import { AccessTime } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import PinterestIcon from '@mui/icons-material/Pinterest';
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import PinterestIcon from "@mui/icons-material/Pinterest";
 
 export default function DetailJobPage() {
   const dispatch = useDispatch();
@@ -38,17 +38,21 @@ export default function DetailJobPage() {
   });
 
   const [userCreated, setUserCreated] = useState({
-    skill: [],
-    certification: [],
-    email: "",
-    phone: "",
+    skill: ["HTML", "PHP"],
+    certification: ["Cousera"],
+    email: "example@gmail.com",
+    phone: "123456789",
     birthday: "",
     gender: true,
     name: "",
   });
 
   useEffect(() => {
-    if (detailJobs) setState(detailJobs);
+    console.log(detailJobs);
+    if (detailJobs) {
+      setState(detailJobs);
+      dispatch(actFetchDetailUserApi(detailJobs.userCreated));
+    }
   }, [detailJobs]);
   useEffect(() => {
     if (detailUser !== null) setUserCreated(detailUser);
@@ -56,7 +60,7 @@ export default function DetailJobPage() {
 
   useEffect(() => {
     dispatch(actDetailJobsApi(_id));
-    dispatch(actFetchDetailUserApi());
+    
   }, []);
 
   // const handleOnChange = (event) => {
@@ -102,9 +106,7 @@ export default function DetailJobPage() {
           <Box sx={{ ml: 2 }}>{[state.rating]}</Box>
         </Box>
         <hr />
-        {state.image}
-
-        {/* basic, standard, premium */}
+        <img src={state.image} style={{width: "100%"}} />
 
         <hr />
         <Grid container spacing={2}>
@@ -119,13 +121,15 @@ export default function DetailJobPage() {
                   revisions.
                 </p>
                 {/* ko cùng hàng??? */}
-                <Grid direction="row">
-                  <AccessTime />
-                  <Typography variant="body2">5 Days Delivery</Typography>
-                </Grid>
-                <Grid direction="row">
-                  <HighlightOffIcon />
-                  <Typography variant="body2">Unlimited Revisions</Typography>
+                <Grid container direction="row">
+                  <Grid item xs={6}>
+                    <AccessTime />
+                    <Typography component="span" variant="body2">5 Days Delivery</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <HighlightOffIcon />
+                    <Typography variant="body2">Unlimited Revisions</Typography>
+                  </Grid>
                 </Grid>
                 <Box>
                   <CheckIcon />1 concept included
@@ -237,17 +241,15 @@ export default function DetailJobPage() {
           </Grid>
         </Box>
 
-        <Box>
-          {/* COMMENT */}
-        </Box>
+        <Box>{/* COMMENT */}</Box>
 
-        <hr/>
+        <hr />
         <footer>
-          <TwitterIcon/>
-          <FacebookIcon/>
-          <InstagramIcon/>
-          <LinkedInIcon/>
-          <PinterestIcon/>
+          <TwitterIcon />
+          <FacebookIcon />
+          <InstagramIcon />
+          <LinkedInIcon />
+          <PinterestIcon />
         </footer>
       </Container>
     </Box>

@@ -86,18 +86,6 @@ export default function SignUpPage() {
 
   //handleOnChange lấy gtri ko cần -> handleChange mặc định của formik.
 
-  const handleChangePhone = (event) => {
-    const {name, value} = event.target;
-    if (isNaN(value)){
-      alert("this input must be a number")
-      return;
-    }
-    setState({
-      ...state,
-      [name]: value,
-    })
-  }
-
   return (
     <>
       <Box
@@ -159,6 +147,15 @@ export default function SignUpPage() {
               handleChange,
               handleBlur,
             }) => {
+              const handleChangePhone = (event) => {
+                const {name, value} = event.target;
+                if (isNaN(value)){
+                  alert("this input must be a number")
+                  return;
+                }
+                handleChange(event);
+              }
+
               return (
                 <form onSubmit={handleSubmit}>
                   <Box sx={{ mb: 3 }}>

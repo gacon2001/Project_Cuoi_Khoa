@@ -149,11 +149,14 @@ export default function AddJobsPage() {
         />
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                onChange={handleCheckBox}
+                name="proServices"
+                checked={state.proServices}
+              />
+            }
             label="Pro Services"
-            onChange={handleCheckBox}
-            checked={state.proServices}
-            value={state.proServices}
           />
           <FormControlLabel
             control={<Checkbox />}
