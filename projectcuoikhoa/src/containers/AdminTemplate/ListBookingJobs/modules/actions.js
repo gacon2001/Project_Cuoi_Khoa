@@ -32,33 +32,33 @@ const actFetchListBookingJobsFailed = (error) => {
 }
 
 
-export const actFetchDetailUserBookingApi = (_id) => {
-    return (dispatch) => {
-        dispatch(actFetchDetailUserBookingRequest());
-        api.get(`users/${_id}`)
-        .then((success)=>{
-            dispatch(actFetchDetailUserBookingSuccess(success.data));
-        })
-        .catch((error)=>{
-            dispatch(actFetchDetailUserBookingFailed(error));
-        })
-    }
-} 
-const actFetchDetailUserBookingRequest = ()=>{
-    return {
-        type: ActionType.FETCH_DETAIL_USER_BOOKING_REQUEST
-    }
-}
-const actFetchDetailUserBookingSuccess = (data) => {
-return {
-    type: ActionType.FETCH_DETAIL_USER_BOOKING_SUCCESS,
-    payload: data,
-}
-}
-const actFetchDetailUserBookingFailed = (error) => {
-    return{
-        type: ActionType.FETCH_DETAIL_USER_BOOKING_FAILED,
-        payload: error,
-    }
-}
+// export const actFetchDetailUserBookingApi = (_id) => {
+//     return (dispatch) => {
+//         dispatch(actFetchDetailUserBookingRequest());
+//         api.get(`users/${_id}`)
+//         .then((success)=>{
+//             dispatch(actFetchDetailUserBookingSuccess(success.data));
+//         })
+//         .catch((error)=>{
+//             dispatch(actFetchDetailUserBookingFailed(error));
+//         })
+//     }
+// } 
+// const actFetchDetailUserBookingRequest = ()=>{
+//     return {
+//         type: ActionType.FETCH_DETAIL_USER_BOOKING_REQUEST
+//     }
+// }
+// const actFetchDetailUserBookingSuccess = (data) => {
+// return {
+//     type: ActionType.FETCH_DETAIL_USER_BOOKING_SUCCESS,
+//     payload: data,
+// }
+// }
+// const actFetchDetailUserBookingFailed = (error) => {
+//     return{
+//         type: ActionType.FETCH_DETAIL_USER_BOOKING_FAILED,
+//         payload: error,
+//     }
+// }
 

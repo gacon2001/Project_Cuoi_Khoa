@@ -49,7 +49,6 @@ export default function AddJobsPage() {
   };
 
   //khi 1 hđ làm ảnh hưởng tới UI -> useState
-  //tư 1 component muốn truyền dư liệu đi component khác 
   const [type, setType] = useState("");
 
   const handleOnChange = (event) => {
@@ -60,17 +59,15 @@ export default function AddJobsPage() {
     });
   };
 
+  //!chỉ đc nhập số
   const handleOnChangeRating = (event) => {
-    const {name, value} = event.target;
-    if (isNaN(value))
-    {
-        alert('this input must be a number.');
-        console.log(123);
-        return ;
+    const { name, value } = event.target;
+    if (isNaN(value)) {
+      alert("this input must be a number.");
+      return;
     }
-    console.log(456);
-    setState({...state, [name]: value})
-  }
+    setState({ ...state, [name]: value });
+  };
 
   const handleCheckBox = (event) => {
     const { name, checked } = event.target;
@@ -82,10 +79,10 @@ export default function AddJobsPage() {
 
   const renderListTypeJobs = () => {
     console.log(listTypeJobs);
-    return listTypeJobs?.map((typeJob) => {
+    return listTypeJobs?.map((idTypeJobs) => {
       return (
-        <MenuItem key={typeJob._id} value={typeJob._id}>
-          {typeJob.name}
+        <MenuItem key={idTypeJobs._id} value={idTypeJobs._id}>
+          {idTypeJobs.name}
         </MenuItem>
       );
     });
@@ -179,6 +176,7 @@ export default function AddJobsPage() {
             checked={state.deliveryTime}
             value={state.deliveryTime}
           />
+          {/* làm disabled */}
           <FormControl fullWidth margin="normal">
             <InputLabel>Type</InputLabel>
             <Select
@@ -187,8 +185,7 @@ export default function AddJobsPage() {
               onChange={(e) => {
                 if (e.target.value === "reset") {
                   setType("");
-                }
-                else setType("type");
+                } else setType("type");
                 handleOnChange(e);
               }}
               variant="outlined"
@@ -203,9 +200,9 @@ export default function AddJobsPage() {
               disabled={type === "type"}
               fullWidth
               onChange={(e) => {
-                if(e.target.value === "reset"){
-                  setType("")
-                }else setType("subtype");
+                if (e.target.value === "reset") {
+                  setType("");
+                } else setType("subtype");
                 handleOnChange(e);
               }}
               variant="outlined"

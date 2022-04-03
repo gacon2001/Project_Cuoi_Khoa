@@ -57,7 +57,7 @@ const checkEmail = (value) => {
 };
 const checkPhoneNumber = (value) => {
   let error;
-  var pattern = /^\d{10}$/;
+  var pattern = /^\{10}$/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
     error = "";
@@ -78,32 +78,25 @@ const checkPassword = (value) => {
   }
   return error;
 };
-// const checkSelect = (select) => {
-//   let error;
-//   if (document.getElementsByName(select).selectedIndex != 0) {
-//     error = "";
-//   } else {
-//     error = "Gender phải được chọn";
-//   }
-//   return error;
-// }
 
 export default function SignUpPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [state, setState] = useState();
 
-  // const [state, setState] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   phone: "",
-  //   skill: [],
-  //   certification: [],
-  //   birthday: "",
-  //   gender: null,
-  //   policy: "",
-  // });
   //handleOnChange lấy gtri ko cần -> handleChange mặc định của formik.
+
+  const handleChangePhone = (event) => {
+    const {name, value} = event.target;
+    if (isNaN(value)){
+      alert("this input must be a number")
+      return;
+    }
+    setState({
+      ...state,
+      [name]: value,
+    })
+  }
 
   return (
     <>
@@ -229,9 +222,9 @@ export default function SignUpPage() {
                     name="phone"
                     value={values.phone}
                     onBlur={handleBlur}
-                    onChange={handleChange}
+                    onChange={handleChangePhone}
                     variant="outlined"
-                    type="number"
+                    type="text"
                     error={Boolean(touched.phone && errors.phone)}
                     helperText={touched.phone && errors.phone}
                   />
@@ -330,7 +323,12 @@ export default function SignUpPage() {
                   </Box>
                   <Typography color="textSecondary" variant="body1">
                     Have an account?
-                    <MLink component={Link} to="/signin" variant="h6" underline="hover">
+                    <MLink
+                      component={Link}
+                      to="/signin"
+                      variant="h6"
+                      underline="hover"
+                    >
                       Sign in
                     </MLink>
                   </Typography>

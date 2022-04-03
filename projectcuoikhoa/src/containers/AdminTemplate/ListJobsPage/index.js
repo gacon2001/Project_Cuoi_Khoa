@@ -98,27 +98,29 @@ export default function ListJobsPage(path) {
               <Typography variant="body2">Price: {jobs.price}</Typography>
             </CardContent>
 
-            <Button
-              onClick={() => history.push(`/edit-jobs/${jobs._id}`)}
-              color="success"
-              variant="contained"
-            >
-              Edit
-            </Button>
-            <Button
-              onClick={() => dispatch(actDeleteJobsApi(jobs._id))}
-              color="error"
-              variant="contained"
-            >
-              Delete
-            </Button>
-            <Button
-              onClick={() => dispatch(actBookingJobsApi(jobs._id))}
-              color="warning"
-              variant="contained"
-            >
-              Booking
-            </Button>
+            <Box sx={{textAlign: "center"}}>
+              <Button
+                onClick={() => history.push(`/edit-jobs/${jobs._id}`)}
+                color="success"
+                variant="contained"
+              >
+                Edit
+              </Button>
+              <Button
+                onClick={() => dispatch(actDeleteJobsApi(jobs._id))}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+              <Button
+                onClick={() => dispatch(actBookingJobsApi(jobs._id))}
+                color="warning"
+                variant="contained"
+              >
+                Booking
+              </Button>
+            </Box>
 
             <CardActions disableSpacing>
               <IconButton aria-label="add to favorites">
@@ -171,9 +173,7 @@ export default function ListJobsPage(path) {
         <SearchJobsPage />
         <Box>
           {/* ko chia cột đc?? */}
-          <Grid container>
-            {renderListJobs()}
-          </Grid>
+          <Grid container>{renderListJobs()}</Grid>
         </Box>
       </Container>
     </Box>

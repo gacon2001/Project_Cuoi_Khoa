@@ -130,7 +130,6 @@ export default function EditProfilePage() {
           />
           <TextField
             fullWidth
-            label="Birthday"
             margin="normal"
             name="birthday"
             onChange={handleOnChange}
