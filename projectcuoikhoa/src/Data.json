@@ -1,0 +1,1316 @@
+{
+	"info": {
+		"_postman_id": "3b9a266d-2199-4058-9502-376937298afb",
+		"name": "Project Fiverr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quảng lý người dùng",
+			"item": [
+				{
+					"name": "1/ lấy danh sách người dùng",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "API giúp chúng ta lấy danh sách người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "2/ tạo một người dùng mới",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"Nguyễn Phong Dinh\",\r\n    \"email\": \"dinh@gmail.com\",\r\n    \"password\": \"1111\",\r\n    \"phone\": \"0934657867\",\r\n    \"birthday\": \"1998-05-11\",\r\n    \"gender\": true,\r\n    \"role\": \"ADMIN\",\r\n    \"skill\": [\r\n        \"LoL\",\r\n        \"WEB\",\r\n        \"DESIGN\"\r\n    ],\r\n    \"certification\": [\r\n        \"DIB\",\r\n        \"PYNOW\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "API giúp chúng ta tạo một người dùng mới"
+					},
+					"response": []
+				},
+				{
+					"name": "3/ lấy thông tin chi tiết của một người dùng",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users/617a9c6d07fe01001cabca37",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"617a9c6d07fe01001cabca37"
+							]
+						},
+						"description": "API giúp chúng ta lấy chi tiết thông tin của một người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "4/ cập nhật thông tin người dùng",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"Nguyễn Ánh Tuyết\",\r\n    \"email\": \"anhTuyet@gmail.com\",\r\n    \"phone\": \"0934657867\",\r\n    \"birthday\": \"1998-05-11\",\r\n    \"gender\": true,\r\n    \"role\": \"ADMIN\",\r\n    \"skill\": [\r\n        \"LoL\",\r\n        \"WEB\",\r\n        \"DESIGN\"\r\n    ],\r\n    \"certification\": [\r\n        \"DIB\",\r\n        \"PYNOW\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/6177d1c65b4a9c4844ad7ac6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"6177d1c65b4a9c4844ad7ac6"
+							]
+						},
+						"description": "API giúp chúng ta cập nhật một người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "5/ xóa người dùng",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users/617a9baf07fe01001cabca1a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"617a9baf07fe01001cabca1a"
+							]
+						},
+						"description": "API giúp chúng ta xóa một người dùng"
+					},
+					"response": []
+				},
+				{
+					"name": "6/ cập nhật ảnh đại diện cho người dùng",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"description": "user token",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/ADMIN/Desktop/cool-background.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/users/upload-avatar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"upload-avatar"
+							]
+						},
+						"description": "API giúp chúng ta upload avatar cho một user"
+					},
+					"response": []
+				},
+				{
+					"name": "7/ phân trang và tìm kiếm theo tên",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users/pagination-search?name=nh&skip=0&limit=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"pagination-search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "nh"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						},
+						"description": "API giúp chúng ta phân trang và tìm kiếm người dùng theo tên"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý loại công việc phụ",
+			"item": [
+				{
+					"name": "8/ tạo loại công việc phụ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Back End NestJS\",\r\n    \"status\" : true,\r\n    \"typeJob\" : \"6134b433e1d8113a50d6de50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs"
+							]
+						},
+						"description": "API giúp chúng ta tạo một loại công việc phụ"
+					},
+					"response": []
+				},
+				{
+					"name": "9/ lấy danh sách loại công việc phụ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "API giúp chúng ta lấy danh sách loại công việc phụ"
+					},
+					"response": []
+				},
+				{
+					"name": "10/ lấy chi tiết loại công việc phụ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs/6134b432e1d8113a50d6de4a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs",
+								"6134b432e1d8113a50d6de4a"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "API giúp chúng ta lấy chi tiết một loại công việc phụ"
+					},
+					"response": []
+				},
+				{
+					"name": "11/ cập nhật thông tin loại công việc phụ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Edit Video\",\r\n    \"status\" : true ,\r\n    \"typeJob\" : \"60b89c750e92cd4a38ae74fc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs/60b89c9f0e92cd4a38ae74ff",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs",
+								"60b89c9f0e92cd4a38ae74ff"
+							]
+						},
+						"description": "API giúp chúng ta cập nhật một loại công việc phụ"
+					},
+					"response": []
+				},
+				{
+					"name": "12/ xóa loại công việc phụ",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs/617a74db6f4e4067c939c486",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs",
+								"617a74db6f4e4067c939c486"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "API giúp chúng ta xóa một loại công việc phụ"
+					},
+					"response": []
+				},
+				{
+					"name": "12.1/ upload image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "subtype",
+									"type": "file",
+									"src": "/C:/Users/ADMIN/Desktop/182769574_471779970756299_3212170228454088879_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/sub-type-jobs/upload-image/618c910f95d99f001c0c047c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sub-type-jobs",
+								"upload-image",
+								"618c910f95d99f001c0c047c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý loại công việc chính",
+			"item": [
+				{
+					"name": "13/ tạo loại công việc chính",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Back End\",\r\n    \"status\" : false \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/type-jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs"
+							]
+						},
+						"description": "API giúp chúng ta tạo một loại công việc chính"
+					},
+					"response": []
+				},
+				{
+					"name": "14/ lấy danh sách loại công việc chính",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/type-jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15/ xóa loại công việc chính",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/type-jobs/617a7241dcd3da66952929ea",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs",
+								"617a7241dcd3da66952929ea"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16/ cập nhật loại công việc chính",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Video & Animation & Code\",\r\n    \"status\": true,\r\n    \"subTypeJobs\" : [\r\n        \"60b72b4c1a248648209351f3\",\r\n        \"60b72b6c1a248648209351f4\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/type-jobs/60b730fcb3a22b2370fdaefe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs",
+								"60b730fcb3a22b2370fdaefe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17/ lấy thông tin chi tiết loại công việc chính",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/type-jobs/617a780ec2ac1768ba194c80",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs",
+								"617a780ec2ac1768ba194c80"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18/ phân trang loại công việc chính",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/type-jobs/pagination?skip=0&limit=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"type-jobs",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý công việc",
+			"item": [
+				{
+					"name": "19/tạo một công việc mới",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Project airbnb\",\r\n    \"rating\" : 10,\r\n    \"price\" : 1000,\r\n    \"proServices\" : true,\r\n    \"localSellers\" : false,\r\n    \"onlineSellers\" : true,\r\n    \"deliveryTime\" : true,\r\n    \"type\" : \"6134b433e1d8113a50d6de50\",\r\n    \"subType\" : \"6134b432e1d8113a50d6de4a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20/ lấy danh sách công việc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "21/ xóa công việc",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/618b88bd95d99f001c0bf13c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"618b88bd95d99f001c0bf13c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "22/ cập nhật thông tin công việc",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							},
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Project notheme\",\n    \"rating\" : 10,\n    \"price\" : 1000,\n    \"proServices\" : true,\n    \"localSellers\" : false,\n    \"onlineSellers\" : true,\n    \"deliveryTime\" : true,\n    \"type\" : \"60ee8e64473f3e4009ea6a1c\",\n    \"subType\" : \"60ee8e7e473f3e4009ea6a20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/61816fcc95d99f001c0b09dd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"61816fcc95d99f001c0b09dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "23 / lấy thông tin chi tiết công việc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/61816fcc95d99f001c0b09dd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"61816fcc95d99f001c0b09dd"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "24/ lấy danh sách công việc theo loại công việc phụ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/by-sub-type?subType=60e5b4e2ed980c7344c64d74&skip=0&llimit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"by-sub-type"
+							],
+							"query": [
+								{
+									"key": "subType",
+									"value": "60e5b4e2ed980c7344c64d74"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "llimit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "25/ lấy danh sách công việc theo loại công việc chính",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/by-type?type=60e5b3aaed980c7344c64d63&skip=0&llimit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"by-type"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "60e5b3aaed980c7344c64d63"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "llimit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26 / đặc thuê công việc",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/booking/60e5b580ed980c7344c64d80",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"booking",
+								"60e5b580ed980c7344c64d80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "27 / lấy danh sách công việc mà người dùng đã thuê",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/by-user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "28 / hoàn thành công việc",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/done/60e5b578ed980c7344c64d7e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"done",
+								"60e5b578ed980c7344c64d7e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "29 / lấy danh sách công việc theo tên công việc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/jobs/by-name?name=v",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"by-name"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "v"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "30 / cập nhật hình ảnh cho công việc",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job",
+									"type": "file",
+									"src": "/C:/Users/hao9x/Pictures/lol/q5lpjnv8lcw41.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/upload-image/60e5866dd680276f6098b0ef",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"upload-image",
+								"60e5866dd680276f6098b0ef"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Xác thực người dùng",
+			"item": [
+				{
+					"name": "31 / đăng ký",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nguyễn Phong Dinh\",\r\n  \"email\": \"an13@gmail.com\",\r\n  \"password\": \"123456\",\r\n  \"phone\": \"0934657867\",\r\n  \"skill\" : [ \"LoL\" , \"WEB\" , \"DESIGN\" ],\r\n  \"certification\" : [\"DIB\" , \"PYNOW\"],\r\n  \"birthday\": \"1998-05-11\",\r\n  \"gender\": true,\r\n  \"type\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "32 / đăng nhập",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"email\": \"an13@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quản lý Bình luận",
+			"item": [
+				{
+					"name": "33 / tạo bình luận",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\" : \"tao cũng thấy vậy\",\r\n    \"job\" : \"618c913695d99f001c0c048b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/comments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "34 / lấy danh sách các bình luận theo công việc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tokenByClass",
+								"value": "{{tokenByClass}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/comments/by-job/618c913695d99f001c0c048b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"by-job",
+								"618c913695d99f001c0c048b"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "restoreAll",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/restore",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"restore"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
