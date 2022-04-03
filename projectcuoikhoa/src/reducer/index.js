@@ -1,4 +1,8 @@
+
 import { combineReducers } from "redux";
+import typeJobsReducer from "../containers/HomeTemplate/Typejobs/modules/reducer";
+import listWorksReducer from "../containers/HomeTemplate/ListWorks/modules/reducer";
+import subtypejobsReducer from "../containers/HomeTemplate/Typejobs/SubTypeJobs/modules/reducer";
 
 import editUserReducer from "containers/AdminTemplate/EditUserAdmin/modules/reducer";
 import addUserReducer from "containers/AdminTemplate/AddUserAdmin/modules/reducer";
@@ -32,6 +36,8 @@ const rootReducer = combineReducers({
   fetchListTypeJobsReducer,
   uploadAvatarReducer,
   profilePageReducer,
+  listWorksReducer,
+  typeJobsReducer,
+  subtypejobsReducer,
 });
-
 export default rootReducer;
