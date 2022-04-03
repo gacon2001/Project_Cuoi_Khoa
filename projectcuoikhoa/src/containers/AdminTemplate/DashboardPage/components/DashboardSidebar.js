@@ -98,6 +98,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   //!ban đầu chưa set lại thông tin của user -> lấy thông tin của user dưới localStorage và set lại state user trên component => load lại trang ko bị mất thông tin user đăng nhập vào nữa
   useEffect(()=>{
     //đang là dạng string text -> chuyển về object JSON.parse -> rồi . tới thuộc tính cần lấy
+    if (JSON.parse(localStorage.getItem("Admin")))
      setUser(JSON.parse(localStorage.getItem("Admin")).user);
   }, [])
 
@@ -178,7 +179,10 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
         }}
       >
         {/* <Button color="success" variant="contained" sx={{textalign: "center"}}>Log Out</Button> */}
-        <Button color="success" variant="contained" sx={{ml: 6}}>Log Out</Button>
+        <Button color="success" variant="contained" sx={{ml: 6}} onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}>Log Out</Button>
       </Box>
     </Box>
   );

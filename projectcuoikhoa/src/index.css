@@ -11,10 +11,10 @@
 .fiverr__logo:hover {
   color: #fff;
 }
-.nav-item a {
+.fiverr_navBar .nav-item a {
   color: #fff;
 }
-.nav-item a:hover {
+.fiverr_navBar .nav-item a:hover {
   transition: 0.4s ease !important;
   color: #28a745 !important;
 }

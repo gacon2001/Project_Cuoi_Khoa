@@ -100,7 +100,6 @@ const renderRouteAdmin = () => {
   });
 };
 
-export { renderRouteAdmin };
 
 const routesHome = [
   {

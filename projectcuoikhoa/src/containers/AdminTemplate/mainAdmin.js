@@ -6,8 +6,14 @@ import DashboardSidebar from "./DashboardPage/components/DashboardSidebar";
 export default function AdminTemplate({ exact, path, component }) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
   if (localStorage.getItem("Admin")) {
+    const styleCss = `* {
+      font-size: 16px
+    }`
     return (
       <>
+        <style>
+          {styleCss}
+        </style>
         <Route exact={exact} path={path} component={component} />
         <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
         <DashboardSidebar

@@ -3,20 +3,4 @@
 
 
 
-Cái template version này nó đang dùng nextjs òi chắc để tui downgrade nó lại về react
-
-Mấy cái ở dưới là Vân copy từ thư viện qua chắc tui xoá rồi copy lại cái template mới tải về qua nha
-
-sử dụng template thì mình phải mò đc á, nãy giờ đọc code xong tui mò để install package mà mình chưa có, với xác định chỗ code nào là navbar, dashboard,... để tuỳ chỉnh theo ý mình á.
-
-lúc đầu mà Hải chuyển file qua react thế nào á h
-Tui cũng copy như Vân á, copy hết folder trong src trừ 3 files App index với routes, xong rồi tui coi package.json coi mình thiếu package gì mà template mẫu có 
-
-mà ban đầu Vân ko biết, tải về bản là next.js á H, xong H đổi về react á 
-Cái đó là tui thấy cái 
-do tui thấy trong package.json của template Vân tải về, phần scripts nó ghi lệnh next => nó đang sử dụng nextjs
-
-Cái xong r tui lên github của nó kiếm bản nào ko phải nextjs
-
-do nó có ghi lại commit message ở commit nào nó migrate qua nextjs nên tui dễ dàng tìm thấy template phiên bản reactjs, nếu ko có message rõ ràng thì mình phải đi coi package.json của từng commit xem cái nào là của reactjs á. => migrate next.js là chuyển qua nextjs hay bỏ đi nextjs H -> chuyển qua nextjs á. 
 

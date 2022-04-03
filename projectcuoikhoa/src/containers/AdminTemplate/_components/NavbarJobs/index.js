@@ -4,9 +4,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import PropTypes from 'prop-types';
-export default function NavbarJobs({ onMobileNavOpen , path}) {
+export default function NavbarJobs() {
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light navBarJobs">
       <a className="navbar-brand" href="#">
         NavbarJobs
       </a>
@@ -38,15 +38,6 @@ export default function NavbarJobs({ onMobileNavOpen , path}) {
         </ul>
       </div>
       <Box sx={{ flexGrow: 1 }} />
-      
-      {/* chỉ có list-subType với list-type mới có  side bar */}
-      {path === "/list-subType-jobs" || path === "/list-type-jobs" && (
-        <Hidden lgUp>
-          <IconButton color="inherit" onClick={onMobileNavOpen} size="large">
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
-      )}
     </nav>
   );
 }

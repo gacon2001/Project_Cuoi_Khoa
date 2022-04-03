@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,12 +10,8 @@ import { Box, Button, TextField } from "@material-ui/core";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import IOSSwitch from "../_switch/IOSSwitch";
-import { useDispatch, useSelector } from "react-redux";
-import { actFetchListJobsApi } from "../ListJobsPage/modules/actions";
 
 export default function Switch({state, setState}) {
-  const dispatch = useDispatch();
-  const listSubTypeJobs = useSelector((state)=> state.fetchListSubTypeJobsReducer.listSubTypeJobs);
   
   const handleOnClick = (event) => {
     const {name, checked} = event.target;
@@ -24,12 +20,6 @@ export default function Switch({state, setState}) {
       [name]: checked,
     })
   };
-
-  //fetchListJobs hay subType hay type???
-  // useEffect(()=>{
-  //   dispatch(actFetchListJobsApi())
-  // }, []);
-
 
   return (
     <Box>
@@ -54,7 +44,7 @@ export default function Switch({state, setState}) {
             </Button>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 140 }}>
+        <FormControl sx={{ minWidth: 140, ml: 6 }}>
           <InputLabel id="demo-simple-select-label">Seller Details</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -74,7 +64,7 @@ export default function Switch({state, setState}) {
             </Button>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 140 }}>
+        <FormControl sx={{ minWidth: 140 , ml: 6}}>
           <InputLabel id="demo-simple-select-label">Budget</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -95,7 +85,7 @@ export default function Switch({state, setState}) {
             </Button>
           </Select>
         </FormControl>
-        <FormControl sx={{ minWidth: 140 }}>
+        <FormControl sx={{ minWidth: 140 , ml: 5}}>
           <InputLabel id="demo-simple-select-label">Delivery Time</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -134,21 +124,21 @@ export default function Switch({state, setState}) {
             // true false đều fetch lại list jobs, nên check thế nào???
           />
           <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+            control={<IOSSwitch sx={{ m: 1, ml: 4 }} defaultChecked />}
             label="Local sellers"
             name="localSellers"
             onClick={handleOnClick}
             // value={state.localSellers}
           />
           <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+            control={<IOSSwitch sx={{ m: 1 , ml: 4}} defaultChecked />}
             label="Online sellers"
             name="onlineSellers"
             onClick={handleOnClick}
             // value={state.onlineSellers}
           />
           <FormControlLabel
-            control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+            control={<IOSSwitch sx={{ m: 1 , ml: 3}} defaultChecked />}
             label="Delivery time"
             name="deliveryTime"
             onClick={handleOnClick}

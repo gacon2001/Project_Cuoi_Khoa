@@ -11,9 +11,9 @@ export default function Video() {
   const [showVideo, setShowVideo] = useState(false); //false: ban đầu chưa hiện
   const ref = useRef(null); //dùng DOM tới video
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <Button
-        sx={{ textAlign: "center" }}
+        
         color="success"
         variant="contained"
         onClick={() => setShowVideo(true)}

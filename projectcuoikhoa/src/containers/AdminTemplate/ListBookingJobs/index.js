@@ -31,9 +31,10 @@ export default function ListBookingJobs() {
   }, [])
 
   const renderListBookingJobs = () => {
-    return listBookingJobs?.map((book) => {
+    console.log(listBookingJobs);
+    return listBookingJobs?.bookingJob?.map((book, index) => {
       return (
-        <div>
+        <div key={index}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
@@ -52,13 +53,13 @@ export default function ListBookingJobs() {
             <CardMedia
               component="img"
               height="194"
-              image={book.bookingJob.image}
-              alt={book.bookingJob.name}
+              image={book.image}
+              alt={book.name}
             />
             <CardContent>
-              <Link to={`/detail-job/${book.bookingJob._id}`}>{book.bookingJob.name}</Link>
-              <Typography variant="body2">Rating: {book.bookingJob.rating}</Typography>
-              <Typography variant="body2">Price: {book.bookingJob.price}</Typography>
+              <Link to={`/detail-job/${book._id}`}>{book.name}</Link>
+              <Typography variant="body2">Rating: {book.rating}</Typography>
+              <Typography variant="body2">Price: {book.price}</Typography>
             </CardContent>
           </Card>
         </div> 
