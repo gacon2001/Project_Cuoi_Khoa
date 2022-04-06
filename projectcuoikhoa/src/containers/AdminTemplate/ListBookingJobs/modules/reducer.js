@@ -25,25 +25,6 @@ const fetchlistBookingJobsReducer = (state = initialState, action) => {
       state.error = action.payload;
       return { ...state };
 
-    // case ActionType.FETCH_DETAIL_USER_BOOKING_REQUEST: {
-    //   state.loading = true;
-    //   state.detailUserBooking = null;
-    //   state.error = null;
-    //   return { ...state };
-    // }
-    // case ActionType.FETCH_DETAIL_USER_BOOKING_SUCCESS: {
-    //   state.loading = false;
-    //   state.detailUserBooking = action.payload;
-    //   state.error = null;
-    //   return { ...state };
-    // }
-    // case ActionType.FETCH_DETAIL_USER_BOOKING_FAILED: {
-    //   state.loading = false;
-    //   state.detailUserBooking = null;
-    //   state.error = action.payload;
-    //   return { ...state };
-    // }
-
     default:
       return { ...state };
   }

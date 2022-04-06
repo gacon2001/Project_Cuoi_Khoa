@@ -3,16 +3,19 @@ import * as ActionType from "./constants";
 
 export const actSignUpApi = (signup, history) => {
   return (dispatch) => {
+    console.log(123);
     dispatch(actSignUpRequest());
     api
       .post("auth/signup", signup)
       .then((success) => {
+        console.log("success", success);
         localStorage.setItem("Admin", JSON.stringify(success.data));
         dispatch(actSignUpSuccess(success.data));
         alert("Signup Successfully");
         history.replace("/list-user");//!ko chuyển trang?
       })
       .catch((error) => {
+        console.log("error", error);
         dispatch(actSignUpFailed(error));
         alert("Failed");
       });

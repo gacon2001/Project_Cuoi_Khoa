@@ -16,12 +16,6 @@ export default function EditJobsPage() {
     name: "",
     rating: "",
     price: "",
-    // proServices : true,
-    // localSellers : false,
-    // onlineSellers : true,
-    // deliveryTime : true,
-    // type : "",
-    // subType : ""
   });
 
   useEffect(() => {
@@ -34,7 +28,7 @@ export default function EditJobsPage() {
 
   const updateJobs = (event) => {
     event.preventDefault();
-    dispatch(actEditJobsApi(_id));
+    dispatch(actEditJobsApi(_id, state));
   };
 
   const handleOnChange = (event) => {
@@ -99,7 +93,7 @@ export default function EditJobsPage() {
               type="number"
               value={state.price}
             />
-            <Button color="success" variant="contained">Update </Button>
+            <Button color="success" variant="contained" type="submit">Update </Button>
             <Button color="inherit" variant="contained" onClick={()=> history.push("/list-jobs")}>Cancel</Button>
         </form>
       </Container>

@@ -24,7 +24,6 @@ export default function EditUserAdmin() {
     phone: "",
     birthday: "",
     gender: true,
-    __v: "",
     // avatar: "",
   });
 
@@ -139,32 +138,8 @@ export default function EditUserAdmin() {
               <MenuItem value={false}>Women</MenuItem>
             </Select>
           </FormControl>
-          <TextField
-            fullWidth
-            label="__V"
-            margin="normal"
-            name="__v"
-            onChange={handleOnChange}
-            variant="outlined"
-            type="number"
-            value={state.__v}
-          />
 
-          {/*
-          <div className="form-group row">
-            <label>Avatar</label>
-            <div className="col-sm-1-12">
-              <input
-                type="file"
-                className="form-control"
-                name="avatar"
-                onChange={handleOnChange}
-                value={state.avatar}
-              />
-            </div>
-          </div> */}
-
-          <Button fullWidth color="primary" variant="contained" sx={{mt: 2}}>
+          <Button fullWidth type="submit" color="primary" variant="contained" sx={{mt: 2}}>
             Update User
           </Button>
         </Box>

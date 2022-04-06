@@ -1,11 +1,11 @@
 import api from "utils/apiUtils";
 import * as ActionType from "./constants";
 
-export const actEditJobsApi = (_id) => {
+export const actEditJobsApi = (_id, updateJob) => {
   return (dispatch) => {
     dispatch(actEditJobsRequest());
     api
-      .put(`jobs/${_id}`)
+      .put(`jobs/${_id}`, updateJob)
       .then((success) => {
         dispatch(actEditJobsSuccess(success.data));
         alert("Edit Successfully");

@@ -21,10 +21,9 @@ import { Formik } from "formik";
 
 const checkEmpty = (value) => {
   let error;
-  //skill: []
-  console.log(value.length);
+  //skill: [] -> nên phải check length
   if (!value || value.length === 0) {
-    console.log("pssword in here");
+    // console.log("password in here");
     error = "Không được để trống";
   } else if (typeof value === "string" && value.trim() != "") {
     error = "";
@@ -36,10 +35,11 @@ const checkName = (value) => {
   var pattern = /(?=([a-z][A-Z]{1,32}$|[A-Z][a-z]{1,32}$))/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
-    console.log(value.match(pattern));
+    // console.log(value.match(pattern));
     error = "";
   } else {
-    error = "Tên phải là kiểu chữ bao gồm hoa và thường, từ 1 đến 32 kí tự";
+    error =
+      "Tên phải là kiểu chữ bao gồm hoa và thường, viết hoa chữ cái đầu tiên và phải viết liền, từ 1 đến 32 kí tự";
   }
   return error;
 };
@@ -48,7 +48,7 @@ const checkEmail = (value) => {
   var pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
-    console.log(value.match(reg));
+    // console.log(value.match(reg));
     error = "";
   } else {
     error = "Email phải đúng định dạng a@gmail.com";
@@ -57,12 +57,12 @@ const checkEmail = (value) => {
 };
 const checkPhoneNumber = (value) => {
   let error;
-  var pattern = /^\{10}$/;
+  var pattern = /^\d{10}$/;
   var reg = new RegExp(pattern);
   if (reg.test(value)) {
     error = "";
   } else {
-    error = "Phone tối đa 10 số";
+    error = "Phone phải đủ đúng 10 số";
   }
   return error;
 };
@@ -108,7 +108,7 @@ export default function SignUpPage() {
               skill: [],
               certification: [],
               birthday: "",
-              gender: "",
+              gender: true,
               policy: false,
             }}
             validate={async (values) => {
@@ -116,26 +116,40 @@ export default function SignUpPage() {
               // chỗ này là validation cho name
               const nameErrors =
                 checkEmpty(values.name) || checkName(values.name); //check nếu tên trống thì trả về lỗi tên trống, còn tên không trống thì check tiếp tên có valid hay ko, nếu không valid thì trả về lỗi tên ko valid
-              errors.name = nameErrors; // gán lỗi cho name
-              errors.email =
+              if (nameErrors.length > 0) errors.name = nameErrors; // gán lỗi cho name
+
+              const emailErrors =
                 checkEmpty(values.email) || checkEmail(values.email);
-              console.log("bengin password");
-              errors.password =
+
+              if (emailErrors.length > 0) errors.email = emailErrors;
+              // console.log("bengin password");
+              const passwordError =
                 checkEmpty(values.password) || checkPassword(values.password);
-              console.log("end password");
-              errors.phone =
+              if (passwordError.length) errors.password = passwordError;
+              // console.log("end password");
+              const phoneErrors =
                 checkEmpty(values.phone) || checkPhoneNumber(values.phone);
-              errors.skill = checkEmpty(values.skill);
-              errors.certification = checkEmpty(values.certification);
-              errors.birthday = checkEmpty(values.birthday);
-              errors.gender = checkEmpty(values.gender);
+              if (phoneErrors.length) errors.phone = phoneErrors;
+
+              const skillErrors = checkEmpty(values.skill);
+              if (skillErrors.length) errors.skill = skillErrors;
+
+              const certificationErrors = checkEmpty(values.certification);
+              if (certificationErrors.length)
+                errors.certification = certificationErrors;
+              
+              const birthdayErrors = checkEmpty(values.birthday) 
+              if (birthdayErrors) errors.birthday = birthdayErrors;
+
               if (values.policy == false) {
                 errors.policy = "This field must be checked";
               }
+              // {}
               return errors; // trả về lỗi sau khi validate
             }}
             //kích hoạt sự kiện onSubmit -> return hết những cái bên dưới ->
-            onSubmit={(values) => {
+            onSubmit={(values) => { //
+              console.log(values);
               dispatch(actSignUpApi(values, history));
             }}
           >
@@ -148,13 +162,13 @@ export default function SignUpPage() {
               handleBlur,
             }) => {
               const handleChangePhone = (event) => {
-                const {name, value} = event.target;
-                if (isNaN(value)){
-                  alert("this input must be a number")
+                const { name, value } = event.target;
+                if (isNaN(value)) {
+                  alert("this input must be a number");
                   return;
                 }
                 handleChange(event);
-              }
+              };
 
               return (
                 <form onSubmit={handleSubmit}>

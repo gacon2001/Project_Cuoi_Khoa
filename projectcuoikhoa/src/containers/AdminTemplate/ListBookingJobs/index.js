@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { actFetchDetailUserBookingApi, actFetchListBookingJobsApi } from "./modules/actions";
+import {actFetchListBookingJobsApi } from "./modules/actions";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -15,23 +14,17 @@ import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
 
 export default function ListBookingJobs() {
-  // const {_id} = useParams();
   const dispatch = useDispatch();
   const listBookingJobs = useSelector(
     (state) => state.fetchlistBookingJobsReducer.listBookingJobs
   );
-  const detailUserBooking = useSelector((state)=> state.fetchlistBookingJobsReducer.detailUserBooking);
 
   useEffect(()=>{
-    // lấy data từ trong localStorage (string)
-    // JSON.parse(data) -> object data
-    // data.user._id
     dispatch(actFetchListBookingJobsApi());
-    // dispatch(actFetchDetailUserBookingApi(_id));
   }, [])
 
   const renderListBookingJobs = () => {
-    console.log(listBookingJobs);
+    // console.log(listBookingJobs);
     return listBookingJobs?.bookingJob?.map((book, index) => {
       return (
         <div key={index}>

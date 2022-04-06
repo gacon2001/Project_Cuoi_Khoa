@@ -7,16 +7,9 @@ export const actAddJobsApi = (jobs) => {
     dispatch(actAddJobsRequest());
     api
       .post("jobs", jobs)
-      .then((success, checked) => {
-        // disabled
-        if (checked === "type") {
+      .then((success) => {
           dispatch(actAddJobsSuccess(success.data));
           alert("Add New Job Successfully");
-        } else{
-          document.getElementById("btnType").disabled  = true;
-          dispatch(actAddJobsSuccess(success.data));
-          alert("Add New Job Successfully");
-        }
       })
       .catch((error) => {
         dispatch(actAddJobsFailed(error));

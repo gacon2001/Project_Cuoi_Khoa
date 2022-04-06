@@ -157,8 +157,8 @@ export default function ListSubTypeJobs() {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <NavbarJobs />
       <Container maxWidth="md">
+       <NavbarJobs /> 
         <Box>
           <Typography color="textPrimary" variant="h3">
             List SubTypeJobs Page

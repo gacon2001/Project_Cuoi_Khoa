@@ -38,18 +38,25 @@ export default function AddJobsPage() {
     localSellers: true,
     onlineSellers: true,
     deliveryTime: true,
-    image: "",
-    type: [],
-    subType: [],
+    type: "",
+    subType: "",
   });
 
   const addJobs = (event) => {
     event.preventDefault();
-    dispatch(actAddJobsApi(state));
+    const data = { ...state };
+    // === 0 : nếu chưa chọn
+    if (data.type.length === 0) {
+      delete data.type; //nếu chưa đc chọn thì phải xoá luôn object chuỗi rỗng
+    }
+    if (data.subType.length === 0) {
+      delete data.subType;
+    }
+    dispatch(actAddJobsApi(data));
   };
 
   //khi 1 hđ làm ảnh hưởng tới UI -> useState
-  const [type, setType] = useState("");
+  const [type, setType] = useState("");//"": cả 2 đều active
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -101,7 +108,6 @@ export default function AddJobsPage() {
     dispatch(actFetchListTypeJobsApi());
     dispatch(actFetchListSubTypeJobsApi());
   }, []);
-
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
       <form onSubmit={addJobs}>
@@ -110,15 +116,6 @@ export default function AddJobsPage() {
             Add New Job Page
           </Typography>
         </Box>
-        <TextField
-          fullWidth
-          // label="Image"
-          margin="normal"
-          name="image"
-          onChange={handleOnChange}
-          variant="outlined"
-          type="file"
-        />
         <TextField
           fullWidth
           label="Name"
@@ -159,37 +156,53 @@ export default function AddJobsPage() {
             label="Pro Services"
           />
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                onChange={handleCheckBox}
+                name="localSellers"
+                checked={state.localSellers}
+              />
+            }
             label="Local Sellers"
-            onChange={handleCheckBox}
-            checked={state.localSellers}
             value={state.localSellers}
           />
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                onChange={handleCheckBox}
+                name="onlineSellers"
+                checked={state.onlineSellers}
+              />
+            }
             label="Online Sellers"
-            onChange={handleCheckBox}
-            checked={state.onlineSellers}
             value={state.onlineSellers}
           />
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                onChange={handleCheckBox}
+                name="deliveryTime"
+                checked={state.deliveryTime}
+              />
+            }
             label="Delivery Time"
-            onChange={handleCheckBox}
-            checked={state.deliveryTime}
             value={state.deliveryTime}
           />
           {/* làm disabled */}
           <FormControl fullWidth margin="normal">
             <InputLabel>Type</InputLabel>
             <Select
-              disabled={type === "subtype"}
+              disabled={type === "subtype"}//chọn subtype(tự qui định) -> type : disabled
               fullWidth
+              name="type"
               onChange={(e) => {
                 if (e.target.value === "reset") {
                   setType("");
-                } else setType("type");
-                handleOnChange(e);
+                  handleOnChange({name: e.target.name, value: ""});//reset lại thì phải đặt lại value là ""
+                } else {
+                  setType("type"); // type = "type"
+                  handleOnChange(e);
+                }
               }}
               variant="outlined"
             >
@@ -202,11 +215,15 @@ export default function AddJobsPage() {
             <Select
               disabled={type === "type"}
               fullWidth
+              name="subType"
               onChange={(e) => {
                 if (e.target.value === "reset") {
                   setType("");
-                } else setType("subtype");
-                handleOnChange(e);
+                  handleOnChange({...e, value: ""});//...e: copy nguyên object e của handleOnChange
+                } else {
+                  setType("subtype");
+                  handleOnChange(e);
+                }
               }}
               variant="outlined"
             >
@@ -215,7 +232,7 @@ export default function AddJobsPage() {
             </Select>
           </FormControl>
         </FormGroup>
-        <Button color="success" variant="contained">
+        <Button color="success" variant="contained" type="submit">
           Add Job
         </Button>
         <Button

@@ -32,6 +32,7 @@ export default function Video() {
             alignItems: "center",
             justifyContent: "center",
             zIndex: 10,
+            background: "#59595966",
           }}
           onClick={(e) => {
             //target là cái mà mình nhấn vào => so sánh target có phải là cái video
@@ -40,10 +41,7 @@ export default function Video() {
           }}
         >
           <video ref={ref} controls width="400px">
-            <source
-              src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd_nl/v1/video-attachments/generic_asset/asset/ab0907217c9f9a2c1d2eee677beb7619-1626082923646/how_fiverr_works"
-              type="video"
-            />
+            <source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd_nl/v1/video-attachments/generic_asset/asset/ab0907217c9f9a2c1d2eee677beb7619-1626082923646/how_fiverr_works" type="video/mp4" />
           </video>
         </div>
       )}

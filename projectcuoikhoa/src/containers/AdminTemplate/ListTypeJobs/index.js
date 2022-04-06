@@ -149,9 +149,8 @@ export default function ListTypeJobs() {
 
   return (
     <Box sx={{ mt: 8 }}>
-      <NavbarJobs />
-      {/* <Container maxWidth="sm"> */}
       <Container maxWidth="md">
+       <NavbarJobs /> 
         <Box>
           <Typography color="textPrimary" variant="h3">
             List TypeJobs Page
