@@ -30,7 +30,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useRouteMatch } from "react-router-dom";
 
-const items = [
+const itemsLoggedIn = [
   {
     href: "/dashboard-page",
     icon: BarChartIcon,
@@ -56,6 +56,9 @@ const items = [
     icon: UserIcon,
     title: "Profile",
   },
+];
+
+const itemsLoggedOut = [
   {
     href: "/signin",
     icon: LockIcon,
@@ -76,7 +79,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
   // const detailUser = useSelector((state) => {
   //   return state.editUserReducer.detailUser;
   // });
-  
+
   const [img, setImg] = useState({});
   const [user, setUser] = useState({
     name: "",
@@ -93,14 +96,14 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
     //   [files]: files[0]
     // })
   };
-  
+
   //! khi mà load component lên thì mình sẽ lấy localStorage.getItem("Admin") JSON.parse
   //!ban đầu chưa set lại thông tin của user -> lấy thông tin của user dưới localStorage và set lại state user trên component => load lại trang ko bị mất thông tin user đăng nhập vào nữa
-  useEffect(()=>{
+  useEffect(() => {
     //đang là dạng string text -> chuyển về object JSON.parse -> rồi . tới thuộc tính cần lấy
     if (JSON.parse(localStorage.getItem("Admin")))
-     setUser(JSON.parse(localStorage.getItem("Admin")).user);
-  }, [])
+      setUser(JSON.parse(localStorage.getItem("Admin")).user);
+  }, []);
 
   //!ko lấy từ reducer nữa => lấy từ localStorage
   // useEffect(() => {
@@ -160,14 +163,26 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Divider />
       <Box sx={{ p: 2 }}>
         <List>
-          {items.map((item) => (
-            <NavItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
-          ))}
+          {/* filter giữ lại 1 số item thoả điều kiện, map duyệt ra 1 mảng khác */}
+
+{/* check nếu login vào r (localStorage) thì render.... */}
+          {localStorage.getItem("Admin")
+            ? itemsLoggedIn.map((item) => (
+                <NavItem
+                  href={item.href}
+                  key={item.title}
+                  title={item.title}
+                  icon={item.icon}
+                />
+              ))
+            : itemsLoggedOut.map((item) => (
+                <NavItem
+                  href={item.href}
+                  key={item.title}
+                  title={item.title}
+                  icon={item.icon}
+                />
+              ))}
         </List>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
@@ -179,10 +194,17 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
         }}
       >
         {/* <Button color="success" variant="contained" sx={{textalign: "center"}}>Log Out</Button> */}
-        <Button color="success" variant="contained" sx={{ml: 6}} onClick={() => {
-          localStorage.clear();
-          window.location.reload();
-        }}>Log Out</Button>
+        <Button
+          color="success"
+          variant="contained"
+          sx={{ ml: 6 }}
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        >
+          Log Out
+        </Button>
       </Box>
     </Box>
   );
