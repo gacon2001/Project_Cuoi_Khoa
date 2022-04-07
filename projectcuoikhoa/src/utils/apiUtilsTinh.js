@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://fiverr.cybersoft.edu.vn",
+  baseURL: "https://fiverr.cybersoft.edu.vn",
 });
 
 api.interceptors.request.use((config) => {
