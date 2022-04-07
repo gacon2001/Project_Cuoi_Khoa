@@ -70,7 +70,7 @@ export default function ListJobsPage(path) {
     //array.slice(start, end)
     return listJobs?.slice(0, soCardRender).map((jobs) => {
       return (
-        <Grid item xs={6} key={jobs._id}>
+        <Grid item xs={12} sm={6} key={jobs._id}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={

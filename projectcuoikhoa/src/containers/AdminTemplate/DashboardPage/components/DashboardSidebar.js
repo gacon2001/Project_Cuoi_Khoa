@@ -56,19 +56,19 @@ const itemsLoggedIn = [
     icon: UserIcon,
     title: "Profile",
   },
+  {
+    href: "/signup",
+    icon: UserPlusIcon,
+    title: "SignUp",
+  },
 ];
-
 const itemsLoggedOut = [
   {
     href: "/signin",
     icon: LockIcon,
     title: "SignIn",
   },
-  {
-    href: "/signup",
-    icon: UserPlusIcon,
-    title: "SignUp",
-  },
+  
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
