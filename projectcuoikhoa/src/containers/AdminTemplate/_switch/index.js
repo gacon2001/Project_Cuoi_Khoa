@@ -120,29 +120,24 @@ export default function Switch({state, setState}) {
             label="Pro services"
             name="proServices"
             onClick={handleOnClick}
-            // value={state.proServices}
-            // true false đều fetch lại list jobs, nên check thế nào???
           />
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1, ml: 4 }} defaultChecked />}
             label="Local sellers"
             name="localSellers"
             onClick={handleOnClick}
-            // value={state.localSellers}
           />
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1 , ml: 4}} defaultChecked />}
             label="Online sellers"
             name="onlineSellers"
             onClick={handleOnClick}
-            // value={state.onlineSellers}
           />
           <FormControlLabel
             control={<IOSSwitch sx={{ m: 1 , ml: 3}} defaultChecked />}
             label="Delivery time"
             name="deliveryTime"
             onClick={handleOnClick}
-            // value={state.deliveryTime}
           />
         </FormGroup>
 

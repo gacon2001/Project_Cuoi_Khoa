@@ -14,7 +14,6 @@ import {
 import {
   AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
-  FilePlus,
   Lock as LockIcon,
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
@@ -23,23 +22,15 @@ import {
   Users as UsersIcon,
 } from "react-feather";
 import NavItem from "./NavItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actUploadAvatarApi } from "./Avatar/modules/actions";
-import { actFetchDetailUserApi } from "containers/AdminTemplate/EditUserAdmin/modules/actions";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useRouteMatch } from "react-router-dom";
 
 const itemsLoggedIn = [
   {
     href: "/dashboard-page",
     icon: BarChartIcon,
     title: "Dashboard",
-  },
-  {
-    href: "/customers",
-    icon: UsersIcon,
-    title: "Customers",
   },
   {
     href: "/list-jobs",
@@ -193,8 +184,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           p: 2,
         }}
       >
-        {/* <Button color="success" variant="contained" sx={{textalign: "center"}}>Log Out</Button> */}
-        <Button
+        {localStorage.getItem("Admin") ? <Button
           color="success"
           variant="contained"
           sx={{ ml: 6 }}
@@ -204,7 +194,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           }}
         >
           Log Out
-        </Button>
+        </Button> : ""}
+        
       </Box>
     </Box>
   );

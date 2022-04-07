@@ -44,7 +44,6 @@ export default function SignInPage() {
 
       <Box
         sx={{
-          // backgroundColor: "background.default",
           display: "flex",
           flexDirection: "column",
           height: "100%",
@@ -61,23 +60,21 @@ export default function SignInPage() {
           </Box>
 
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} >
               <Button
                 color="primary"
                 fullWidth
                 startIcon={<Facebook />}
-                // onClick={handleSubmit}
                 size="large"
                 variant="contained"
               >
                 Login with Facebook
               </Button>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} >
               <Button
                 fullWidth
                 startIcon={<Google />}
-                // onClick={handleSubmit}
                 size="large"
                 variant="contained"
               >
@@ -149,35 +146,6 @@ export default function SignInPage() {
         </Container>
         
       </Box>
-
-      {/* <div className="container">
-        <form onSubmit={handleLogin}>
-          <div className="form-group row">
-            <label>Email</label>
-            <div className="col-sm-1-12">
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label>Password</label>
-            <div className="col-sm-1-12">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={handleOnChange}
-              />
-            </div>
-          </div>
-
-          <button className="bnt btn-success">Login</button>
-        </form>
-      </div> */}
     </div>
   );
 }

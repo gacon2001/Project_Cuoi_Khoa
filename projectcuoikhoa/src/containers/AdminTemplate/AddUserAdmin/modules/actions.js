@@ -5,7 +5,7 @@ export const actAddUserApi = (user) => {
   return (dispatch) => {
     dispatch(actAddUserRequest());
     api
-      .post("users", user)//z body có object nên ở đây Vân thêm parám user đại diện đúng ko H? đúng òi á Vân
+      .post("users", user)
       .then((success) => {
         dispatch(actAddUserSuccess(success.data));
         alert("success")

@@ -12,11 +12,10 @@ import Select from '@mui/material/Select';
 
 export default function EditUserAdmin() {
   const dispatch = useDispatch();
-  const { _id } = useParams(); //route có /biến id => lấy id phải dùng useParams()
-  //!lấy đc r nhưng chưa hiện lên UI : => bữa hôm Hải bảo làm sao để lấy detail ra UI ấy H? tui quên mất ùi
+  const { _id } = useParams(); //route có biến id => lấy id phải dùng useParams()
   const detailUser = useSelector((state) => {
     return state.editUserReducer.detailUser;
-  }); //edit và detail dùng chung data đc ko? hay phải chia riêng editUser và detailUser
+  }); 
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -33,8 +32,8 @@ export default function EditUserAdmin() {
     // tại hồi nãy tui chưa để đk !== null
     // nên cái lúc đầu detailUser bị null nên react báo lỗi á. giờ đc òi -> báo ở đâu thế H
     // cái chỗ controlled input to be uncontrolled á có nghĩa là cái input mới đầu có value là 1 chuỗi rỗng state.name = "" mà mình ko kiểm tra đk, khi detailUser = null thì cái state.name = undefined, do detailUser = null mà null.thuoctinh => lỗi
-    // nên nó dừng react lại lun á oki H
-    //!birthday, mình phải xử lý để nó đúng format, giờ có 2 cách 1: tự viết hàm, hình như lúc trc tui có chỉ r. thôi giờ tui chỉ cách 2: xài thư viện đi
+    // nên nó dừng react lại lun 
+    //!birthday, mình phải xử lý để nó đúng format, giờ có 2 cách 1: tự viết hàm, hình như lúc trc tui có chỉ r. cách 2: xài thư viện đi
     if (detailUser !== null) {
       // format đúng: yyyy-MM-dd
       // khi lấy data từ server phải format lại đúng

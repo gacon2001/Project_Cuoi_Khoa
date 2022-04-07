@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {actFetchListBookingJobsApi } from "./modules/actions";
+import { actFetchListBookingJobsApi } from "./modules/actions";
 
+import { Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
@@ -12,6 +13,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
+import { Box, Container } from "@material-ui/core";
 
 export default function ListBookingJobs() {
   const dispatch = useDispatch();
@@ -19,15 +21,15 @@ export default function ListBookingJobs() {
     (state) => state.fetchlistBookingJobsReducer.listBookingJobs
   );
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(actFetchListBookingJobsApi());
-  }, [])
+  }, []);
 
   const renderListBookingJobs = () => {
     // console.log(listBookingJobs);
     return listBookingJobs?.bookingJob?.map((book, index) => {
       return (
-        <div key={index}>
+        <Grid item xs={12} sm={6} md={4} key={index}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
@@ -55,18 +57,21 @@ export default function ListBookingJobs() {
               <Typography variant="body2">Price: {book.price}</Typography>
             </CardContent>
           </Card>
-        </div> 
+        </Grid>
       );
     });
   };
 
   return (
-    <div>
-      <h3>ListBookingJobs</h3>
-
-      <div className="container">
-        <div className="row">{renderListBookingJobs()}</div>
-      </div>
-    </div>
+    <Box sx={{ mt: 8 }}>
+      <Container maxWidth="md">
+        <Typography color="textPrimary" variant="h3">
+        ListBookingJobs
+      </Typography>
+        <Grid container spacing={2} sx={{mt: 3}}>
+          {renderListBookingJobs()}
+        </Grid>
+      </Container>
+    </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Container, ListItem } from "@material-ui/core";
+import { Box, Button, Container } from "@material-ui/core";
 import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -19,7 +19,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SearchJobsPage from "../SearchJobsPage";
 import NavbarJobs from "../_components/NavbarJobs";
 import {
@@ -70,7 +70,7 @@ export default function ListJobsPage(path) {
     //array.slice(start, end)
     return listJobs?.slice(0, soCardRender).map((jobs) => {
       return (
-        <Grid item xs={12} sm={6} key={jobs._id}>
+        <Grid item xs={12} sm={6} md={4} key={jobs._id}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
@@ -156,8 +156,6 @@ export default function ListJobsPage(path) {
   return (
     <Box sx={{ mt: 8 }}>
       <Container maxWidth="md">
-        {/* cả subType và type đều có NavbarJobs -> render chung vị trí đc ko và ở đâu? */}
-        {/* {path == "/list-subType-jobs" && path == "/list-type-jobs" && path == "/list-jobs" && <NavbarJobs/>} */}
         <NavbarJobs />
         <Box>
           <Typography color="textPrimary" variant="h3">
@@ -171,9 +169,8 @@ export default function ListJobsPage(path) {
         <Video />
 
         <SearchJobsPage />
-        <Box>
-          {/* ko chia cột đc?? */}
-          <Grid container>{renderListJobs()}</Grid>
+        <Box >
+          <Grid container spacing={2}>{renderListJobs()}</Grid>
         </Box>
       </Container>
     </Box>

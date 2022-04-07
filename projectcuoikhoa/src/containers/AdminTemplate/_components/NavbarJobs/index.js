@@ -1,9 +1,7 @@
-import { Box, Hidden, IconButton } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import { Box } from "@material-ui/core";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import PropTypes from 'prop-types';
 export default function NavbarJobs() {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light navBarJobs">
@@ -42,6 +40,3 @@ export default function NavbarJobs() {
   );
 }
 
-NavbarJobs.propTypes = {
-  onMobileNavOpen: PropTypes.func
-};

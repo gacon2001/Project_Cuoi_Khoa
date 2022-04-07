@@ -56,15 +56,14 @@ export default function ListUser() {
     return listUser?.map((user) => {
       return (
         <tr key={user._id}>
-          <th>{user._id}</th>
           <th>{user.name}</th>
           <th>{user.email}</th>
           <th className="d-none d-md-table-cell">{user.phone}</th>
           <th className="d-none d-md-table-cell">{user.birthday}</th>
           <th className="d-none d-md-table-cell">{user.gender ? "Men" : "Women"}</th>
           <th className="d-none d-md-table-cell">{user.role}</th>
-          <th className="d-none d-md-table-cell">{user.__v}</th>
-          <th className="d-none d-md-table-cell">{user.avatar}</th>
+          <th className="d-none d-md-table-cell">
+          <img src={user.avatar} style={{width: "100%"}} /></th>
           <th className="d-none d-md-table-cell">
             <button
               className="btn btn-success"
@@ -85,26 +84,23 @@ export default function ListUser() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 10 }}>
+    <Container maxWidth="md" sx={{ mt: 10 }}>
       <Typography variant="h4">ListUser</Typography>
-      {/* <button className="btn btn-sucess" onClick={()=> history.push("/add-user-admin")}>Thêm Quản Trị</button> */}
       <Link to="/add-user-admin" className="btn btn-success">
         Thêm Quản Trị
       </Link>
       <SearchUser />
 
       <Root sx={{ width: 500, maxWidth: "100%" }}>
-        <table aria-label="custom pagination table">
+        <table aria-label="custom pagination table" class="table">
           <thead>
             <tr>
-              <th>Id</th>
               <th>Name</th>
               <th>Email</th>
               <th className="d-none d-md-table-cell">Phone</th>
               <th className="d-none d-md-table-cell">Birthday</th>
               <th className="d-none d-md-table-cell">Gender</th>
               <th className="d-none d-md-table-cell">Role</th>
-              <th className="d-none d-md-table-cell">__V</th>
               <th className="d-none d-md-table-cell">Avatar</th>
               <th className="d-none d-md-table-cell">Action</th>
             </tr>

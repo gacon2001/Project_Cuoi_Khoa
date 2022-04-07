@@ -63,14 +63,6 @@ export default function DetailJobPage() {
     
   }, []);
 
-  // const handleOnChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setState({
-  //     ...state,
-  //     [name]: value,
-  //   });
-  // };
-
   return (
     <Box
       sx={{
@@ -79,8 +71,6 @@ export default function DetailJobPage() {
     >
       <Container maxWidth="md">
         <div>
-          {/* <Link to="/">{state.type.name}</Link> */}
-          {/* <Link to="/">{state.subType.name}</Link> */}
         </div>
         <Typography variant="h3">{state.name}</Typography>
         <Box
@@ -120,7 +110,6 @@ export default function DetailJobPage() {
                   Full service with high details graphic and unlimited
                   revisions.
                 </p>
-                {/* ko cùng hàng??? */}
                 <Grid container direction="row">
                   <Grid item xs={6}>
                     <AccessTime />
@@ -170,7 +159,7 @@ export default function DetailJobPage() {
           </Grid>
         </Grid>
 
-        {/* vào giữa? */}
+       
         <Button color="success" variant="outlined" size="large">
           Contact Seller
         </Button>
@@ -224,7 +213,6 @@ export default function DetailJobPage() {
           <Typography variant="subtitle1">About The Seller</Typography>
           <Grid item xs={6}>
             <Grid item direction="column">
-              {/* img */}
             </Grid>
             <Grid item>
               <Typography variant="subtitle2">{userCreated.name}</Typography>

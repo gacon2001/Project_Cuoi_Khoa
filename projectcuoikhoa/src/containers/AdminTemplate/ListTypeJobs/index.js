@@ -60,8 +60,7 @@ export default function ListTypeJobs() {
     return listTypeJobs?.map((type) => {
       return (
         <>
-          {/* xs={} */}
-          <Grid xs={6} item key={type._id}>
+          <Grid xs={12} sm={6} md={4} item key={type._id}>
             <Card sx={{ maxWidth: 345 }}>
               <CardHeader
                 avatar={
@@ -165,7 +164,7 @@ export default function ListTypeJobs() {
         <SearchJobsPage />
         <Box>
           <Switch />
-          <Grid container>{renderListTypeJobs()}</Grid>
+          <Grid container spacing={2}>{renderListTypeJobs()}</Grid>
         </Box>
       </Container>
     </Box>

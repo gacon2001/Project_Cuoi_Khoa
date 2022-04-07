@@ -24,7 +24,6 @@ export default function ProfilePage() {
     gender: true,
   });
 
-  // UI ko đổi??
   useEffect(()=>{
     if (detailAdmin)
       setState(detailAdmin);
@@ -59,10 +58,6 @@ export default function ProfilePage() {
           <div className="col-sm-1-12">
             <div className="card text-left">
               <div className="card-body">
-                {/* <i className="fa fa-pen" /> */}
-                {/* <Link to="/edit-profile" className="btn btn-warning">
-                  Edit
-                </Link> */}
                 <button className="btn btn-warning" onClick={()=>history.push(`/edit-profile/${_id}`) }>Edit</button>
                 <hr />
 
@@ -86,8 +81,6 @@ export default function ProfilePage() {
                   <div className="form-group">
                     <label>Skills</label>
                     <div className="col-sm-1-12">
-                      {/* render skills có sẵn */}
-                      {/* {renderSkillsAvailable()} */}
                       <input
                         type="text"
                         className="form-control"

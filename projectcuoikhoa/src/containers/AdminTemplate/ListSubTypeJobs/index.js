@@ -58,6 +58,7 @@ export default function ListSubTypeJobs() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  
   const renderListSubTypeJobs = () => {
     return listSubTypeJobs?.filter(subType => (
       subType.proServices === state.proServices &&
@@ -68,8 +69,7 @@ export default function ListSubTypeJobs() {
       console.log(subType)
         return (
           <Fragment key={subType._id}>
-            {/* xs={} */}
-            <Grid xs={6} item key={subType._id}>
+            <Grid xs={6} sm={6} md={4} item key={subType._id}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardHeader
                   avatar={
@@ -173,7 +173,7 @@ export default function ListSubTypeJobs() {
         <SearchJobsPage />
         <Box>
           <Switch state={state} setState={setState} />
-          <Grid container>
+          <Grid container spacing={2}>
             {renderListSubTypeJobs()}
           </Grid>
         </Box>

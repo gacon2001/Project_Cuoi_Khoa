@@ -27,12 +27,12 @@ export default function AdminTemplate({ exact, path, component }) {
 }
 
 /*
-cha, con trong đây nói là kiểu component A mà chứa component B thì tui nói là cha con á
+cha, con trong đây nói là kiểu component A mà chứa component B thì nói là cha con 
 function Button() {
   return <button></button>
 }
 function App() { 
-  return <Button></Button> // chỗ này tui nói App là cha của Button,
+  return <Button></Button> // chỗ này nói App là cha của Button,
 }
-kiểu nói "cha", "con" ở đây cho dễ hình dung thôi á nha :V.
+kiểu nói "cha", "con" ở đây cho dễ hình dung thôi 
 */
